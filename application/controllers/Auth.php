@@ -13,7 +13,7 @@ class Auth extends CI_Controller
 
     public function index()
     {
-        redirect('auth/login', 'refresh');
+        redirect('auth/loginPegawai', 'refresh');
     }
     public function loginPegawai()
     {

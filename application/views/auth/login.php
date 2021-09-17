@@ -1,9 +1,10 @@
         <!-- Sing in  Form -->
-        <section class="sign-in">
+        <section class="sign-in" style="background-color: #6DABE4;">
             <div class="container">
                 <div class="signin-content">
+                    <img src="<?= base_url() ?>assets/auth/images/signup-image.jpg">
                     <div class="signin-form">
-                        <h2 class="form-title">Login Pegawai/Admin</h2>
+                        <h2 class="form-title">Login Staff</h2>
                         <form action="<?= base_url() ?>auth/prosesLoginPegawai" method="POST" class="register-form" id="login-form">
                             <?= $this->session->flashdata('message'); ?><br>
                             <div class="form-group">
