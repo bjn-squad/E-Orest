@@ -48,8 +48,8 @@ class Auth extends CI_Controller
     }
     public function logout()
     {
-        $this->session->sess_destroy();
         if ($this->session->userdata('id_pegawai')) {
+            $this->session->sess_destroy();
             redirect('auth/loginPegawai', 'refresh');
         }
     }
