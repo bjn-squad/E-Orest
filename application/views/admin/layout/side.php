@@ -34,7 +34,7 @@
                 </ul>
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active" href="<?= base_url() ?>admin">
+                        <a class="nav-link active" href="<?= base_url() ?>saran">
                             <i class="fa fa-envelope text-primary"></i>
                             <span class="nav-link-text">Kritik & Saran</span>
                         </a>
