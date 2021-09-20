@@ -26,7 +26,7 @@
                 </h6>
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active" href="<?= base_url() ?>admin">
+                        <a class="nav-link" href="<?= base_url() ?>admin">
                             <i class="fa fa-utensils text-primary"></i>
                             <span class="nav-link-text">Makanan & Minuman</span>
                         </a>
@@ -34,7 +34,15 @@
                 </ul>
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active" href="<?= base_url() ?>saran">
+                        <a class="nav-link" href="<?= base_url() ?>meja">
+                            <i class="fa fa-table text-primary"></i>
+                            <span class="nav-link-text">Manajemen Meja</span>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?= base_url() ?>saran">
                             <i class="fa fa-envelope text-primary"></i>
                             <span class="nav-link-text">Kritik & Saran</span>
                         </a>
