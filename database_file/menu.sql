@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 22 Sep 2021 pada 16.42
--- Versi server: 10.4.11-MariaDB
--- Versi PHP: 7.4.4
+-- Generation Time: Sep 22, 2021 at 06:11 PM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.4.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `menu`
+-- Table structure for table `menu`
 --
 
 CREATE TABLE `menu` (
@@ -36,30 +36,30 @@ CREATE TABLE `menu` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `menu`
+-- Dumping data for table `menu`
 --
 
 INSERT INTO `menu` (`id_menu`, `nama_menu`, `detail_menu`, `kategori`, `stok`) VALUES
-(1, 'Bakso', 'Bakso daging', 'makanan', 'Tersedia'),
-(2, 'mie ayam', 'mie ayam asli', 'makanan', 'Tersedia'),
-(3, 'mie jamur', 'topping jamur', 'makanan', 'Tersedia');
+(1, 'Bakso', 'Bakso daging', 'Makanan', 'Tersedia'),
+(2, 'Mie Ayam', 'mie ayam asli', 'Makanan', 'Tersedia'),
+(3, 'Mie Jamur', 'topping jamur', 'Makanan', 'Tersedia');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indeks untuk tabel `menu`
+-- Indexes for table `menu`
 --
 ALTER TABLE `menu`
   ADD PRIMARY KEY (`id_menu`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `menu`
+-- AUTO_INCREMENT for table `menu`
 --
 ALTER TABLE `menu`
   MODIFY `id_menu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;

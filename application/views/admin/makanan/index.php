@@ -47,8 +47,7 @@
                                     <td><?= $mk['nama_menu'] ?></td>
                                     <td><?= $mk['detail_menu'] ?></td>
                                     <td>
-                                        <a href="<?php base_url() ?>makanan/gambar/<?= $mk['id_menu'] ?>" class="btn btn-sm btn-info"> Gambar</a>
-                                        <a href="<?php base_url() ?>makanan/detail/<?= $mk['id_menu'] ?>" class="btn btn-sm btn-primary"> Detail</a>
+                                        <a href="<?php base_url() ?>makanan/gambar/<?= $mk['id_menu'] ?>" class="btn btn-sm btn-info"> Gambar Menu</a>
                                         <a href="<?php base_url() ?>makanan/edit/<?= $mk['id_menu'] ?>" class="btn btn-sm btn-warning"> Edit</a>
                                         <a href="<?php base_url() ?>makanan/delete/<?= $mk['id_menu'] ?>" onclick="return confirm('Apakah anda yakin ingin menghapus makanan ini?')" class="btn btn-sm btn-danger"> Hapus</a>
                                     </td>

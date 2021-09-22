@@ -90,40 +90,45 @@ class Makanan extends CI_Controller
 
     public function gambar($id)
     {
-        $data['id_menu'] = $id;
-        $data['title'] = 'Gambar Makanan';
-        $data['gambar'] = $this->Gambarmenu_model->getGambarById($id);
-        $this->load->view('admin/layout/header', $data);
-        $this->load->view('admin/layout/side');
-        $this->load->view('admin/layout/side-header');
-        $this->load->view('admin/makanan/gambar');
-        $this->load->view('admin/layout/footer');
+        $check = $this->db->query("SELECT * FROM menu where id_menu = $id");
+        if ($check) {
+            foreach ($check->result_array() as $result) {
+                $data['nama_menu'] = $result['nama_menu'];
+            }
+            $data['id_menu'] = $id;
+            $data['title'] = 'Gambar Makanan';
+            $data['gambar'] = $this->Gambarmenu_model->getGambarById($id);
+            $this->load->view('admin/layout/header', $data);
+            $this->load->view('admin/layout/side');
+            $this->load->view('admin/layout/side-header');
+            $this->load->view('admin/makanan/gambar');
+            $this->load->view('admin/layout/footer');
+        } else {
+            redirect('makanan');
+        }
     }
 
     public function tambah_gambar()
     {
-        $this->form_validation->set_rules('id_menu', 'id_menu', 'required');
-        $this->form_validation->set_rules('gambar_menu', 'gambar_menu', 'required');
-        if ($this->form_validation->run() == FALSE) {
-            redirect('makanan/gambar/' . $this->input->post('id_menu'));
-            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
-           Gambar Wajib Diisi
-          </div>');
-            // redirect('pengumuman/edit/' . $this->input->post('id_pengumuman'));
-        } else {
-            echo $this->upload->data();
-            echo $this->Gambarmenu_model->tambah_gambar();
-            if ($this->Gambarmenu_model->tambah_gambar() == 1) {
-
-                $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+        $data = $this->Gambarmenu_model->tambah_gambar();
+        if ($data == "True") {
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
                 Sukses Tambah Gambar
                 </div>');
-            } else {
-                $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+        } else {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
                 Gagal Tambah Gambar
                 </div>');
-            }
-            // redirect('makanan/gambar/' . $this->input->post('id_menu'));
         }
+        redirect('makanan/gambar/' . $this->input->post('id_menu'));
+    }
+
+    public function hapus_gambar($id_gambar, $id_menu)
+    {
+        $this->Gambarmenu_model->hapus_gambar($id_gambar);
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+           Sukses Menghapus Gambar.
+          </div>');
+        redirect('makanan/gambar/' . $id_menu);
     }
 }
