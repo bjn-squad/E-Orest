@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 22 Sep 2021 pada 16.42
--- Versi server: 10.4.11-MariaDB
--- Versi PHP: 7.4.4
+-- Generation Time: Sep 22, 2021 at 06:11 PM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.4.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `gambar_menu`
+-- Table structure for table `gambar_menu`
 --
 
 CREATE TABLE `gambar_menu` (
@@ -34,31 +34,35 @@ CREATE TABLE `gambar_menu` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `gambar_menu`
+-- Dumping data for table `gambar_menu`
 --
 
 INSERT INTO `gambar_menu` (`id_gambar`, `id_menu`, `gambar`) VALUES
-(1, 2, 'erddd.png');
+(2, 2, '22092021172127mie-ayam.jpg'),
+(3, 2, '22092021174747miee2.jpg'),
+(5, 2, '22092021175050mi2asd.jpg'),
+(6, 1, '22092021180735Bakso_mi_bihun.jpg'),
+(7, 1, '220920211807421140357898.jpg');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indeks untuk tabel `gambar_menu`
+-- Indexes for table `gambar_menu`
 --
 ALTER TABLE `gambar_menu`
   ADD PRIMARY KEY (`id_gambar`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `gambar_menu`
+-- AUTO_INCREMENT for table `gambar_menu`
 --
 ALTER TABLE `gambar_menu`
-  MODIFY `id_gambar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_gambar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

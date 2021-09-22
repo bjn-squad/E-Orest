@@ -9,9 +9,9 @@ class Gambarmenu_model extends CI_Model
         $query = $this->db->query("SELECT * FROM gambar_menu gm join menu m on gm.id_menu=m.id_menu where m.id_menu = $id");
         return $query->result_array();
     }
+
     public function tambah_gambar()
     {
-        echo $_FILES['gambar_menu']['name'];
         $file_name = $_FILES['gambar_menu']['name'];
         $newfile_name = str_replace(' ', '', $file_name);
         $config['upload_path']          = './assets/dataresto/menu/';
@@ -22,15 +22,30 @@ class Gambarmenu_model extends CI_Model
         $this->load->library('upload', $config);
         $this->upload->initialize($config);
         if ($this->upload->do_upload('gambar_menu')) {
-            return $upload = 1;
             $this->upload->data('file_name');
             $data = [
                 "id_menu" => $this->input->post('id_menu'),
-                "gambar" => $newName
+                "gambar" => $newName,
             ];
             $this->db->insert('gambar_menu', $data);
+            return "True";
         } else {
-            return $upload = 0;
+            $error = array('error' => $this->upload->display_errors());
+            return $this->session->set_flashdata('error', $error['error']);
         }
+    }
+
+    public function hapus_gambar($id_gambar)
+    {
+        $pathGambarMenu = "assets/dataresto/menu/";
+        $getDataGambar = $this->db->query("SELECT * FROM gambar_menu WHERE id_gambar = $id_gambar");
+        foreach ($getDataGambar->result_array() as $gambar) {
+            $gambar_menu = $gambar['gambar'];
+        }
+
+        unlink($pathGambarMenu . $gambar_menu);
+
+        $this->db->where('id_gambar', $id_gambar);
+        $this->db->delete('gambar_menu');
     }
 }
