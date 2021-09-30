@@ -26,6 +26,13 @@
                 </div>
                 <div class="col-lg-12">
                     <?= $this->session->flashdata('message'); ?>
+                    <?php if ($this->session->flashdata('error')) {
+                    ?>
+                        <div class="alert alert-danger" role="alert">
+                            <?= $this->session->flashdata('error') ?>
+                        </div>
+                    <?php
+                    } ?>
                     <button class="btn btn-primary mb-3" data-toggle="modal" data-target="#tambahmejamodal"><i class="fa fa-plus"></i> Tambah Meja</button>
 
                     <table class="table table-flush dataTable" id="datatable-id" role="grid" aria-describedby="datatable-basic_info">
@@ -46,8 +53,8 @@
                                     <td><?= $m['kapasitas_meja'] ?> Orang</td>
                                     <td><?= $m['keterangan_meja'] ?></td>
                                     <td>
-                                        <button class="btn btn-sm btn-warning">Edit</button>
-                                        <button class="btn btn-sm btn-danger">Hapus</button>
+                                        <button data-toggle="modal" data-target="#editmejamodal" onclick="edit_meja(<?= $m['id_meja'] ?>)" class="btn btn-sm btn-warning">Edit</button>
+                                        <a href="<?= base_url() ?>meja/hapus/<?= $m['id_meja'] ?>" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus Meja <?= $m['nomor_meja'] ?>?');" class="btn btn-sm btn-danger">Hapus</a></td>
                                     </td>
                                 </tr>
                             <?php
@@ -75,7 +82,7 @@
                 <form action="<?= base_url() ?>meja/tambah" method="POST">
                     <div class="form-group">
                         <label>Nomor Meja</label>
-                        <input type="name" class="form-control" placeholder="1A" name="nomor_meja" required>
+                        <input type="text" class="form-control" placeholder="1A" name="nomor_meja" required>
                         <label>Kapasitas (Orang)</label>
                         <input type="number" class="form-control" placeholder="0" name="kapasitas" required>
                     </div>
@@ -88,3 +95,51 @@
         </div>
     </div>
 </div>
+
+<!-- Edit Modal -->
+<div class="modal fade" id="editmejamodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit Meja <span id="nomor_meja_title"></span></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="<?= base_url() ?>meja/edit" method="POST">
+                    <div class="form-group">
+                        <input type="hidden" id="idmeja_edit" name="id_meja" required>
+                        <label>Kapasitas (Orang)</label>
+                        <input type="number" id="kapasitas_edit" class="form-control" placeholder="0" name="kapasitas_meja" required>
+                        <label>Keterangan Meja</label>
+                        <select class="form-control" name="keterangan_meja" required>
+                            <option value="" selected disabled>Pilih Keterangan Meja</option>
+                            <option>Tersedia</option>
+                            <option>Tidak Tersedia (Sudah Dibooking)</option>
+                        </select>
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-success">Edit Meja</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function edit_meja(id) {
+        $.ajax({
+            type: 'POST',
+            url: `<?= base_url() ?>meja/get_meja_by_id/${id}`,
+            dataType: 'json',
+            success: (hasil) => {
+                document.getElementById("idmeja_edit").value = hasil.id_meja;
+                document.getElementById("kapasitas_edit").value = hasil.kapasitas_meja;
+                $('#nomor_meja_title').html(hasil.nomor_meja)
+            }
+        });
+    }
+</script>
