@@ -31,9 +31,11 @@
                     <table class="table table-flush dataTable" id="datatable-id" role="grid" aria-describedby="datatable-basic_info">
                         <thead class="thead-dark">
                             <tr role="row">
-                                <th>Nomor Menu</th>
                                 <th>Nama Menu</th>
                                 <th>Detail Menu</th>
+                                <th>Kategori</th>
+                                <th>Stok</th>
+                                <th>Harga</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -43,13 +45,15 @@
                             foreach ($makanan as $mk) {
                             ?>
                                 <tr>
-                                    <td><?= $no ?></td>
                                     <td><?= $mk['nama_menu'] ?></td>
                                     <td><?= $mk['detail_menu'] ?></td>
+                                    <td><?= $mk['kategori'] ?></td>
+                                    <td><?= $mk['stok'] ?></td>
+                                    <td><?= $mk['harga'] ?></td>
                                     <td>
-                                        <a href="<?php base_url() ?>makanan/gambar/<?= $mk['id_menu'] ?>" class="btn btn-sm btn-info"> Gambar Menu</a>
+                                        <a href="<?php base_url() ?>makanan/gambar/<?= $mk['id_menu'] ?>" class="btn btn-sm btn-info"> Gambar</a>
                                         <a href="<?php base_url() ?>makanan/edit/<?= $mk['id_menu'] ?>" class="btn btn-sm btn-warning"> Edit</a>
-                                        <a href="<?php base_url() ?>makanan/delete/<?= $mk['id_menu'] ?>" onclick="return confirm('Apakah anda yakin ingin menghapus makanan ini?')" class="btn btn-sm btn-danger"> Hapus</a>
+                                        <a href="<?php base_url() ?>makanan/delete/<?= $mk['id_menu'] ?>" onclick="return confirm('Apakah anda yakin ingin menghapus menu <?= $mk['nama_menu'] ?>? Jika anda menghapus menu ini maka gambar menu ini ikut terhapus.')" class="btn btn-sm btn-danger"> Hapus</a>
                                     </td>
                                 </tr>
                             <?php
@@ -78,10 +82,21 @@
                 <form action="<?= base_url() ?>makanan/tambah" method="POST">
                     <div class="form-group">
                         <label>Nama Menu</label>
-                        <input type="name" class="form-control" placeholder="" name="nama_menu" required>
+                        <input type="text" class="form-control" placeholder="" name="nama_menu" required>
                         <label>Detail Menu</label>
-                        <input type="name" class="form-control" placeholder="" name="detail_menu" required>
-
+                        <input type="text" class="form-control" placeholder="" name="detail_menu" required>
+                        <label for="exampleFormControlSelect1">Kategori</label>
+                        <select class="form-control" id="exampleFormControlSelect1" name="kategori">
+                            <option>Makanan</option>
+                            <option>Minuman</option>
+                        </select>
+                        <label for="exampleFormControlSelect1">Stok</label>
+                        <select class="form-control" id="exampleFormControlSelect1" name="stok">
+                            <option>Tersedia</option>
+                            <option>Tidak Tersedia</option>
+                        </select>
+                        <label>Harga</label>
+                        <input type="number" class="form-control" placeholder="" name="harga" required|numeric>
                     </div>
 
             </div>
