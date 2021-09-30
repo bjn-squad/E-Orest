@@ -30,6 +30,9 @@ class Makanan extends CI_Controller
     {
         $this->form_validation->set_rules('nama_menu', 'nama_menu', 'required');
         $this->form_validation->set_rules('detail_menu', 'detail_menu', 'required');
+        $this->form_validation->set_rules('kategori', 'kategori', 'required');
+        $this->form_validation->set_rules('stok', 'stok', 'required');
+        $this->form_validation->set_rules('harga', 'harga', 'required|numeric');
 
         if ($this->form_validation->run() == FALSE) {
             redirect('makanan');
@@ -67,11 +70,16 @@ class Makanan extends CI_Controller
     {
         $this->form_validation->set_rules('nama_menu', 'nama_menu', 'required');
         $this->form_validation->set_rules('detail_menu', 'detail_menu', 'required');
+        $this->form_validation->set_rules('kategori', 'kategori', 'required');
+        $this->form_validation->set_rules('stok', 'stok', 'required');
+        $this->form_validation->set_rules('harga', 'harga', 'required|numeric');
         if ($this->form_validation->run() == FALSE) {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+            Gagal Mengedit Menu
+           </div>');
             redirect('makanan');
-            // redirect('pengumuman/edit/' . $this->input->post('id_pengumuman'));
         } else {
-            $this->Makanan_model->update();
+            $this->Makanan_model->edit();
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
            Sukses Mengedit Menu
           </div>');
