@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 22, 2021 at 06:11 PM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.6
+-- Waktu pembuatan: 30 Sep 2021 pada 17.02
+-- Versi server: 10.4.11-MariaDB
+-- Versi PHP: 7.4.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `menu`
+-- Struktur dari tabel `menu`
 --
 
 CREATE TABLE `menu` (
@@ -32,37 +32,41 @@ CREATE TABLE `menu` (
   `nama_menu` varchar(100) NOT NULL,
   `detail_menu` text NOT NULL,
   `kategori` varchar(50) NOT NULL,
-  `stok` varchar(50) NOT NULL DEFAULT 'Tersedia'
+  `stok` varchar(50) NOT NULL DEFAULT 'Tersedia',
+  `harga` int(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `menu`
+-- Dumping data untuk tabel `menu`
 --
 
-INSERT INTO `menu` (`id_menu`, `nama_menu`, `detail_menu`, `kategori`, `stok`) VALUES
-(1, 'Bakso', 'Bakso daging', 'Makanan', 'Tersedia'),
-(2, 'Mie Ayam', 'mie ayam asli', 'Makanan', 'Tersedia'),
-(3, 'Mie Jamur', 'topping jamur', 'Makanan', 'Tersedia');
+INSERT INTO `menu` (`id_menu`, `nama_menu`, `detail_menu`, `kategori`, `stok`, `harga`) VALUES
+(1, 'Bakso', 'Bakso daging', 'Makanan', 'Tersedia', 6000),
+(2, 'Mie Ayam', 'mie ayam asli', 'Makanan', 'Tersedia', 10000),
+(3, 'Mie Jamur', 'topping jamur', 'Makanan', 'Tersedia', 7000),
+(7, 'es', 'teh', 'Minuman', 'Tersedia', 3000),
+(8, 'Es Jeruk', 'Nutrisari', 'Minuman', 'Tersedia', 5000),
+(9, 'Es Lemon', 'Rasa Lemon', 'Minuman', 'Tidak Tersedia', 6500);
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `menu`
+-- Indeks untuk tabel `menu`
 --
 ALTER TABLE `menu`
   ADD PRIMARY KEY (`id_menu`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `menu`
+-- AUTO_INCREMENT untuk tabel `menu`
 --
 ALTER TABLE `menu`
-  MODIFY `id_menu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_menu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
