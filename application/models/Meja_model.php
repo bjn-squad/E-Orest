@@ -18,4 +18,26 @@ class Meja_model extends CI_Model
         ];
         $this->db->insert('meja', $data);
     }
+
+    public function edit_meja()
+    {
+        $data = [
+            "kapasitas_meja" => $this->input->post('kapasitas_meja', true),
+            "keterangan_meja" => $this->input->post('keterangan_meja', true)
+        ];
+        $this->db->where('id_meja', $this->input->post('id_meja'));
+        $this->db->update('meja', $data);
+    }
+
+    public function hapus_meja($id)
+    {
+        $this->db->where('id_meja', $id);
+        $this->db->delete('meja');
+    }
+
+    public function get_meja_by_id($id)
+    {
+        $query = $this->db->query("SELECT * FROM meja WHERE id_meja = $id");
+        return $query->row();
+    }
 }
