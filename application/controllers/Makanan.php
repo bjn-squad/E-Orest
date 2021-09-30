@@ -28,15 +28,18 @@ class Makanan extends CI_Controller
 
     public function tambah()
     {
-        $this->form_validation->set_rules('nama_makanan', 'nama_makanan', 'required');
-        $this->form_validation->set_rules('detail_makanan', 'detail_makanan', 'required');
+        $this->form_validation->set_rules('nama_menu', 'nama_menu', 'required');
+        $this->form_validation->set_rules('detail_menu', 'detail_menu', 'required');
+        $this->form_validation->set_rules('kategori', 'kategori', 'required');
+        $this->form_validation->set_rules('stok', 'stok', 'required');
+        $this->form_validation->set_rules('harga', 'harga', 'required|numeric');
 
         if ($this->form_validation->run() == FALSE) {
             redirect('makanan');
         } else {
             $this->Makanan_model->tambah();
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
-           Sukses Menambah Data Makanan
+           Sukses Menambah Data Menu
           </div>');
             redirect('makanan');
         }
@@ -54,7 +57,7 @@ class Makanan extends CI_Controller
     }
     public function edit($id)
     {
-        $data['title'] = 'Edit Makanan';
+        $data['title'] = 'Edit Menu';
         $data['makanan'] = $this->Makanan_model->getMakananById($id);
         $this->load->view('admin/layout/header', $data);
         $this->load->view('admin/layout/side');
@@ -65,17 +68,22 @@ class Makanan extends CI_Controller
 
     public function prosesEdit()
     {
-        $this->form_validation->set_rules('judul', 'judul', 'required');
-        $this->form_validation->set_rules('isi', 'isi', 'required');
+        $this->form_validation->set_rules('nama_menu', 'nama_menu', 'required');
+        $this->form_validation->set_rules('detail_menu', 'detail_menu', 'required');
+        $this->form_validation->set_rules('kategori', 'kategori', 'required');
+        $this->form_validation->set_rules('stok', 'stok', 'required');
+        $this->form_validation->set_rules('harga', 'harga', 'required|numeric');
         if ($this->form_validation->run() == FALSE) {
-            redirect('pegawai');
-            // redirect('pengumuman/edit/' . $this->input->post('id_pengumuman'));
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+            Gagal Mengedit Menu
+           </div>');
+            redirect('makanan');
         } else {
-            $this->pengumuman_model->update();
+            $this->Makanan_model->edit();
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
-           Sukses Mengedit Pengumuman
+           Sukses Mengedit Menu
           </div>');
-            redirect('pengumuman');
+            redirect('makanan');
         }
     }
 
@@ -83,7 +91,7 @@ class Makanan extends CI_Controller
     {
         $this->Makanan_model->delete($id);
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
-           Sukses Menghapus Pengumuman.
+           Sukses Menghapus Menu.
           </div>');
         redirect('makanan');
     }

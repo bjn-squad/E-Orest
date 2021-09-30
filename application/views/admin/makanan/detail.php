@@ -4,7 +4,7 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
-                        <strong>Detail Makanan</strong>
+                        <strong>Detail Menu</strong>
                     </div>
                     <?php
                     foreach ($makanan as $mk) {
@@ -12,7 +12,7 @@
                         <div class="card-body card-block">
                             <a href="<?= base_url() ?>makanan" class="btn btn-secondary btn-sm"><i class="fa fa-arrow-left"></i> Back</a>
                             <center>
-                                <h1><?= $mk['nama_makanan'] ?></h1>
+                                <h1><?= $mk['nama_menu'] ?></h1>
                                 <br>
                                 <?php
                                 if ($mk['gambar'] != 'Tidak Ada Gambar') {
@@ -26,7 +26,7 @@
                                 } ?>
                             </center>
                             <p style="white-space: pre-line;color:black; text-align: justify;">
-                                <?= $mk['nama_makanan'] ?>
+                                <?= $mk['detail_menu'] ?>
                             </p>
                             <hr>
                         </div>
