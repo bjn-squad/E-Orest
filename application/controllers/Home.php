@@ -16,4 +16,12 @@ class Home extends CI_Controller
         $this->load->view('home/index');
         $this->load->view('home/layout/footer');
     }
+
+    public function booking()
+    {
+        $data['title'] = 'E-ORest';
+        $this->load->view('home/layout/header', $data);
+        $this->load->view('home/booking');
+        $this->load->view('home/layout/footer');
+    }
 }
