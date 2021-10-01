@@ -26,7 +26,7 @@
                 </h6>
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= base_url() ?>admin">
+                        <a class="nav-link" href="<?= base_url() ?>makanan">
                             <i class="fa fa-utensils text-primary"></i>
                             <span class="nav-link-text">Makanan & Minuman</span>
                         </a>
