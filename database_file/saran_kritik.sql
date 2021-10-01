@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 20, 2021 at 07:02 AM
+-- Generation Time: Oct 01, 2021 at 08:24 AM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 7.2.5
 
@@ -25,32 +25,6 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pegawai`
---
-
-CREATE TABLE `pegawai` (
-  `id_pegawai` int(11) NOT NULL,
-  `nama` varchar(150) NOT NULL,
-  `email` varchar(150) NOT NULL,
-  `alamat` varchar(255) NOT NULL,
-  `password` varchar(50) NOT NULL,
-  `telepon` varchar(50) NOT NULL,
-  `jenis_kelamin` varchar(50) NOT NULL,
-  `jabatan` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `pegawai`
---
-
-INSERT INTO `pegawai` (`id_pegawai`, `nama`, `email`, `alamat`, `password`, `telepon`, `jenis_kelamin`, `jabatan`) VALUES
-(1, 'Ardan Anjung Kusuma', 'ardan@gmail.com', 'Jl. Senggani, Kota Malang', '81dc9bdb52d04dc20036dbd8313ed055', '081279109122', 'Pria', 'pegawai'),
-(2, 'Dina Lisuardi', 'dina@gmail.com', 'Jl. Semanggi Barat, Kota Malang', '81dc9bdb52d04dc20036dbd8313ed055', '085645121991', 'Wanita', 'pegawai'),
-(3, 'Bos Admin', 'admin@gmail.com', 'Jl. Anggrek 51 Malang', '21232f297a57a5a743894a0e4a801fc3', '0851248238', 'Pria', 'admin');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `saran_kritik`
 --
 
@@ -67,17 +41,12 @@ CREATE TABLE `saran_kritik` (
 --
 
 INSERT INTO `saran_kritik` (`id_saran`, `nama_pelanggan`, `email`, `tanggal`, `saran`) VALUES
-(4, 'nia', 't@gmail.com', '2019-09-21', '23dg');
+(15, 'Nay', 'znyh@gmail.com', '2021-09-20', 'Rumah makan atau restoran adalah istilah umum untuk menyebut usaha gastronomi yang menyajikan hidangan kepada masyarakat dan menyediakan tempat untuk menikmati hidangan tersebut serta menetapkan tarif tertentu untuk makanan dan pelayanannya. Meski pada umumnya rumah makan menyajikan makanan di tempat, tetapi ada juga beberapa yang menyediakan layanan take-out dining dan delivery service sebagai salah satu bentuk pelayanan kepada konsumennya. Rumah makan biasanya memiliki spesialisasi dalam jenis makanan yang dihidangkannya. Sebagai contoh yaitu rumah makan chinese food, rumah makan Padang, rumah makan cepat saji (fast food restaurant) dan sebagainya.'),
+(16, 'Yuni Kurnia Taramita', 'yuni186@gmail.com', '2021-10-01', 'Restoran ini tempatnya nyaman dan bersih. Pelayanannya pun sangat baik dan ramah. Dan tentunya menu yang ditawarkan juga enak. ');
 
 --
 -- Indexes for dumped tables
 --
-
---
--- Indexes for table `pegawai`
---
-ALTER TABLE `pegawai`
-  ADD PRIMARY KEY (`id_pegawai`);
 
 --
 -- Indexes for table `saran_kritik`
@@ -90,16 +59,10 @@ ALTER TABLE `saran_kritik`
 --
 
 --
--- AUTO_INCREMENT for table `pegawai`
---
-ALTER TABLE `pegawai`
-  MODIFY `id_pegawai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
 -- AUTO_INCREMENT for table `saran_kritik`
 --
 ALTER TABLE `saran_kritik`
-  MODIFY `id_saran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_saran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
