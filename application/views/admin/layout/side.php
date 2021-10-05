@@ -22,7 +22,7 @@
                 <!-- Divider -->
                 <hr class="my-3">
                 <h6 class="navbar-heading p-0 text-muted">
-                    <span class="docs-normal">Menu</span>
+                    <span class="docs-normal">Menu Pegawai</span>
                 </h6>
                 <ul class="navbar-nav">
                     <li class="nav-item">
@@ -48,6 +48,41 @@
                         </a>
                     </li>
                 </ul>
+                <?php
+                if ($this->session->userdata('jabatan') == "admin") {
+                ?>
+                    <!-- Divider -->
+                    <hr class="my-3">
+                    <h6 class="navbar-heading p-0 text-muted">
+                        <span class="docs-normal">Menu Admin</span>
+                    </h6>
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?= base_url() ?>profilusaha">
+                                <i class="fa fa-home text-primary"></i>
+                                <span class="nav-link-text">Profil Usaha</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?= base_url() ?>profilusaha/edit">
+                                <i class="fa fa-cog text-primary"></i>
+                                <span class="nav-link-text">Edit Profil Usaha</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?= base_url() ?>profilusaha/metode_pembayaran">
+                                <i class="fa fa-money-bill text-primary"></i>
+                                <span class="nav-link-text">Metode Pembayaran</span>
+                            </a>
+                        </li>
+                    </ul>
+                <?php
+                }
+                ?>
             </div>
         </div>
     </div>
