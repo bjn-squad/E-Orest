@@ -6,6 +6,9 @@ class Saran extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        if (empty($this->session->userdata('id_pegawai'))) {
+            redirect('auth/loginPegawai', 'refresh');
+        }
         $this->load->model('saran_model');
     }
 
@@ -77,10 +80,14 @@ class Saran extends CI_Controller
 
     public function delete($id)
     {
-        $this->saran_model->delete($id);
-        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
-           Sukses Menghapus Data Kritik & Saran
-          </div>');
-        redirect('saran');
+        if ($this->session->userdata('jabatan') != "admin") {
+            redirect('saran');
+        } else {
+            $this->saran_model->delete($id);
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+            Sukses Menghapus Data Kritik & Saran
+            </div>');
+            redirect('saran');
+        }
     }
 }
