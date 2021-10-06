@@ -54,7 +54,8 @@
                                     <td><?= $m['keterangan_meja'] ?></td>
                                     <td>
                                         <button data-toggle="modal" data-target="#editmejamodal" onclick="edit_meja(<?= $m['id_meja'] ?>)" class="btn btn-sm btn-warning">Edit</button>
-                                        <a href="<?= base_url() ?>meja/hapus/<?= $m['id_meja'] ?>" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus Meja <?= $m['nomor_meja'] ?>?');" class="btn btn-sm btn-danger">Hapus</a></td>
+                                        <a href="<?= base_url() ?>meja/hapus/<?= $m['id_meja'] ?>" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus Meja <?= $m['nomor_meja'] ?>?');" class="btn btn-sm btn-danger">Hapus</a>
+                                    </td>
                                     </td>
                                 </tr>
                             <?php

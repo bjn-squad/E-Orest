@@ -34,6 +34,7 @@ class Home extends CI_Controller
         $data['nomor_telepon'] = $profil['nomor_telepon'];
         $data['instagram'] = $profil['instagram'];
         $data['facebook'] = $profil['facebook'];
+        $data['maps_link'] = $profil['maps_link'];
 
         // Khusus Slider
         $data['foto_usaha_1'] = $profil['foto_usaha_1'];
