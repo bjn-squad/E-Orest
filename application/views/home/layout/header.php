@@ -40,7 +40,7 @@
       <nav id="navbar" class="navbar">
         <ul>
           <li><a class="active" href="<?= base_url() ?>">Home</a></li>
-          <li><a href="<?= base_url() ?>home/menu">Katalog Menu</a></li>
+          <li><a href="<?= base_url() ?>katalog">Katalog Menu</a></li>
           <li><a href="<?= base_url() ?>home/booking">Booking Sekarang</a></li>
           <li><a href="<?= base_url() ?>home/pembayaran">Cek Pembayaran</a></li>
           <li><a href="<?= base_url() ?>saran/add">Kritik & Saran</a></li>
