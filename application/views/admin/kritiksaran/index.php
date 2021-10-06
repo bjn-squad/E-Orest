@@ -50,7 +50,11 @@
                   <!-- <td><?= $s['saran'] ?></td> -->
                   <td>
                     <a href="<?php base_url() ?>saran/detail/<?= $s['id_saran'] ?>" class="btn btn-sm btn-warning">Detail</a>
-                    <a href="<?php base_url() ?>saran/delete/<?= $s['id_saran'] ?>" class="btn btn-sm btn-danger">Hapus</a>
+                    <?php
+                    if ($this->session->userdata('jabatan') == "admin") {
+                    ?>
+                      <a href="<?php base_url() ?>saran/delete/<?= $s['id_saran'] ?>" class="btn btn-sm btn-danger">Hapus</a>
+                    <?php } ?>
                   </td>
                 </tr>
               <?php $no++;
