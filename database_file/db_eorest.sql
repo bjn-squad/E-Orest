@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 05, 2021 at 01:39 PM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.6
+-- Waktu pembuatan: 06 Okt 2021 pada 11.07
+-- Versi server: 10.4.11-MariaDB
+-- Versi PHP: 7.4.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `gambar_menu`
+-- Struktur dari tabel `gambar_menu`
 --
 
 CREATE TABLE `gambar_menu` (
@@ -34,7 +34,7 @@ CREATE TABLE `gambar_menu` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `gambar_menu`
+-- Dumping data untuk tabel `gambar_menu`
 --
 
 INSERT INTO `gambar_menu` (`id_gambar`, `id_menu`, `gambar`) VALUES
@@ -42,12 +42,25 @@ INSERT INTO `gambar_menu` (`id_gambar`, `id_menu`, `gambar`) VALUES
 (3, 2, '22092021174747miee2.jpg'),
 (5, 2, '22092021175050mi2asd.jpg'),
 (6, 1, '22092021180735Bakso_mi_bihun.jpg'),
-(7, 1, '220920211807421140357898.jpg');
+(7, 1, '220920211807421140357898.jpg'),
+(8, 8, '0610202109160311Jugosylicuadosquetequitanlaansiedadyteayudanabajardepeso.jpg'),
+(9, 8, '06102021091612Esjerukphotography.jpg'),
+(10, 7, '06102021091833Sips-KatieChrist.jpg'),
+(12, 7, '06102021091907EsTehSerai-LemongrassIceTea.jpg'),
+(14, 16, '06102021092328orange-coconutmilkshake.jpg'),
+(16, 16, '06102021092756024b5b71-b655-4e9b-9f7e-fc37ed0eb720.jpg'),
+(17, 16, '06102021092845TheBestStrawberryMilkshake-BakingMischief.jpg'),
+(19, 12, '06102021093111NasiGoreng(IndonesianFriedRice).jpg'),
+(20, 12, '06102021093206BrownRiceNasiGoreng(IndonesianFriedRice)IGeorgieEats.jpg'),
+(21, 13, '061020210934115d4481d7-66a4-4e4a-82f6-de49b246e92d.jpg'),
+(24, 13, '06102021093658SateKambingYangEmpuk.jpg'),
+(25, 15, '06102021093836SopBuntut_IndonesianOxtailSoup.jpg'),
+(26, 11, '06102021093956ResepSotoLamonganAsliJawaTimurDenganSuwiranAyamDanKuahKuning.jpg');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `meja`
+-- Struktur dari tabel `meja`
 --
 
 CREATE TABLE `meja` (
@@ -58,7 +71,7 @@ CREATE TABLE `meja` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `meja`
+-- Dumping data untuk tabel `meja`
 --
 
 INSERT INTO `meja` (`id_meja`, `nomor_meja`, `kapasitas_meja`, `keterangan_meja`) VALUES
@@ -72,7 +85,7 @@ INSERT INTO `meja` (`id_meja`, `nomor_meja`, `kapasitas_meja`, `keterangan_meja`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `menu`
+-- Struktur dari tabel `menu`
 --
 
 CREATE TABLE `menu` (
@@ -85,21 +98,24 @@ CREATE TABLE `menu` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `menu`
+-- Dumping data untuk tabel `menu`
 --
 
 INSERT INTO `menu` (`id_menu`, `nama_menu`, `detail_menu`, `kategori`, `stok`, `harga`) VALUES
-(1, 'Bakso', 'Bakso daging', 'Makanan', 'Tersedia', 6000),
-(2, 'Mie Ayam', 'mie ayam asli', 'Makanan', 'Tersedia', 10000),
-(3, 'Mie Jamur', 'topping jamur', 'Makanan', 'Tersedia', 7000),
-(7, 'es', 'teh', 'Minuman', 'Tersedia', 3000),
-(8, 'Es Jeruk', 'Nutrisari', 'Minuman', 'Tersedia', 5000),
-(9, 'Es Lemon', 'Rasa Lemon', 'Minuman', 'Tidak Tersedia', 6500);
+(1, 'Bakso', 'Bakso Daging', 'Makanan', 'Tersedia', 20000),
+(2, 'Mie Ayam', 'Topping Ayam, Topping Jamur ', 'Makanan', 'Tersedia', 15000),
+(7, 'Es Teh', 'Jasmine, Lychee, Oolong', 'Minuman', 'Tersedia', 8000),
+(8, 'Es Jeruk', 'Nipis, Lemon, Jeruk Asli', 'Minuman', 'Tersedia', 10000),
+(11, 'Soto Lamongan ', 'Dengan Topping ayam', 'Makanan', 'Tersedia', 15000),
+(12, 'Nasi Goreng', 'Jawa, Mawut, Seafood', 'Makanan', 'Tersedia', 25000),
+(13, 'Sate Daging', 'Ayam asli, Kambing, Sapi', 'Makanan', 'Tersedia', 25000),
+(15, 'Sop Buntut', 'Buntut Sapi', 'Makanan', 'Tersedia', 35000),
+(16, 'Milkshake', 'Coklat, Vanila, Greentea, Strawberry', 'Minuman', 'Tersedia', 15000);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `metode_pembayaran`
+-- Struktur dari tabel `metode_pembayaran`
 --
 
 CREATE TABLE `metode_pembayaran` (
@@ -110,7 +126,7 @@ CREATE TABLE `metode_pembayaran` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `metode_pembayaran`
+-- Dumping data untuk tabel `metode_pembayaran`
 --
 
 INSERT INTO `metode_pembayaran` (`id_metode`, `nama_merchant`, `atas_nama`, `kode_pembayaran`) VALUES
@@ -122,7 +138,7 @@ INSERT INTO `metode_pembayaran` (`id_metode`, `nama_merchant`, `atas_nama`, `kod
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pegawai`
+-- Struktur dari tabel `pegawai`
 --
 
 CREATE TABLE `pegawai` (
@@ -137,7 +153,7 @@ CREATE TABLE `pegawai` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `pegawai`
+-- Dumping data untuk tabel `pegawai`
 --
 
 INSERT INTO `pegawai` (`id_pegawai`, `nama`, `email`, `alamat`, `password`, `telepon`, `jenis_kelamin`, `jabatan`) VALUES
@@ -148,7 +164,7 @@ INSERT INTO `pegawai` (`id_pegawai`, `nama`, `email`, `alamat`, `password`, `tel
 -- --------------------------------------------------------
 
 --
--- Table structure for table `profil_usaha`
+-- Struktur dari tabel `profil_usaha`
 --
 
 CREATE TABLE `profil_usaha` (
@@ -166,7 +182,7 @@ CREATE TABLE `profil_usaha` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `profil_usaha`
+-- Dumping data untuk tabel `profil_usaha`
 --
 
 INSERT INTO `profil_usaha` (`id`, `nama_usaha`, `alamat`, `nomor_telepon`, `email`, `instagram`, `facebook`, `maps_link`, `foto_usaha_1`, `foto_usaha_2`, `foto_usaha_3`) VALUES
@@ -175,7 +191,7 @@ INSERT INTO `profil_usaha` (`id`, `nama_usaha`, `alamat`, `nomor_telepon`, `emai
 -- --------------------------------------------------------
 
 --
--- Table structure for table `saran_kritik`
+-- Struktur dari tabel `saran_kritik`
 --
 
 CREATE TABLE `saran_kritik` (
@@ -187,7 +203,7 @@ CREATE TABLE `saran_kritik` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `saran_kritik`
+-- Dumping data untuk tabel `saran_kritik`
 --
 
 INSERT INTO `saran_kritik` (`id_saran`, `nama_pelanggan`, `email`, `tanggal`, `saran`) VALUES
@@ -200,89 +216,89 @@ INSERT INTO `saran_kritik` (`id_saran`, `nama_pelanggan`, `email`, `tanggal`, `s
 --
 
 --
--- Indexes for table `gambar_menu`
+-- Indeks untuk tabel `gambar_menu`
 --
 ALTER TABLE `gambar_menu`
   ADD PRIMARY KEY (`id_gambar`);
 
 --
--- Indexes for table `meja`
+-- Indeks untuk tabel `meja`
 --
 ALTER TABLE `meja`
   ADD PRIMARY KEY (`id_meja`);
 
 --
--- Indexes for table `menu`
+-- Indeks untuk tabel `menu`
 --
 ALTER TABLE `menu`
   ADD PRIMARY KEY (`id_menu`);
 
 --
--- Indexes for table `metode_pembayaran`
+-- Indeks untuk tabel `metode_pembayaran`
 --
 ALTER TABLE `metode_pembayaran`
   ADD PRIMARY KEY (`id_metode`);
 
 --
--- Indexes for table `pegawai`
+-- Indeks untuk tabel `pegawai`
 --
 ALTER TABLE `pegawai`
   ADD PRIMARY KEY (`id_pegawai`);
 
 --
--- Indexes for table `profil_usaha`
+-- Indeks untuk tabel `profil_usaha`
 --
 ALTER TABLE `profil_usaha`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `saran_kritik`
+-- Indeks untuk tabel `saran_kritik`
 --
 ALTER TABLE `saran_kritik`
   ADD PRIMARY KEY (`id_saran`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `gambar_menu`
+-- AUTO_INCREMENT untuk tabel `gambar_menu`
 --
 ALTER TABLE `gambar_menu`
-  MODIFY `id_gambar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_gambar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
--- AUTO_INCREMENT for table `meja`
+-- AUTO_INCREMENT untuk tabel `meja`
 --
 ALTER TABLE `meja`
   MODIFY `id_meja` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT for table `menu`
+-- AUTO_INCREMENT untuk tabel `menu`
 --
 ALTER TABLE `menu`
-  MODIFY `id_menu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_menu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
--- AUTO_INCREMENT for table `metode_pembayaran`
+-- AUTO_INCREMENT untuk tabel `metode_pembayaran`
 --
 ALTER TABLE `metode_pembayaran`
   MODIFY `id_metode` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `pegawai`
+-- AUTO_INCREMENT untuk tabel `pegawai`
 --
 ALTER TABLE `pegawai`
   MODIFY `id_pegawai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `profil_usaha`
+-- AUTO_INCREMENT untuk tabel `profil_usaha`
 --
 ALTER TABLE `profil_usaha`
   MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `saran_kritik`
+-- AUTO_INCREMENT untuk tabel `saran_kritik`
 --
 ALTER TABLE `saran_kritik`
   MODIFY `id_saran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
