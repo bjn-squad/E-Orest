@@ -11,6 +11,9 @@ class Profilusaha extends CI_Controller
         if (empty($this->session->userdata('id_pegawai'))) {
             redirect('auth/loginPegawai', 'refresh');
         }
+        if ($this->session->userdata('jabatan') != "admin") {
+            redirect('admin');
+        }
         $this->load->model('Profilusaha_model');
     }
 
