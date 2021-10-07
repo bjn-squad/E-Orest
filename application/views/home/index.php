@@ -37,14 +37,13 @@
     <div class="container">
 
       <div class="section-title">
-        <h2>SEJARAH FLAMINGO CAFE & RESTO</h2>
+        <h2>Tentang <?= $nama_usaha ?></h2>
       </div>
 
       <div class="row content">
         <div class="col-lg-6 pt-4 pt-lg-0">
           <p>
-            Platinum Resto and Café sudah dikenal luas oleh pecinta kuliner di Indonesia sebagai restoran halal yang menghadirkan resep internasional yang terinspirasi oleh budaya-budaya yang beragam dari seluruh dunia, dari resep oriental, barat, hingga resep klasik Indonesia yang tak lekang oleh waktu.
-            Tak hanya hidangan khas internasional, minuman dan menu kopi mancanegara pun juga dapat ditemukan di Platinum Resto and Café bagi pengunjung yang ingin duduk dan bersantai, mengadakan rapat kecil, atau berbaur dengan teman dan keluarga.
+            <?= $deskripsi ?>
           </p>
         </div>
         <div class="col-lg-6">
@@ -58,7 +57,7 @@
   <section id="about" class="about">
     <div class="container">
       <div class="section-title">
-        <h2><?= $nama_usaha ?></h2>
+        <h2>Informasi <?= $nama_usaha ?></h2>
         <p>Selamat Datang di Restoran kami</p>
       </div>
 
@@ -71,20 +70,14 @@
         </div>
         <div class="col-lg-6 pt-4 pt-lg-0">
           <p>
-            <?= $alamat ?>
+            Informasi Mengenai <?= $nama_usaha ?>
           </p>
           <ul>
-            <li><i class="ri-check-double-line"></i><?= $alamat ?></li>
-            <li><i class="ri-check-double-line"></i> <?= $nomor_telepon ?></li>
-            <li><i class="ri-check-double-line"></i> <?= $instagram ?></li>
-            <li><i class="ri-check-double-line"></i> <?= $facebook ?></li>
+            <li><i class="ri-check-double-line"></i>Alamat : <?= $alamat ?></li>
+            <li><i class="ri-check-double-line"></i>No Telepon : <?= $nomor_telepon ?></li>
+            <li><i class="ri-check-double-line"></i>Instagram : <a href="https://instagram.com/<?= $instagram ?>">@<?= $instagram ?></a></li>
+            <li><i class="ri-check-double-line"></i>Facebook : <a href="https://facebook.com/<?= $instagram ?>"><?= $facebook ?></a></li>
           </ul>
-          <!-- <p>
-            Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-            velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
-          </p> -->
-          <!-- <a href="our-story.html" class="btn-learn-more">Learn More</a> -->
         </div>
       </div>
     </div>
@@ -106,12 +99,12 @@
         <div class="col-lg-4 col-md-6 icon-box">
           <div class="icon"><i class="bi bi-bar-chart"></i></div>
           <h4 class="title"><a href="">Pembayaran</a></h4>
-          <p class="description">Metode pembayaran dapat dilakukan melalui OVO, Gopay, Dana dan tranfer antar bank.</p>
+          <p class="description">Pembayaran dapat dibayar melalui E-Money atau tranfer antar bank.</p>
         </div>
         <div class="col-lg-4 col-md-6 icon-box">
-          <div class="icon"><i class="bi bi-bounding-box"></i></div>
-          <h4 class="title"><a href="">Sed ut perspiciatis</a></h4>
-          <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</p>
+          <div class="icon"><i class="bi bi-hand-thumbs-up"></i></div>
+          <h4 class="title"><a href="">Easy to Use</a></h4>
+          <p class="description">Anda dapat memesan dan melihat tentang profil kami secara mudah dan cepat.</p>
         </div>
 
       </div>
@@ -125,7 +118,7 @@
 
       <div class="section-title">
         <h2>MENU SPESIAL</h2>
-        <p>Menyediakan makanan khas dari Indonesia, siapapun kini bisa berwisata kuliner nusantara hanya dengan mengunjungi Flamingo Resto & Cafe. Bakso? Mie Ayam? Mie Jamur? semua ada disini.</p>
+        <p>Menyediakan menu makanan dan minuman yang berkualitas, siapapun kini bisa berwisata kuliner hanya dengan mengunjungi <?= $nama_usaha ?>. Semua yang anda cari ada disini!</p>
       </div>
 
       <div class="recent-photos-slider swiper-container">

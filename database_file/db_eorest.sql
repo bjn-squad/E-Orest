@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 06 Okt 2021 pada 11.07
--- Versi server: 10.4.11-MariaDB
--- Versi PHP: 7.4.4
+-- Generation Time: Oct 07, 2021 at 05:45 PM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.4.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,33 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `gambar_menu`
+-- Table structure for table `booking`
+--
+
+CREATE TABLE `booking` (
+  `id_booking` int(12) NOT NULL,
+  `id_detail_menu` int(12) NOT NULL,
+  `id_meja` int(12) NOT NULL,
+  `nama_pemesan` varchar(250) NOT NULL,
+  `nomor_hp` varchar(250) NOT NULL,
+  `tanggal_pesan` datetime NOT NULL,
+  `tanggal_reservasi` date NOT NULL,
+  `batas_pembayaran_dp` datetime NOT NULL,
+  `status_pembayaran` varchar(250) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `booking`
+--
+
+INSERT INTO `booking` (`id_booking`, `id_detail_menu`, `id_meja`, `nama_pemesan`, `nomor_hp`, `tanggal_pesan`, `tanggal_reservasi`, `batas_pembayaran_dp`, `status_pembayaran`) VALUES
+(1, 1, 5, 'John Doe', '085124305512', '2021-10-07 18:57:34', '2021-10-09', '2021-10-08 18:57:34', 'DP Sudah Dibayar'),
+(2, 2, 3, 'Siti R', '0812524212', '2021-10-07 19:19:06', '2021-10-09', '2021-10-08 19:19:06', 'DP Sudah Dibayar');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `gambar_menu`
 --
 
 CREATE TABLE `gambar_menu` (
@@ -34,7 +60,7 @@ CREATE TABLE `gambar_menu` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `gambar_menu`
+-- Dumping data for table `gambar_menu`
 --
 
 INSERT INTO `gambar_menu` (`id_gambar`, `id_menu`, `gambar`) VALUES
@@ -60,32 +86,32 @@ INSERT INTO `gambar_menu` (`id_gambar`, `id_menu`, `gambar`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `meja`
+-- Table structure for table `meja`
 --
 
 CREATE TABLE `meja` (
   `id_meja` int(11) NOT NULL,
   `nomor_meja` varchar(50) NOT NULL,
-  `kapasitas_meja` int(11) NOT NULL,
-  `keterangan_meja` varchar(40) NOT NULL DEFAULT 'Tersedia'
+  `kapasitas_meja` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `meja`
+-- Dumping data for table `meja`
 --
 
-INSERT INTO `meja` (`id_meja`, `nomor_meja`, `kapasitas_meja`, `keterangan_meja`) VALUES
-(1, '1', 4, 'Tersedia'),
-(3, '5', 10, 'Tidak Tersedia (Sudah Dibooking)'),
-(4, '3', 6, 'Tersedia'),
-(5, '2', 2, 'Tersedia'),
-(6, '4', 10, 'Tersedia'),
-(8, '6', 20, 'Tidak Tersedia (Sudah Dibooking)');
+INSERT INTO `meja` (`id_meja`, `nomor_meja`, `kapasitas_meja`) VALUES
+(1, '1', 4),
+(3, '5', 10),
+(4, '3', 6),
+(5, '2', 2),
+(6, '4', 10),
+(8, '6', 20),
+(11, '7', 8);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `menu`
+-- Table structure for table `menu`
 --
 
 CREATE TABLE `menu` (
@@ -98,12 +124,12 @@ CREATE TABLE `menu` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `menu`
+-- Dumping data for table `menu`
 --
 
 INSERT INTO `menu` (`id_menu`, `nama_menu`, `detail_menu`, `kategori`, `stok`, `harga`) VALUES
 (1, 'Bakso', 'Bakso Daging', 'Makanan', 'Tersedia', 20000),
-(2, 'Mie Ayam', 'Topping Ayam, Topping Jamur ', 'Makanan', 'Tersedia', 15000),
+(2, 'Mie Ayam', 'Topping Ayam, Topping Jamur ', 'Makanan', 'Tidak Tersedia', 15000),
 (7, 'Es Teh', 'Jasmine, Lychee, Oolong', 'Minuman', 'Tersedia', 8000),
 (8, 'Es Jeruk', 'Nipis, Lemon, Jeruk Asli', 'Minuman', 'Tersedia', 10000),
 (11, 'Soto Lamongan ', 'Dengan Topping ayam', 'Makanan', 'Tersedia', 15000),
@@ -115,7 +141,29 @@ INSERT INTO `menu` (`id_menu`, `nama_menu`, `detail_menu`, `kategori`, `stok`, `
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `metode_pembayaran`
+-- Table structure for table `menu_dibooking`
+--
+
+CREATE TABLE `menu_dibooking` (
+  `id_menu_dibooking` int(12) NOT NULL,
+  `id_detail_menu` int(12) NOT NULL,
+  `nama_makanan` varchar(250) NOT NULL,
+  `jumlah` int(5) NOT NULL,
+  `sub_total` int(12) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `menu_dibooking`
+--
+
+INSERT INTO `menu_dibooking` (`id_menu_dibooking`, `id_detail_menu`, `nama_makanan`, `jumlah`, `sub_total`) VALUES
+(1, 1, 'Bakso', 2, 40000),
+(2, 1, 'Es Teh', 2, 16000);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `metode_pembayaran`
 --
 
 CREATE TABLE `metode_pembayaran` (
@@ -126,7 +174,7 @@ CREATE TABLE `metode_pembayaran` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `metode_pembayaran`
+-- Dumping data for table `metode_pembayaran`
 --
 
 INSERT INTO `metode_pembayaran` (`id_metode`, `nama_merchant`, `atas_nama`, `kode_pembayaran`) VALUES
@@ -138,7 +186,7 @@ INSERT INTO `metode_pembayaran` (`id_metode`, `nama_merchant`, `atas_nama`, `kod
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pegawai`
+-- Table structure for table `pegawai`
 --
 
 CREATE TABLE `pegawai` (
@@ -153,7 +201,7 @@ CREATE TABLE `pegawai` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `pegawai`
+-- Dumping data for table `pegawai`
 --
 
 INSERT INTO `pegawai` (`id_pegawai`, `nama`, `email`, `alamat`, `password`, `telepon`, `jenis_kelamin`, `jabatan`) VALUES
@@ -164,12 +212,13 @@ INSERT INTO `pegawai` (`id_pegawai`, `nama`, `email`, `alamat`, `password`, `tel
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `profil_usaha`
+-- Table structure for table `profil_usaha`
 --
 
 CREATE TABLE `profil_usaha` (
   `id` int(12) NOT NULL,
   `nama_usaha` varchar(250) NOT NULL,
+  `deskripsi` text NOT NULL,
   `alamat` varchar(250) NOT NULL,
   `nomor_telepon` varchar(17) NOT NULL,
   `email` varchar(100) NOT NULL,
@@ -182,16 +231,16 @@ CREATE TABLE `profil_usaha` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `profil_usaha`
+-- Dumping data for table `profil_usaha`
 --
 
-INSERT INTO `profil_usaha` (`id`, `nama_usaha`, `alamat`, `nomor_telepon`, `email`, `instagram`, `facebook`, `maps_link`, `foto_usaha_1`, `foto_usaha_2`, `foto_usaha_3`) VALUES
-(1, 'Flamingo Cafe & Resto', 'Jl. Diponegoro No.15 Bojonegoro, Jawa Timur', '081252430912', 'flamingocafe@gmail.com', 'flamingocafepreston', 'Flamingo-café-restaurant-101136125017024', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3958.7349883071597!2d111.87995031459427!3d-7.156607694832594!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e77818cc20c2111%3A0x9133efd296da42a6!2sJl.%20Diponegoro%2049-59%2C%20Sukorejo%20Lor%2C%20Sukorejo%2C%20Kec.%20Bojonegoro%2C%20Kabupaten%20Bojonegoro%2C%20Jawa%20Timur%2062115!5e0!3m2!1sid!2sid!4v1633341565083!5m2!1sid!2sid\" width=\"100%\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\"></iframe>', 'michael-browning-MtqG1lWcUw0-unsplash.jpg', 'nick-karvounis-Ciqxn7FE4vE-unsplash.jpg', 'shawnanggg-nmpW_WwwVSc-unsplash.jpg');
+INSERT INTO `profil_usaha` (`id`, `nama_usaha`, `deskripsi`, `alamat`, `nomor_telepon`, `email`, `instagram`, `facebook`, `maps_link`, `foto_usaha_1`, `foto_usaha_2`, `foto_usaha_3`) VALUES
+(1, 'Flamingo Cafe & Resto', 'Flamingo Resto and Café sudah dikenal luas oleh pecinta kuliner di Indonesia sebagai restoran halal yang menghadirkan resep internasional yang terinspirasi oleh budaya-budaya yang beragam dari seluruh dunia, dari resep oriental, barat, hingga resep klasik Indonesia yang tak lekang oleh waktu. Tak hanya hidangan khas internasional, minuman dan menu kopi mancanegara pun juga dapat ditemukan di Flamingo Resto and Café bagi pengunjung yang ingin duduk dan bersantai, mengadakan rapat kecil, atau berbaur dengan teman dan keluarga.', 'Jl. Diponegoro No.15 Bojonegoro, Jawa Timur', '081252430912', 'flamingocafe@gmail.com', 'flamingocafepreston', 'Flamingo-café-restaurant-101136125017024', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3958.7349883071597!2d111.87995031459427!3d-7.156607694832594!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e77818cc20c2111%3A0x9133efd296da42a6!2sJl.%20Diponegoro%2049-59%2C%20Sukorejo%20Lor%2C%20Sukorejo%2C%20Kec.%20Bojonegoro%2C%20Kabupaten%20Bojonegoro%2C%20Jawa%20Timur%2062115!5e0!3m2!1sid!2sid!4v1633341565083!5m2!1sid!2sid\" width=\"100%\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\"></iframe>', 'michael-browning-MtqG1lWcUw0-unsplash.jpg', 'nick-karvounis-Ciqxn7FE4vE-unsplash.jpg', 'shawnanggg-nmpW_WwwVSc-unsplash.jpg');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `saran_kritik`
+-- Table structure for table `saran_kritik`
 --
 
 CREATE TABLE `saran_kritik` (
@@ -203,7 +252,7 @@ CREATE TABLE `saran_kritik` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `saran_kritik`
+-- Dumping data for table `saran_kritik`
 --
 
 INSERT INTO `saran_kritik` (`id_saran`, `nama_pelanggan`, `email`, `tanggal`, `saran`) VALUES
@@ -216,89 +265,113 @@ INSERT INTO `saran_kritik` (`id_saran`, `nama_pelanggan`, `email`, `tanggal`, `s
 --
 
 --
--- Indeks untuk tabel `gambar_menu`
+-- Indexes for table `booking`
+--
+ALTER TABLE `booking`
+  ADD PRIMARY KEY (`id_booking`);
+
+--
+-- Indexes for table `gambar_menu`
 --
 ALTER TABLE `gambar_menu`
   ADD PRIMARY KEY (`id_gambar`);
 
 --
--- Indeks untuk tabel `meja`
+-- Indexes for table `meja`
 --
 ALTER TABLE `meja`
   ADD PRIMARY KEY (`id_meja`);
 
 --
--- Indeks untuk tabel `menu`
+-- Indexes for table `menu`
 --
 ALTER TABLE `menu`
   ADD PRIMARY KEY (`id_menu`);
 
 --
--- Indeks untuk tabel `metode_pembayaran`
+-- Indexes for table `menu_dibooking`
+--
+ALTER TABLE `menu_dibooking`
+  ADD PRIMARY KEY (`id_menu_dibooking`);
+
+--
+-- Indexes for table `metode_pembayaran`
 --
 ALTER TABLE `metode_pembayaran`
   ADD PRIMARY KEY (`id_metode`);
 
 --
--- Indeks untuk tabel `pegawai`
+-- Indexes for table `pegawai`
 --
 ALTER TABLE `pegawai`
   ADD PRIMARY KEY (`id_pegawai`);
 
 --
--- Indeks untuk tabel `profil_usaha`
+-- Indexes for table `profil_usaha`
 --
 ALTER TABLE `profil_usaha`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `saran_kritik`
+-- Indexes for table `saran_kritik`
 --
 ALTER TABLE `saran_kritik`
   ADD PRIMARY KEY (`id_saran`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `gambar_menu`
+-- AUTO_INCREMENT for table `booking`
+--
+ALTER TABLE `booking`
+  MODIFY `id_booking` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `gambar_menu`
 --
 ALTER TABLE `gambar_menu`
   MODIFY `id_gambar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
--- AUTO_INCREMENT untuk tabel `meja`
+-- AUTO_INCREMENT for table `meja`
 --
 ALTER TABLE `meja`
-  MODIFY `id_meja` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_meja` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- AUTO_INCREMENT untuk tabel `menu`
+-- AUTO_INCREMENT for table `menu`
 --
 ALTER TABLE `menu`
   MODIFY `id_menu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
--- AUTO_INCREMENT untuk tabel `metode_pembayaran`
+-- AUTO_INCREMENT for table `menu_dibooking`
+--
+ALTER TABLE `menu_dibooking`
+  MODIFY `id_menu_dibooking` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `metode_pembayaran`
 --
 ALTER TABLE `metode_pembayaran`
   MODIFY `id_metode` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT untuk tabel `pegawai`
+-- AUTO_INCREMENT for table `pegawai`
 --
 ALTER TABLE `pegawai`
   MODIFY `id_pegawai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT untuk tabel `profil_usaha`
+-- AUTO_INCREMENT for table `profil_usaha`
 --
 ALTER TABLE `profil_usaha`
   MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT untuk tabel `saran_kritik`
+-- AUTO_INCREMENT for table `saran_kritik`
 --
 ALTER TABLE `saran_kritik`
   MODIFY `id_saran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
