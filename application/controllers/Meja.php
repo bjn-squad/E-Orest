@@ -52,7 +52,6 @@ class Meja extends CI_Controller
     public function edit()
     {
         $this->form_validation->set_rules('kapasitas_meja', 'kapasitas_meja', 'numeric|required');
-        $this->form_validation->set_rules('keterangan_meja', 'keterangan_meja', 'required');
 
         if ($this->form_validation->run() == FALSE) {
             $this->session->set_flashdata('error', validation_errors());

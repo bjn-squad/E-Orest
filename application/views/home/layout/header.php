@@ -21,9 +21,12 @@
   <link href="<?= base_url() ?>assets/home/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="<?= base_url() ?>assets/home/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="<?= base_url() ?>assets/home/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-
+  <script src="<?= base_url() ?>assets/admin/vendor/jquery/dist/jquery.min.js"></script>
   <!-- Template Main CSS File -->
   <link href="<?= base_url() ?>assets/home/css/style.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="<?= base_url() ?>assets/home/select2/css/select2.min.css">
+  <link rel="stylesheet" href="<?= base_url() ?>assets/home/select2-bootstrap4-theme/select2-bootstrap4.min.css">
 
 </head>
 

@@ -6,9 +6,6 @@ class Saran extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        // if (empty($this->session->userdata('id_pegawai'))) {
-        //     redirect('auth/loginPegawai', 'refresh');
-        // }
         $this->load->model('saran_model');
     }
 
