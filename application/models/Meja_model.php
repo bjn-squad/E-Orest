@@ -10,6 +10,12 @@ class Meja_model extends CI_Model
         return $query->result_array();
     }
 
+    public function get_meja_kosong_by_date($array)
+    {
+        $query =  $this->db->query("SELECT * FROM meja WHERE id_meja NOT IN ( '" . implode("', '", $array) . "' )");
+        return $query->result_array();
+    }
+
     public function tambah_meja()
     {
         $data = [
@@ -22,8 +28,7 @@ class Meja_model extends CI_Model
     public function edit_meja()
     {
         $data = [
-            "kapasitas_meja" => $this->input->post('kapasitas_meja', true),
-            "keterangan_meja" => $this->input->post('keterangan_meja', true)
+            "kapasitas_meja" => $this->input->post('kapasitas_meja', true)
         ];
         $this->db->where('id_meja', $this->input->post('id_meja'));
         $this->db->update('meja', $data);
