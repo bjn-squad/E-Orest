@@ -6,9 +6,9 @@ class Saran extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        if (empty($this->session->userdata('id_pegawai'))) {
-            redirect('auth/loginPegawai', 'refresh');
-        }
+        // if (empty($this->session->userdata('id_pegawai'))) {
+        //     redirect('auth/loginPegawai', 'refresh');
+        // }
         $this->load->model('saran_model');
     }
 
@@ -30,6 +30,9 @@ class Saran extends CI_Controller
     }
     public function index()
     {
+        if (empty($this->session->userdata('id_pegawai'))) {
+            redirect('auth/loginPegawai', 'refresh');
+        }
         $data['title'] = 'Daftar Kritik & Saran';
         $data['saran_kritik'] = $this->saran_model->getAllSaran();
         $this->load->view('admin/layout/header', $data);
@@ -69,6 +72,9 @@ class Saran extends CI_Controller
 
     public function detail($id)
     {
+        if (empty($this->session->userdata('id_pegawai'))) {
+            redirect('auth/loginPegawai', 'refresh');
+        }
         $data['title'] = 'Detail Kritik & Saran';
         $data['saran_kritik'] = $this->saran_model->getSaranById($id);
         $this->load->view('admin/layout/header', $data);
@@ -80,6 +86,9 @@ class Saran extends CI_Controller
 
     public function delete($id)
     {
+        if (empty($this->session->userdata('id_pegawai'))) {
+            redirect('auth/loginPegawai', 'refresh');
+        }
         if ($this->session->userdata('jabatan') != "admin") {
             redirect('saran');
         } else {

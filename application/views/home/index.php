@@ -8,6 +8,7 @@
 
       <!-- Slide 1 -->
       <div class="carousel-item active" style="background-image: url(<?= base_url() ?>assets/dataresto/foto_usaha/<?= $foto_usaha_1 ?>)">
+
       </div>
 
       <!-- Slide 2 -->
@@ -43,8 +44,8 @@
       <div class="row content">
         <div class="col-lg-6 pt-4 pt-lg-0">
           <p>
-            Platinum Resto and Café sudah dikenal luas oleh pecinta kuliner di Indonesia sebagai restoran halal yang menghadirkan resep internasional yang terinspirasi oleh budaya-budaya yang beragam dari seluruh dunia, dari resep oriental, barat, hingga resep klasik Indonesia yang tak lekang oleh waktu.
-            Tak hanya hidangan khas internasional, minuman dan menu kopi mancanegara pun juga dapat ditemukan di Platinum Resto and Café bagi pengunjung yang ingin duduk dan bersantai, mengadakan rapat kecil, atau berbaur dengan teman dan keluarga.
+            Flamingo Resto and Café sudah dikenal luas oleh pecinta kuliner di Indonesia sebagai restoran halal yang menghadirkan resep nasional yang terinspirasi oleh budaya-budaya yang beragam dari seluruh Indonesia, dari resep nusantara yang tak lekang oleh waktu.
+            Tak hanya hidangan khas Nusantara, minuman dan menu mancanegara pun juga dapat ditemukan di Flamingo Resto and Café bagi pengunjung yang ingin duduk dan bersantai, mengadakan rapat kecil, atau berbaur dengan teman dan keluarga.
           </p>
         </div>
         <div class="col-lg-6">
@@ -63,16 +64,10 @@
       </div>
 
       <div class="row content">
-        <!-- <div data-aos="fade-up">
-          <iframe style="border:0; width: 100%; height: 350px;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d68595.51836123793!2d111.85319300443516!3d-7.155685345833566!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e77819d35ae1d1b%3A0x4027a76e3532610!2sBojonegoro%2C%20Kec.%20Bojongsoang%2C%20Kabupaten%20Bojonegoro%2C%20Jawa%20Timur!5e0!3m2!1sid!2sid!4v1631445580547!5m2!1sid!2sid" frameborder="0" allowfullscreen></iframe>
-        </div> -->
         <div class="col-lg-6">
           <?= $maps_link ?>
         </div>
         <div class="col-lg-6 pt-4 pt-lg-0">
-          <p>
-            <?= $alamat ?>
-          </p>
           <ul>
             <li><i class="ri-check-double-line"></i><?= $alamat ?></li>
             <li><i class="ri-check-double-line"></i> <?= $nomor_telepon ?></li>
@@ -130,16 +125,15 @@
 
       <div class="recent-photos-slider swiper-container">
         <div class="swiper-wrapper align-items-center">
+          <?php
+          foreach ($gambar_menu as $m) {
+            // $id_menu = $m['id_menu'];
+          ?>
+            <div class="swiper-slide" style="height: 100px;"><a href="<?php echo base_url('assets/dataresto/menu/' . $m['gambar']) ?>" class="glightbox"><img src="<?php echo base_url('assets/dataresto/menu/' . $m['gambar']) ?>" style="object-fit: cover;" class="img-fluid" alt=""></a></div>
 
-          <div class="swiper-slide"><a href="<?= base_url() ?>assets/home/img/recent-photos/recent-photos-1.jpg" class="glightbox"><img src="<?= base_url() ?>assets/home/img/recent-photos/recent-photos-1.jpg" class="img-fluid" alt=""></a></div>
-          <div class="swiper-slide"><a href="<?= base_url() ?>assets/home/img/recent-photos/recent-photos-2.jpg" class="glightbox"><img src="<?= base_url() ?>assets/home/img/recent-photos/recent-photos-2.jpg" class="img-fluid" alt=""></a></div>
-          <div class="swiper-slide"><a href="<?= base_url() ?>assets/home/img/recent-photos/recent-photos-3.jpg" class="glightbox"><img src="<?= base_url() ?>assets/home/img/recent-photos/recent-photos-3.jpg" class="img-fluid" alt=""></a></div>
-          <div class="swiper-slide"><a href="<?= base_url() ?>assets/home/img/recent-photos/recent-photos-4.jpg" class="glightbox"><img src="<?= base_url() ?>assets/home/img/recent-photos/recent-photos-4.jpg" class="img-fluid" alt=""></a></div>
-          <div class="swiper-slide"><a href="<?= base_url() ?>assets/home/img/recent-photos/recent-photos-5.jpg" class="glightbox"><img src="<?= base_url() ?>assets/home/img/recent-photos/recent-photos-5.jpg" class="img-fluid" alt=""></a></div>
-          <div class="swiper-slide"><a href="<?= base_url() ?>assets/home/img/recent-photos/recent-photos-6.jpg" class="glightbox"><img src="<?= base_url() ?>assets/home/img/recent-photos/recent-photos-6.jpg" class="img-fluid" alt=""></a></div>
-          <div class="swiper-slide"><a href="<?= base_url() ?>assets/home/img/recent-photos/recent-photos-7.jpg" class="glightbox"><img src="<?= base_url() ?>assets/home/img/recent-photos/recent-photos-7.jpg" class="img-fluid" alt=""></a></div>
-          <div class="swiper-slide"><a href="<?= base_url() ?>assets/home/img/recent-photos/recent-photos-8.jpg" class="glightbox"><img src="<?= base_url() ?>assets/home/img/recent-photos/recent-photos-8.jpg" class="img-fluid" alt=""></a></div>
-
+          <?php
+          }
+          ?>
         </div>
         <div class="swiper-pagination"></div>
       </div>

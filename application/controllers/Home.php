@@ -7,6 +7,7 @@ class Home extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Home_model');
+        $this->load->model('Gambarmenu_model');
     }
 
     public function getProfilUsaha()
@@ -29,11 +30,13 @@ class Home extends CI_Controller
     public function index()
     {
         $profil = $this->getProfilUsaha();
+        $data['gambar_menu'] = $this->Gambarmenu_model->getAllGambar();
         $data['nama_usaha'] = $profil['nama_usaha'];
         $data['alamat'] = $profil['alamat'];
         $data['nomor_telepon'] = $profil['nomor_telepon'];
         $data['instagram'] = $profil['instagram'];
         $data['facebook'] = $profil['facebook'];
+        $data['maps_link'] = $profil['maps_link'];
 
         // Khusus Slider
         $data['foto_usaha_1'] = $profil['foto_usaha_1'];
