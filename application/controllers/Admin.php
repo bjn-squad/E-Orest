@@ -11,6 +11,12 @@ class Admin extends CI_Controller
         if (empty($this->session->userdata('id_pegawai'))) {
             redirect('auth/loginPegawai', 'refresh');
         }
+        $this->load->model('Lupapassword_model');
+        $cekSetPertanyaan = $this->Lupapassword_model->getStatus($this->session->userdata('id_pegawai'));
+
+        if (empty($cekSetPertanyaan)) {
+            redirect('lupapassword/tambahPertanyaanKeamanan');
+        }
         $this->load->model('Pegawai_model');
     }
 
