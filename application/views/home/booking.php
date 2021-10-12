@@ -1,56 +1,153 @@
-    <!-- ======= Hero Section ======= -->
-    <section class="d-flex align-items-center">
-        <div class="container position-relative text-center text-lg-start" data-aos="zoom-in" data-aos-delay="100"></div>
-    </section>
-    <!-- End Hero -->
+<main id="main">
 
-    <!-- ======= Book A Table Section ======= -->
-    <section id="book-a-table" class="book-a-table">
-      <div class="container" data-aos="fade-up">
+  <!-- ======= Breadcrumbs ======= -->
+  <section id="breadcrumbs" class="breadcrumbs">
+    <div class="container">
 
-        <div class="section-title">
-          <h2>Reservation</h2>
-          <p>Book a Table</p>
-        </div>
-
-        <form action="forms/book-a-table.php" method="post" role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100">
-          <div class="row">
-            <div class="col-lg-4 col-md-6 form-group">
-              <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
-              <div class="validate"></div>
-            </div>
-            <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0">
-              <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email">
-              <div class="validate"></div>
-            </div>
-            <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0">
-              <input type="text" class="form-control" name="phone" id="phone" placeholder="Your Phone" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
-              <div class="validate"></div>
-            </div>
-            <div class="col-lg-4 col-md-6 form-group mt-3">
-              <input type="text" name="date" class="form-control" id="date" placeholder="Date" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
-              <div class="validate"></div>
-            </div>
-            <div class="col-lg-4 col-md-6 form-group mt-3">
-              <input type="text" class="form-control" name="time" id="time" placeholder="Time" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
-              <div class="validate"></div>
-            </div>
-            <div class="col-lg-4 col-md-6 form-group mt-3">
-              <input type="number" class="form-control" name="people" id="people" placeholder="# of people" data-rule="minlen:1" data-msg="Please enter at least 1 chars">
-              <div class="validate"></div>
-            </div>
-          </div>
-          <div class="form-group mt-3">
-            <textarea class="form-control" name="message" rows="5" placeholder="Message"></textarea>
-            <div class="validate"></div>
-          </div>
-          <div class="mb-3">
-            <div class="loading">Loading</div>
-            <div class="error-message"></div>
-            <div class="sent-message">Your booking request was sent. We will call back or send an Email to confirm your reservation. Thank you!</div>
-          </div>
-          <div class="text-center"><button type="submit">Book a Table</button></div>
-        </form>
-
+      <div class="d-flex justify-content-between align-items-center">
+        <h2>Reservasi Meja & Booking Menu</h2>
+        <ol>
+          <li><a href="<?= base_url() ?>">Home</a></li>
+          <li>Reservasi Meja & Booking Menu</li>
+        </ol>
       </div>
-    </section><!-- End Book A Table Section -->
+
+    </div>
+  </section><!-- End Breadcrumbs -->
+
+  <!-- ======= Contact Us Section ======= -->
+  <section id="contact-us" class="contact-us">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6">
+          <h3>Formulir Reservasi Meja & Booking Menu</h3>
+          <p>Isi data dengan lengkap dan benar</p>
+          <div class="form-group mb-2">
+            <label>Nama Panggilan/Lengkap</label>
+            <small class="form-text" style="color: red;">*Wajib Diisi</small>
+            <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama" required>
+          </div>
+          <div class="form-group mb-2">
+            <label>Nomor HP</label>
+            <small class="form-text" style="color: red;">*Tidak Wajib Diisi</small>
+            <input type="number" class="form-control" id="no_hp" name="no_hp" placeholder="Nomor HP">
+          </div>
+          <div class="form-group mb-2">
+            <label>Tanggal Pemesanan</label>
+            <small class="form-text" style="color: red;">*Wajib Diisi</small>
+            <input onchange="pilih_tanggal(this.value)" type="date" class="form-control" name="tanggal_pemesanan" id="tanggal_pemesanan" min="<?php echo date("Y-m-d"); ?>">
+          </div>
+          <div class="form-group mb-2">
+            <label>Pilih Meja Yang Ingin Direservasi</label>
+            <small class="form-text" style="color: red;">*Wajib Dipilih</small>
+            <select class="form-control" id="id_meja" name="id_meja" onchange="tambah_meja(this.value)">
+            </select>
+          </div>
+          <div class="form-group mb-2">
+            <label>Pilih Menu Yang Ingin Dipesan</label>
+            <small class="form-text" style="color: red;">*Wajib Dipilih</small>
+            <select class="select2bs4 form-control" id="id_menu" name="id_menu" onchange="pilih_menu(this.value)">
+            </select>
+          </div>
+          <div class="form-group mb-2">
+            <label>Jumlah Pesanan</label>
+            <small class="form-text" style="color: red;">*Wajib Diisi</small>
+            <input type="number" min="1" class="form-control" id="jumlah_pesanan" name="jumlah_pesanan" placeholder="Jumlah Pesanan">
+            </select>
+          </div>
+          <br>
+          <div class="text-center"><button class="btn btn-success" type="submit">Tambah Menu</button></div>
+        </div>
+        <div class="col-lg-6">
+          <h3>Detail Pesanan</h3>
+          <div class="row">
+            <div class="col-lg-6">
+              <span id="daftar">
+                <div id="keterangan_nama_nomor_hp">
+
+                </div>
+                <div id="keterangan_tanggal_dipilih">
+
+                </div>
+                <div id="keterangan_meja_dipilih">
+
+                </div>
+              </span>
+            </div>
+            <div class="col-lg-6">
+              <span id="keterangan">
+                <div id="">
+
+                </div>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+  </section><!-- End Contact Us Section -->
+
+</main><!-- End #main -->
+
+<script>
+  $(document).ready(function() {
+    document.getElementById("id_meja").setAttribute("disabled", "disabled");
+    document.getElementById("id_menu").setAttribute("disabled", "disabled");
+  });
+
+  function formatDate(input) {
+    var datePart = input.match(/\d+/g),
+      year = datePart[0].substring(0),
+      month = datePart[1],
+      day = datePart[2];
+
+    return day + '/' + month + '/' + year;
+  }
+
+  function pilih_tanggal(tanggal) {
+    document.getElementById("id_meja").removeAttribute("disabled", "disabled");
+    $.ajax({
+      type: 'GET',
+      url: `<?= base_url() ?>home/getMejaKosong/${tanggal}`,
+      dataType: 'json',
+      success: (hasil) => {
+        let isi = `<option disabled selected value="">Pilih Meja Yang Ingin Direservasi</option>`;
+        hasil.forEach(function(item) {
+          isi +=
+            `<option value="${item.id_meja}|${item.nomor_meja}">Meja ${item.nomor_meja} (Kapasitas: ${item.kapasitas_meja})</option>`
+        });
+        $('#id_meja').html(isi);
+      }
+    });
+
+    let isinyatanggal = `Tanggal Reservasi =  ${formatDate(tanggal)}`;
+    $('#keterangan_tanggal_dipilih').html(isinyatanggal);
+
+    let isinyanama = ``;
+    let isinyanope = ``;
+
+    document.getElementById("id_menu").removeAttribute("disabled", "disabled");
+    $.ajax({
+      type: 'GET',
+      url: `<?= base_url() ?>home/getMenu/`,
+      dataType: 'json',
+      success: (hasil) => {
+        let isi = `<option disabled selected value="">Pilih Menu</option>`;
+        hasil.forEach(function(item) {
+          isi +=
+            `<option value="${item.nama_menu}|${item.harga}">${item.nama_menu} - Rp. ${item.harga}</option>`
+        });
+        $('#id_menu').html(isi);
+      }
+    });
+  }
+
+  function tambah_meja(datameja) {
+    const myArr = datameja.split("|");
+    let isinya = `Meja Yang Dipilih = Meja ${myArr[1]}`;
+    $('#keterangan_meja_dipilih').html(isinya);
+  }
+
+  function pilih_menu(id_menu) {
+    console.log(id_menu);
+  }
+</script>

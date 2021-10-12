@@ -40,7 +40,6 @@
                             <tr role="row">
                                 <th>Nomor Meja</th>
                                 <th>Kapasitas (Orang)</th>
-                                <th>Keterangan (Tersedia/Tidak Tersedia)</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -51,7 +50,6 @@
                                 <tr>
                                     <td><?= $m['nomor_meja'] ?></td>
                                     <td><?= $m['kapasitas_meja'] ?> Orang</td>
-                                    <td><?= $m['keterangan_meja'] ?></td>
                                     <td>
                                         <button data-toggle="modal" data-target="#editmejamodal" onclick="edit_meja(<?= $m['id_meja'] ?>)" class="btn btn-sm btn-warning">Edit</button>
                                         <a href="<?= base_url() ?>meja/hapus/<?= $m['id_meja'] ?>" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus Meja <?= $m['nomor_meja'] ?>?');" class="btn btn-sm btn-danger">Hapus</a>
@@ -113,12 +111,6 @@
                         <input type="hidden" id="idmeja_edit" name="id_meja" required>
                         <label>Kapasitas (Orang)</label>
                         <input type="number" id="kapasitas_edit" class="form-control" placeholder="0" name="kapasitas_meja" required>
-                        <label>Keterangan Meja</label>
-                        <select class="form-control" name="keterangan_meja" required>
-                            <option value="" selected disabled>Pilih Keterangan Meja</option>
-                            <option>Tersedia</option>
-                            <option>Tidak Tersedia (Sudah Dibooking)</option>
-                        </select>
                     </div>
             </div>
             <div class="modal-footer">
