@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 12, 2021 at 03:49 PM
--- Server version: 10.1.38-MariaDB
--- PHP Version: 7.3.2
+-- Generation Time: Oct 13, 2021 at 07:02 PM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.4.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -30,7 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `booking` (
   `id_booking` int(12) NOT NULL,
-  `id_detail_menu` int(12) NOT NULL,
+  `id_detail_menu` varchar(250) NOT NULL,
   `id_meja` int(12) NOT NULL,
   `nama_pemesan` varchar(250) NOT NULL,
   `nomor_hp` varchar(250) NOT NULL,
@@ -45,8 +44,7 @@ CREATE TABLE `booking` (
 --
 
 INSERT INTO `booking` (`id_booking`, `id_detail_menu`, `id_meja`, `nama_pemesan`, `nomor_hp`, `tanggal_pesan`, `tanggal_reservasi`, `batas_pembayaran_dp`, `status_pembayaran`) VALUES
-(1, 1, 5, 'John Doe', '085124305512', '2021-10-07 18:57:34', '2021-10-09', '2021-10-08 18:57:34', 'DP Sudah Dibayar'),
-(2, 2, 3, 'Siti R', '0812524212', '2021-10-07 19:19:06', '2021-10-09', '2021-10-08 19:19:06', 'DP Sudah Dibayar');
+(1, 'JOHNDOE2110071857', 5, 'John Doe', '085124305512', '2021-10-07 18:57:34', '2021-10-09', '2021-10-08 18:57:34', 'DP Sudah Dibayar');
 
 -- --------------------------------------------------------
 
@@ -169,7 +167,7 @@ INSERT INTO `menu` (`id_menu`, `nama_menu`, `detail_menu`, `kategori`, `stok`, `
 
 CREATE TABLE `menu_dibooking` (
   `id_menu_dibooking` int(12) NOT NULL,
-  `id_detail_menu` int(12) NOT NULL,
+  `id_detail_menu` varchar(250) NOT NULL,
   `nama_makanan` varchar(250) NOT NULL,
   `jumlah` int(5) NOT NULL,
   `sub_total` int(12) NOT NULL
@@ -180,8 +178,8 @@ CREATE TABLE `menu_dibooking` (
 --
 
 INSERT INTO `menu_dibooking` (`id_menu_dibooking`, `id_detail_menu`, `nama_makanan`, `jumlah`, `sub_total`) VALUES
-(1, 1, 'Bakso', 2, 40000),
-(2, 1, 'Es Teh', 2, 16000);
+(1, 'JOHNDOE2110071857', 'Bakso', 2, 40000),
+(2, 'JOHNDOE2110071857', 'Es Teh', 2, 16000);
 
 -- --------------------------------------------------------
 
