@@ -35,6 +35,7 @@
           <div class="form-group mb-2">
             <label>Tanggal Pemesanan</label>
             <small class="form-text" style="color: red;">*Wajib Diisi</small>
+            <?php date_default_timezone_set('Asia/Jakarta'); ?>
             <input onchange="pilih_tanggal(this.value)" type="date" class="form-control" name="tanggal_pemesanan" id="tanggal_pemesanan" min="<?php echo date("Y-m-d"); ?>">
           </div>
           <div class="form-group mb-2">
@@ -43,10 +44,13 @@
             <select class="form-control" id="id_meja" name="id_meja" onchange="tambah_meja(this.value)">
             </select>
           </div>
+          <br>
+          <h4><i class="fa fa-utensils"></i> Buku Menu</h4>
+          <p>Pilih menu dan isi jumlah pemesanan</p>
           <div class="form-group mb-2">
             <label>Pilih Menu Yang Ingin Dipesan</label>
             <small class="form-text" style="color: red;">*Wajib Dipilih</small>
-            <select class="select2bs4 form-control" id="id_menu" name="id_menu" onchange="pilih_menu(this.value)">
+            <select class="select2bs4 form-control" id="id_menu" name="id_menu">
             </select>
           </div>
           <div class="form-group mb-2">
@@ -56,30 +60,42 @@
             </select>
           </div>
           <br>
-          <div class="text-center"><button class="btn btn-success" type="submit">Tambah Menu</button></div>
+          <div class="text-center"><button class="btn btn-success" onclick="tambah_menu()" type="submit">Tambah Menu</button></div>
         </div>
         <div class="col-lg-6">
-          <h3>Detail Pesanan</h3>
+          <h3 id="judul_detail">Detail Pesanan
+            <hr>
+          </h3>
           <div class="row">
-            <div class="col-lg-6">
-              <span id="daftar">
-                <div id="keterangan_nama_nomor_hp">
+            <div class="col-lg-12">
+              <form action="<?= base_url() ?>home/tambahPesanan" method="POST">
+                <span id="daftar">
+                  <div id="keterangan_nama_nomor_hp">
 
-                </div>
-                <div id="keterangan_tanggal_dipilih">
+                  </div>
+                  <div id="keterangan_tanggal_dipilih">
 
-                </div>
-                <div id="keterangan_meja_dipilih">
+                  </div>
+                  <div id="keterangan_meja_dipilih">
 
-                </div>
-              </span>
-            </div>
-            <div class="col-lg-6">
-              <span id="keterangan">
-                <div id="">
+                  </div>
+                  <div class="row">
+                    <h4 id="judul_menu">
+                      <hr>
+                      Menu Yang Dipesan
+                    </h4>
+                    <div class="col-lg-6" id="daftar_menu_dipesan">
 
-                </div>
-              </span>
+                    </div>
+                    <div class="col-lg-6" id="daftar_harga_dipesan">
+
+                    </div>
+                    <div class="col-lg-12 mt-1" id="total_harga">
+                    </div>
+                  </div>
+                </span>
+                <button class="btn btn-primary mt-2" id="tombol_booking" type="submit">Booking Sekarang!</button>
+              </form>
             </div>
           </div>
         </div>
@@ -92,6 +108,12 @@
   $(document).ready(function() {
     document.getElementById("id_meja").setAttribute("disabled", "disabled");
     document.getElementById("id_menu").setAttribute("disabled", "disabled");
+    document.getElementById("jumlah_pesanan").setAttribute("disabled", "disabled");
+    document.getElementById("judul_menu").style.display = "none";
+    document.getElementById("judul_detail").style.display = "none";
+    document.getElementById("tombol_booking").style.display = "none";
+    document.getElementById("daftar_harga_dipesan").style.display = "none";
+    document.getElementById("daftar_menu_dipesan").style.display = "none";
   });
 
   function formatDate(input) {
@@ -101,6 +123,22 @@
       day = datePart[2];
 
     return day + '/' + month + '/' + year;
+  }
+
+  function getMenu() {
+    $.ajax({
+      type: 'GET',
+      url: `<?= base_url() ?>home/getMenu/`,
+      dataType: 'json',
+      success: (hasil) => {
+        let isi = `<option disabled selected value="">Pilih Menu</option>`;
+        hasil.forEach(function(item) {
+          isi +=
+            `<option value="${item.nama_menu}|${item.harga}">${item.nama_menu} - Rp. ${item.harga}</option>`
+        });
+        $('#id_menu').html(isi);
+      }
+    });
   }
 
   function pilih_tanggal(tanggal) {
@@ -119,35 +157,121 @@
       }
     });
 
-    let isinyatanggal = `Tanggal Reservasi =  ${formatDate(tanggal)}`;
+    if (document.getElementById('no_hp').value === "") {
+      var nomorhp = "-";
+    } else {
+      var nomorhp = document.getElementById('no_hp').value;
+    }
+
+    let namakustomer = document.getElementById('nama').value;
+    let res = namakustomer.toUpperCase();
+    let res2 = res.replace(/[^\w\s]/gi, '');
+    let final_nama = res2.replace(/\s/g, '');
+
+    let isinyanamanope = `<b>Nama/Nomor HP</b> = ${document.getElementById('nama').value} | ${nomorhp}
+    <input type="hidden" name="hidden_nama_clean" value="${final_nama}"> 
+    <input type="hidden" name="hidden_nama_pemesan" value="${document.getElementById('nama').value}"> 
+    <input type="hidden" name="hidden_nomor_hp" value="${document.getElementById('nama').value}">
+    `;
+    let isinyatanggal = `<b>Tanggal Reservasi</b> =  ${formatDate(tanggal)}`;
+    $('#keterangan_nama_nomor_hp').html(isinyanamanope);
     $('#keterangan_tanggal_dipilih').html(isinyatanggal);
-
-    let isinyanama = ``;
-    let isinyanope = ``;
-
+    document.getElementById("judul_detail").style.display = "";
     document.getElementById("id_menu").removeAttribute("disabled", "disabled");
-    $.ajax({
-      type: 'GET',
-      url: `<?= base_url() ?>home/getMenu/`,
-      dataType: 'json',
-      success: (hasil) => {
-        let isi = `<option disabled selected value="">Pilih Menu</option>`;
-        hasil.forEach(function(item) {
-          isi +=
-            `<option value="${item.nama_menu}|${item.harga}">${item.nama_menu} - Rp. ${item.harga}</option>`
-        });
-        $('#id_menu').html(isi);
-      }
-    });
+    document.getElementById("jumlah_pesanan").removeAttribute("disabled", "disabled");
+    getMenu();
   }
+
 
   function tambah_meja(datameja) {
     const myArr = datameja.split("|");
-    let isinya = `Meja Yang Dipilih = Meja ${myArr[1]}`;
+    let isinya = `<b>Meja Yang Dipilih</b> = Meja ${myArr[1]}`;
     $('#keterangan_meja_dipilih').html(isinya);
   }
 
-  function pilih_menu(id_menu) {
-    console.log(id_menu);
+  let num = 0;
+  let menu_total = 0;
+  let total_harga = 0;
+  var daftarPesanan = `<b>Daftar Menu</b><hr>`;
+  var daftarHargaPesanan = `<b>Harga Menu | Subtotal</b><hr>`;
+
+  function setTotalHarga(total_harga_new) {
+    total_harga = total_harga_new;
+  }
+
+  function getTotalHarga() {
+    return total_harga;
+  }
+
+  function tambah_menu() {
+    subtotal = 0;
+    menu_total += 1;
+    num = num + 1;
+    let menu = $('#id_menu').val();
+    let jumlah_pesanan = $('#jumlah_pesanan').val();
+    if (menu !== "" && jumlah_pesanan !== "" && jumlah_pesanan > 0) {
+
+      // Unshow display menu dan tombol booking
+      document.getElementById("judul_menu").style.display = "";
+      if (menu_total < 1) {
+        document.getElementById("tombol_booking").style.display = "none";
+      } else {
+        document.getElementById("tombol_booking").style.display = "";
+      }
+      document.getElementById("daftar_harga_dipesan").style.display = "";
+      document.getElementById("daftar_menu_dipesan").style.display = "";
+
+      const splitMenu = menu.split("|");
+      total_harga += jumlah_pesanan * splitMenu[1];
+      setTotalHarga(total_harga);
+      let subtotal = jumlah_pesanan * splitMenu[1];
+
+      let total_harga_teks = `<b>Total Harga : Rp. ${getTotalHarga()}<br>DP Yang Harus Dibayar : Rp. ${getTotalHarga() / 2}</b>`;
+
+      $('#daftar_menu_dipesan').append(`
+      <span class="idpesanan${num}">
+      ${splitMenu[0]} - (Jumlah : ${jumlah_pesanan})<br>
+      <input type="hidden" name="hidden_nama_makanan[]" value="${splitMenu[0]}">
+      <input type="hidden" name="hidden_jumlah_makanan[]" value="${jumlah_pesanan}">
+      // TODO Terakhir sampe sini
+      </span>
+      `);
+
+      $('#daftar_harga_dipesan').append(`
+      <span class="idpesanan${num}">
+      Rp. ${splitMenu[1]}/satuan | Rp. ${subtotal}<span onclick="hapusMenu(${num},${subtotal},${total_harga})" style="cursor: pointer"> <i class="fa fa-times"></i> Hapus</span><br>
+      </span>
+      `);
+
+      $('#total_harga').html(total_harga_teks);
+
+      // Get menu dan kosongkan jumlah pesanan lagi.
+      getMenu();
+      document.getElementById('jumlah_pesanan').value = "";
+    } else {
+      alert("Maaf menu harus dipilih dan jumlah tidak boleh kurang dari 1 atau kosong.");
+    }
+  }
+
+  function hapusMenu(num, sub_total, total) {
+    menu_total -= 1;
+    $(`.idpesanan${num}`).remove();
+
+    if (menu_total < 1) {
+      totalnya = total - sub_total;
+
+      setTotalHarga(totalnya);
+      document.getElementById("tombol_booking").style.display = "none";
+      $('#total_harga').html("");
+      $('#daftar_menu_dipesan').html("");
+      $('#daftar_harga_dipesan').html("");
+    } else {
+      totalnya = total - sub_total;
+
+      setTotalHarga(totalnya);
+
+      let total_harga_teks = `<b>Total Harga : Rp. ${getTotalHarga()}<br>DP Yang Harus Dibayar : Rp. ${getTotalHarga() / 2}</b>`;
+      $('#total_harga').html(total_harga_teks);
+    }
   }
 </script>
