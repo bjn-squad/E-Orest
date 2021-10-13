@@ -15,6 +15,9 @@
                                 <label for="Password"><i class="zmdi zmdi-lock"></i></label>
                                 <input type="password" name="password" id="password" placeholder="Password" required />
                             </div>
+                            <div class="form-group">
+                                <a href="<?= base_url() ?>lupapassword/reset">Lupa Password?</a>
+                            </div>
                             <div class="form-group form-button">
                                 <input type="submit" name="signin" id="signin" class="form-submit" value="Log in" />
                             </div>

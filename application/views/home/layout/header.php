@@ -7,6 +7,7 @@
 
   <title><?= $nama_usaha ?></title>
 
+  <link rel="stylesheet" href="<?= base_url() ?>assets/admin/vendor/@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
   <!-- Favicons -->
   <link href="<?= base_url() ?><?= base_url() ?>assets/home/home/img/favicon.png" rel="icon">
   <link href="<?= base_url() ?><?= base_url() ?>assets/home/home/img/apple-touch-icon.png" rel="apple-touch-icon">

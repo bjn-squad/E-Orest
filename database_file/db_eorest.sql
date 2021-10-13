@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 07, 2021 at 05:45 PM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.6
+-- Generation Time: Oct 12, 2021 at 03:49 PM
+-- Server version: 10.1.38-MariaDB
+-- PHP Version: 7.3.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -82,6 +83,28 @@ INSERT INTO `gambar_menu` (`id_gambar`, `id_menu`, `gambar`) VALUES
 (24, 13, '06102021093658SateKambingYangEmpuk.jpg'),
 (25, 15, '06102021093836SopBuntut_IndonesianOxtailSoup.jpg'),
 (26, 11, '06102021093956ResepSotoLamonganAsliJawaTimurDenganSuwiranAyamDanKuahKuning.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `lupa_password`
+--
+
+CREATE TABLE `lupa_password` (
+  `id_lupa_password` int(11) NOT NULL,
+  `id_pegawai` int(11) NOT NULL,
+  `pertanyaankeamanan1` varchar(255) NOT NULL,
+  `pertanyaankeamanan2` varchar(255) NOT NULL,
+  `jawabankeamanan1` varchar(255) NOT NULL,
+  `jawabankeamanan2` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `lupa_password`
+--
+
+INSERT INTO `lupa_password` (`id_lupa_password`, `id_pegawai`, `pertanyaankeamanan1`, `pertanyaankeamanan2`, `jawabankeamanan1`, `jawabankeamanan2`) VALUES
+(1, 1, 'Berapa angka favorit anda?(Contoh: 99)', 'Siapakah nama hewan peliharaan anda?', '7', 'alfan');
 
 -- --------------------------------------------------------
 
@@ -205,7 +228,7 @@ CREATE TABLE `pegawai` (
 --
 
 INSERT INTO `pegawai` (`id_pegawai`, `nama`, `email`, `alamat`, `password`, `telepon`, `jenis_kelamin`, `jabatan`) VALUES
-(1, 'Ardan Anjung Kusuma', 'ardan@gmail.com', 'Jl. Senggani, Kota Malang', '81dc9bdb52d04dc20036dbd8313ed055', '081279109122', 'Pria', 'pegawai'),
+(1, 'Ardan Anjung Kusuma', 'ardan@gmail.com', 'Jl. Senggani, Kota Malang', 'd2219d75098abd01493908d2f7f4d13d', '081279109122', 'Pria', 'pegawai'),
 (2, 'Dina Lisuardi', 'dina@gmail.com', 'Jl. Semanggi Barat, Kota Malang', '81dc9bdb52d04dc20036dbd8313ed055', '085645121991', 'Wanita', 'pegawai'),
 (3, 'Bos Admin', 'admin@gmail.com', 'Jl. Anggrek 51 Malang', '21232f297a57a5a743894a0e4a801fc3', '0851248238', 'Pria', 'admin');
 
@@ -277,6 +300,12 @@ ALTER TABLE `gambar_menu`
   ADD PRIMARY KEY (`id_gambar`);
 
 --
+-- Indexes for table `lupa_password`
+--
+ALTER TABLE `lupa_password`
+  ADD PRIMARY KEY (`id_lupa_password`);
+
+--
 -- Indexes for table `meja`
 --
 ALTER TABLE `meja`
@@ -333,6 +362,12 @@ ALTER TABLE `booking`
 --
 ALTER TABLE `gambar_menu`
   MODIFY `id_gambar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+
+--
+-- AUTO_INCREMENT for table `lupa_password`
+--
+ALTER TABLE `lupa_password`
+  MODIFY `id_lupa_password` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `meja`
