@@ -68,7 +68,7 @@
           </h3>
           <div class="row">
             <div class="col-lg-12">
-              <form action="<?= base_url() ?>home/tambahPesanan" method="POST">
+              <form action="<?= base_url() ?>home/tambahPesanan" method="POST" onsubmit="return confirm('Apakah data dan pesanan anda sudah benar?');">
                 <span id="daftar">
                   <div id="keterangan_nama_nomor_hp">
 
@@ -125,6 +125,15 @@
     return day + '/' + month + '/' + year;
   }
 
+  function formatDate2(input) {
+    var datePart = input.match(/\d+/g),
+      year = datePart[0].substring(0),
+      month = datePart[1],
+      day = datePart[2];
+
+    return year + '-' + month + '-' + day;
+  }
+
   function getMenu() {
     $.ajax({
       type: 'GET',
@@ -169,11 +178,14 @@
     let final_nama = res2.replace(/\s/g, '');
 
     let isinyanamanope = `<b>Nama/Nomor HP</b> = ${document.getElementById('nama').value} | ${nomorhp}
-    <input type="hidden" name="hidden_nama_clean" value="${final_nama}"> 
-    <input type="hidden" name="hidden_nama_pemesan" value="${document.getElementById('nama').value}"> 
-    <input type="hidden" name="hidden_nomor_hp" value="${document.getElementById('nama').value}">
+    <input type="text" name="hidden_nama_clean" value="${final_nama}"> 
+    <input type="text" name="hidden_nama_pemesan" value="${document.getElementById('nama').value}"> 
+    <input type="text" name="hidden_nomor_hp" value="${document.getElementById('no_hp').value}">
     `;
-    let isinyatanggal = `<b>Tanggal Reservasi</b> =  ${formatDate(tanggal)}`;
+    let isinyatanggal = `
+    <b>Tanggal Reservasi</b> =  ${formatDate(tanggal)}
+    <input type="text" name="hidden_tanggal_reservasi" value="${formatDate2(tanggal)}"> 
+    `;
     $('#keterangan_nama_nomor_hp').html(isinyanamanope);
     $('#keterangan_tanggal_dipilih').html(isinyatanggal);
     document.getElementById("judul_detail").style.display = "";
@@ -185,7 +197,10 @@
 
   function tambah_meja(datameja) {
     const myArr = datameja.split("|");
-    let isinya = `<b>Meja Yang Dipilih</b> = Meja ${myArr[1]}`;
+    let isinya = `
+    <b>Meja Yang Dipilih</b> = Meja ${myArr[1]}
+    <input type="text" name="hidden_id_meja" value="${myArr[0]}">
+    `;
     $('#keterangan_meja_dipilih').html(isinya);
   }
 
@@ -226,20 +241,23 @@
       setTotalHarga(total_harga);
       let subtotal = jumlah_pesanan * splitMenu[1];
 
-      let total_harga_teks = `<b>Total Harga : Rp. ${getTotalHarga()}<br>DP Yang Harus Dibayar : Rp. ${getTotalHarga() / 2}</b>`;
+      let total_harga_teks = `
+      <b>Total Harga : Rp. ${getTotalHarga()}<br>DP Yang Harus Dibayar : Rp. ${getTotalHarga() / 2}</b>
+      <input type="text" name="hidden_total_harga" value="${getTotalHarga()}">
+      `;
 
       $('#daftar_menu_dipesan').append(`
       <span class="idpesanan${num}">
-      ${splitMenu[0]} - (Jumlah : ${jumlah_pesanan})<br>
-      <input type="hidden" name="hidden_nama_makanan[]" value="${splitMenu[0]}">
-      <input type="hidden" name="hidden_jumlah_makanan[]" value="${jumlah_pesanan}">
-      // TODO Terakhir sampe sini
+        ${splitMenu[0]} - (Jumlah : ${jumlah_pesanan})<br>
+        <input type="text" name="hidden_nama_makanan[]" value="${splitMenu[0]}">
+        <input type="text" name="hidden_jumlah_makanan[]" value="${jumlah_pesanan}">
+        <input type="text" name="hidden_subtotal_makanan[]" value="${subtotal}">
       </span>
       `);
 
       $('#daftar_harga_dipesan').append(`
       <span class="idpesanan${num}">
-      Rp. ${splitMenu[1]}/satuan | Rp. ${subtotal}<span onclick="hapusMenu(${num},${subtotal},${total_harga})" style="cursor: pointer"> <i class="fa fa-times"></i> Hapus</span><br>
+      Rp. ${splitMenu[1]}/satuan | Rp. ${subtotal}<span onclick="hapusMenu(${num},${subtotal})" style="cursor: pointer"> <i class="fa fa-times"></i> Hapus</span><br>
       </span>
       `);
 
@@ -253,12 +271,12 @@
     }
   }
 
-  function hapusMenu(num, sub_total, total) {
+  function hapusMenu(num, sub_total) {
     menu_total -= 1;
     $(`.idpesanan${num}`).remove();
 
     if (menu_total < 1) {
-      totalnya = total - sub_total;
+      totalnya = getTotalHarga() - sub_total;
 
       setTotalHarga(totalnya);
       document.getElementById("tombol_booking").style.display = "none";
@@ -266,11 +284,13 @@
       $('#daftar_menu_dipesan').html("");
       $('#daftar_harga_dipesan').html("");
     } else {
-      totalnya = total - sub_total;
+      totalnya = getTotalHarga() - sub_total;
 
       setTotalHarga(totalnya);
 
-      let total_harga_teks = `<b>Total Harga : Rp. ${getTotalHarga()}<br>DP Yang Harus Dibayar : Rp. ${getTotalHarga() / 2}</b>`;
+      let total_harga_teks = `
+      <b>Total Harga : Rp. ${getTotalHarga()}<br>DP Yang Harus Dibayar : Rp. ${getTotalHarga() / 2}</b>
+      <input type="text" name="hidden_total_harga" value="${getTotalHarga()}">`;
       $('#total_harga').html(total_harga_teks);
     }
   }
