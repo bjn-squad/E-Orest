@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 14, 2021 at 06:39 PM
+-- Generation Time: Oct 15, 2021 at 08:45 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.6
 
@@ -45,8 +45,8 @@ CREATE TABLE `booking` (
 --
 
 INSERT INTO `booking` (`id_booking`, `id_detail_menu`, `id_meja`, `nama_pemesan`, `nomor_hp`, `tanggal_pesan`, `tanggal_reservasi`, `total_pembayaran`, `batas_pembayaran_dp`, `status_pembayaran`) VALUES
-(1, 'JOHNDOE2110071857', 5, 'John Doe', '085124305512', '2021-10-07 18:57:34', '2021-10-09', 56000, '2021-10-08 18:57:34', 'DP Sudah Dibayar'),
-(8, 'YUNIKURNIATARAMITA20211014232555', 5, 'Yuni Kurnia Taramita', '085258967800', '2021-10-14 23:25:55', '2021-10-16', 60000, '2021-10-15 23:25:55', 'Belum Bayar DP');
+(9, 'INV20211015132542', 5, 'Riza Zulfahnur', '0', '2021-10-15 13:25:42', '2021-11-04', 45000, '2021-10-16 13:25:42', 'Belum Bayar DP'),
+(10, 'INV20211015133852', 5, 'Yuni Kurnia Taramita', '08512495120', '2021-10-15 13:38:52', '2021-10-23', 56000, '2021-10-16 13:38:52', 'Belum Bayar DP');
 
 -- --------------------------------------------------------
 
@@ -181,10 +181,10 @@ CREATE TABLE `menu_dibooking` (
 --
 
 INSERT INTO `menu_dibooking` (`id_menu_dibooking`, `id_detail_menu`, `nama_makanan`, `jumlah`, `sub_total`) VALUES
-(1, 'JOHNDOE2110071857', 'Bakso', 2, 40000),
-(2, 'JOHNDOE2110071857', 'Es Teh', 2, 16000),
-(13, 'YUNIKURNIATARAMITA20211014232555', 'Bakso', 2, 40000),
-(14, 'YUNIKURNIATARAMITA20211014232555', 'Es Jeruk', 2, 20000);
+(15, 'INV20211015132542', 'Bakso', 1, 20000),
+(16, 'INV20211015132542', 'Nasi Goreng', 1, 25000),
+(17, 'INV20211015133852', 'Bakso', 2, 40000),
+(18, 'INV20211015133852', 'Es Teh', 2, 16000);
 
 -- --------------------------------------------------------
 
@@ -360,7 +360,7 @@ ALTER TABLE `saran_kritik`
 -- AUTO_INCREMENT for table `booking`
 --
 ALTER TABLE `booking`
-  MODIFY `id_booking` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_booking` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `gambar_menu`
@@ -390,7 +390,7 @@ ALTER TABLE `menu`
 -- AUTO_INCREMENT for table `menu_dibooking`
 --
 ALTER TABLE `menu_dibooking`
-  MODIFY `id_menu_dibooking` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_menu_dibooking` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `metode_pembayaran`

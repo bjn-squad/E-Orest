@@ -36,7 +36,7 @@
             <label>Tanggal Pemesanan</label>
             <small class="form-text" style="color: red;">*Wajib Diisi</small>
             <?php date_default_timezone_set('Asia/Jakarta'); ?>
-            <input onchange="pilih_tanggal(this.value)" type="date" class="form-control" name="tanggal_pemesanan" id="tanggal_pemesanan" min="<?php echo date("Y-m-d"); ?>">
+            <input onchange="pilih_tanggal(this.value)" type="date" class="form-control" name="tanggal_pemesanan" id="tanggal_pemesanan" min="<?= date("Y-m-d"); ?>" max="<?= date('Y-m-d', strtotime('+21 day')) ?>">
           </div>
           <div class="form-group mb-2">
             <label>Pilih Meja Yang Ingin Direservasi</label>
@@ -178,13 +178,13 @@
     let final_nama = res2.replace(/\s/g, '');
 
     let isinyanamanope = `<b>Nama/Nomor HP</b> = ${document.getElementById('nama').value} | ${nomorhp}
-    <input type="text" name="hidden_nama_clean" value="${final_nama}"> 
-    <input type="text" name="hidden_nama_pemesan" value="${document.getElementById('nama').value}"> 
-    <input type="text" name="hidden_nomor_hp" value="${document.getElementById('no_hp').value}">
+    <input type="hidden" name="hidden_nama_clean" value="${final_nama}"> 
+    <input type="hidden" name="hidden_nama_pemesan" value="${document.getElementById('nama').value}"> 
+    <input type="hidden" name="hidden_nomor_hp" value="${document.getElementById('no_hp').value}">
     `;
     let isinyatanggal = `
     <b>Tanggal Reservasi</b> =  ${formatDate(tanggal)}
-    <input type="text" name="hidden_tanggal_reservasi" value="${formatDate2(tanggal)}"> 
+    <input type="hidden" name="hidden_tanggal_reservasi" value="${formatDate2(tanggal)}"> 
     `;
     $('#keterangan_nama_nomor_hp').html(isinyanamanope);
     $('#keterangan_tanggal_dipilih').html(isinyatanggal);
@@ -199,7 +199,7 @@
     const myArr = datameja.split("|");
     let isinya = `
     <b>Meja Yang Dipilih</b> = Meja ${myArr[1]}
-    <input type="text" name="hidden_id_meja" value="${myArr[0]}">
+    <input type="hidden" name="hidden_id_meja" value="${myArr[0]}">
     `;
     $('#keterangan_meja_dipilih').html(isinya);
   }
@@ -223,8 +223,28 @@
     menu_total += 1;
     num = num + 1;
     let menu = $('#id_menu').val();
+    let nama = $('#nama').val();
     let jumlah_pesanan = $('#jumlah_pesanan').val();
-    if (menu !== "" && jumlah_pesanan !== "" && jumlah_pesanan > 0) {
+    if (nama == "") {
+      alert("Nama Tidak Boleh Kosong!");
+    } else if (menu !== "" && jumlah_pesanan !== "" && jumlah_pesanan > 0) {
+      if (document.getElementById('no_hp').value === "") {
+        var nomorhp = "-";
+      } else {
+        var nomorhp = document.getElementById('no_hp').value;
+      }
+
+      let namakustomer = document.getElementById('nama').value;
+      let res = namakustomer.toUpperCase();
+      let res2 = res.replace(/[^\w\s]/gi, '');
+      let final_nama = res2.replace(/\s/g, '');
+
+      let isinyanamanope = `<b>Nama/Nomor HP</b> = ${document.getElementById('nama').value} | ${nomorhp}
+        <input type="hidden" name="hidden_nama_clean" value="${final_nama}"> 
+        <input type="hidden" name="hidden_nama_pemesan" value="${document.getElementById('nama').value}"> 
+        <input type="hidden" name="hidden_nomor_hp" value="${document.getElementById('no_hp').value}">
+      `;
+      $('#keterangan_nama_nomor_hp').html(isinyanamanope);
 
       // Unshow display menu dan tombol booking
       document.getElementById("judul_menu").style.display = "";
@@ -243,15 +263,15 @@
 
       let total_harga_teks = `
       <b>Total Harga : Rp. ${getTotalHarga()}<br>DP Yang Harus Dibayar : Rp. ${getTotalHarga() / 2}</b>
-      <input type="text" name="hidden_total_harga" value="${getTotalHarga()}">
+      <input type="hidden" name="hidden_total_harga" value="${getTotalHarga()}">
       `;
 
       $('#daftar_menu_dipesan').append(`
       <span class="idpesanan${num}">
         ${splitMenu[0]} - (Jumlah : ${jumlah_pesanan})<br>
-        <input type="text" name="hidden_nama_makanan[]" value="${splitMenu[0]}">
-        <input type="text" name="hidden_jumlah_makanan[]" value="${jumlah_pesanan}">
-        <input type="text" name="hidden_subtotal_makanan[]" value="${subtotal}">
+        <input type="hidden" name="hidden_nama_makanan[]" value="${splitMenu[0]}">
+        <input type="hidden" name="hidden_jumlah_makanan[]" value="${jumlah_pesanan}">
+        <input type="hidden" name="hidden_subtotal_makanan[]" value="${subtotal}">
       </span>
       `);
 
@@ -290,7 +310,7 @@
 
       let total_harga_teks = `
       <b>Total Harga : Rp. ${getTotalHarga()}<br>DP Yang Harus Dibayar : Rp. ${getTotalHarga() / 2}</b>
-      <input type="text" name="hidden_total_harga" value="${getTotalHarga()}">`;
+      <input type="hidden" name="hidden_total_harga" value="${getTotalHarga()}">`;
       $('#total_harga').html(total_harga_teks);
     }
   }
