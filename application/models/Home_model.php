@@ -17,7 +17,7 @@ class Home_model extends CI_Model
         $tanggal_batas_bayar =  date('Y-m-d H:i:s', strtotime('+1 day'));
 
 
-        $invoice = $this->input->post("hidden_nama_clean") . date("YmdHis");
+        $invoice = "INV" . date("YmdHis");
 
         if ($this->input->post("hidden_nomor_hp") == "") {
             $no_hp = 0;
