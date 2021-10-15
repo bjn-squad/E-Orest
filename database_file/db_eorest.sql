@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 07, 2021 at 05:45 PM
+-- Generation Time: Oct 14, 2021 at 06:39 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.6
 
@@ -29,12 +29,13 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `booking` (
   `id_booking` int(12) NOT NULL,
-  `id_detail_menu` int(12) NOT NULL,
+  `id_detail_menu` text NOT NULL,
   `id_meja` int(12) NOT NULL,
   `nama_pemesan` varchar(250) NOT NULL,
   `nomor_hp` varchar(250) NOT NULL,
   `tanggal_pesan` datetime NOT NULL,
   `tanggal_reservasi` date NOT NULL,
+  `total_pembayaran` int(12) NOT NULL,
   `batas_pembayaran_dp` datetime NOT NULL,
   `status_pembayaran` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -43,9 +44,9 @@ CREATE TABLE `booking` (
 -- Dumping data for table `booking`
 --
 
-INSERT INTO `booking` (`id_booking`, `id_detail_menu`, `id_meja`, `nama_pemesan`, `nomor_hp`, `tanggal_pesan`, `tanggal_reservasi`, `batas_pembayaran_dp`, `status_pembayaran`) VALUES
-(1, 1, 5, 'John Doe', '085124305512', '2021-10-07 18:57:34', '2021-10-09', '2021-10-08 18:57:34', 'DP Sudah Dibayar'),
-(2, 2, 3, 'Siti R', '0812524212', '2021-10-07 19:19:06', '2021-10-09', '2021-10-08 19:19:06', 'DP Sudah Dibayar');
+INSERT INTO `booking` (`id_booking`, `id_detail_menu`, `id_meja`, `nama_pemesan`, `nomor_hp`, `tanggal_pesan`, `tanggal_reservasi`, `total_pembayaran`, `batas_pembayaran_dp`, `status_pembayaran`) VALUES
+(1, 'JOHNDOE2110071857', 5, 'John Doe', '085124305512', '2021-10-07 18:57:34', '2021-10-09', 56000, '2021-10-08 18:57:34', 'DP Sudah Dibayar'),
+(8, 'YUNIKURNIATARAMITA20211014232555', 5, 'Yuni Kurnia Taramita', '085258967800', '2021-10-14 23:25:55', '2021-10-16', 60000, '2021-10-15 23:25:55', 'Belum Bayar DP');
 
 -- --------------------------------------------------------
 
@@ -82,6 +83,29 @@ INSERT INTO `gambar_menu` (`id_gambar`, `id_menu`, `gambar`) VALUES
 (24, 13, '06102021093658SateKambingYangEmpuk.jpg'),
 (25, 15, '06102021093836SopBuntut_IndonesianOxtailSoup.jpg'),
 (26, 11, '06102021093956ResepSotoLamonganAsliJawaTimurDenganSuwiranAyamDanKuahKuning.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `lupa_password`
+--
+
+CREATE TABLE `lupa_password` (
+  `id_lupa_password` int(11) NOT NULL,
+  `id_pegawai` int(11) NOT NULL,
+  `pertanyaankeamanan1` varchar(255) NOT NULL,
+  `pertanyaankeamanan2` varchar(255) NOT NULL,
+  `jawabankeamanan1` varchar(255) NOT NULL,
+  `jawabankeamanan2` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `lupa_password`
+--
+
+INSERT INTO `lupa_password` (`id_lupa_password`, `id_pegawai`, `pertanyaankeamanan1`, `pertanyaankeamanan2`, `jawabankeamanan1`, `jawabankeamanan2`) VALUES
+(1, 1, 'Berapa angka favorit anda?(Contoh: 99)', 'Siapakah nama hewan peliharaan anda?', '7', 'alfan'),
+(2, 3, 'Apa hewan kesayangan anda?', 'Apa cita-cita anda semasa kecil?', 'Harimau Sumatra', 'Progamer');
 
 -- --------------------------------------------------------
 
@@ -146,7 +170,7 @@ INSERT INTO `menu` (`id_menu`, `nama_menu`, `detail_menu`, `kategori`, `stok`, `
 
 CREATE TABLE `menu_dibooking` (
   `id_menu_dibooking` int(12) NOT NULL,
-  `id_detail_menu` int(12) NOT NULL,
+  `id_detail_menu` text NOT NULL,
   `nama_makanan` varchar(250) NOT NULL,
   `jumlah` int(5) NOT NULL,
   `sub_total` int(12) NOT NULL
@@ -157,8 +181,10 @@ CREATE TABLE `menu_dibooking` (
 --
 
 INSERT INTO `menu_dibooking` (`id_menu_dibooking`, `id_detail_menu`, `nama_makanan`, `jumlah`, `sub_total`) VALUES
-(1, 1, 'Bakso', 2, 40000),
-(2, 1, 'Es Teh', 2, 16000);
+(1, 'JOHNDOE2110071857', 'Bakso', 2, 40000),
+(2, 'JOHNDOE2110071857', 'Es Teh', 2, 16000),
+(13, 'YUNIKURNIATARAMITA20211014232555', 'Bakso', 2, 40000),
+(14, 'YUNIKURNIATARAMITA20211014232555', 'Es Jeruk', 2, 20000);
 
 -- --------------------------------------------------------
 
@@ -205,9 +231,11 @@ CREATE TABLE `pegawai` (
 --
 
 INSERT INTO `pegawai` (`id_pegawai`, `nama`, `email`, `alamat`, `password`, `telepon`, `jenis_kelamin`, `jabatan`) VALUES
-(1, 'Ardan Anjung Kusuma', 'ardan@gmail.com', 'Jl. Senggani, Kota Malang', '81dc9bdb52d04dc20036dbd8313ed055', '081279109122', 'Pria', 'pegawai'),
+(1, 'Ardan Anjung Kusuma', 'ardan@gmail.com', 'Jl. Senggani, Kota Malang', 'd2219d75098abd01493908d2f7f4d13d', '081279109122', 'Pria', 'pegawai'),
 (2, 'Dina Lisuardi', 'dina@gmail.com', 'Jl. Semanggi Barat, Kota Malang', '81dc9bdb52d04dc20036dbd8313ed055', '085645121991', 'Wanita', 'pegawai'),
-(3, 'Bos Admin', 'admin@gmail.com', 'Jl. Anggrek 51 Malang', '21232f297a57a5a743894a0e4a801fc3', '0851248238', 'Pria', 'admin');
+(3, 'Bos Admin', 'admin@gmail.com', 'Jl. Anggrek 51 Malang', '21232f297a57a5a743894a0e4a801fc3', '0851248238', 'Pria', 'admin'),
+(4, 'Riza Zulfahnur', 'riza@gmail.com', 'Jl. Blimbing 23 Kalitidu', '41a44352a6f3cd3b45282acbce50927c', '085209321234', 'Laki-laki', 'pegawai'),
+(5, 'Yuni Kurnia Taramita', 'yunii@gmail.com', 'Jl. Pipit 15, Bojonegoro', 'b7dfe9096cebb53152aa5ce78a1a61c9', '08124325212', 'Laki-laki', 'pegawai');
 
 -- --------------------------------------------------------
 
@@ -277,6 +305,12 @@ ALTER TABLE `gambar_menu`
   ADD PRIMARY KEY (`id_gambar`);
 
 --
+-- Indexes for table `lupa_password`
+--
+ALTER TABLE `lupa_password`
+  ADD PRIMARY KEY (`id_lupa_password`);
+
+--
 -- Indexes for table `meja`
 --
 ALTER TABLE `meja`
@@ -326,13 +360,19 @@ ALTER TABLE `saran_kritik`
 -- AUTO_INCREMENT for table `booking`
 --
 ALTER TABLE `booking`
-  MODIFY `id_booking` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_booking` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `gambar_menu`
 --
 ALTER TABLE `gambar_menu`
   MODIFY `id_gambar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+
+--
+-- AUTO_INCREMENT for table `lupa_password`
+--
+ALTER TABLE `lupa_password`
+  MODIFY `id_lupa_password` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `meja`
@@ -350,7 +390,7 @@ ALTER TABLE `menu`
 -- AUTO_INCREMENT for table `menu_dibooking`
 --
 ALTER TABLE `menu_dibooking`
-  MODIFY `id_menu_dibooking` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_menu_dibooking` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `metode_pembayaran`
@@ -362,7 +402,7 @@ ALTER TABLE `metode_pembayaran`
 -- AUTO_INCREMENT for table `pegawai`
 --
 ALTER TABLE `pegawai`
-  MODIFY `id_pegawai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_pegawai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `profil_usaha`

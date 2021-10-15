@@ -93,4 +93,23 @@ class Home extends CI_Controller
 
         echo json_encode($data['menu']);
     }
+
+    public function tambahPesanan()
+    {
+        $data_invoice = $this->Home_model->tambahBooking();
+
+        echo $data_invoice;
+        // $profil = $this->getProfilUsaha();
+        // $data['nama_usaha'] = $profil['nama_usaha'];
+        // $data['deskripsi'] = $profil['deskripsi'];
+        // $data['alamat'] = $profil['alamat'];
+        // $data['nomor_telepon'] = $profil['nomor_telepon'];
+        // $data['instagram'] = $profil['instagram'];
+        // $data['facebook'] = $profil['facebook'];
+        // $data['maps_link'] = $profil['maps_link'];
+
+        // $this->load->view('home/layout/header', $data);
+        // $this->load->view('home/booking');
+        // $this->load->view('home/layout/footer');
+    }
 }
