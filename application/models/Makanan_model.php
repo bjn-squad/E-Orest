@@ -10,11 +10,19 @@ class Makanan_model extends CI_Model
         $query = $this->db->query("SELECT * FROM menu");
         return $query->result_array();
     }
+
+    public function getMakananTersedia()
+    {
+        $query = $this->db->query("SELECT * FROM menu WHERE stok = 'Tersedia'");
+        return $query->result_array();
+    }
+
     public function getMakananById($id)
     {
         $query = $this->db->query("SELECT * FROM menu where id_menu = $id");
         return $query->result_array();
     }
+
     public function tambah()
     {
         // Upload Gambar

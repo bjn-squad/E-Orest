@@ -80,6 +80,14 @@
                             </a>
                         </li>
                     </ul>
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?= base_url() ?>admin/daftar_pegawai">
+                                <i class="fa fa-people-carry text-primary"></i>
+                                <span class="nav-link-text">Kelola Pegawai</span>
+                            </a>
+                        </li>
+                    </ul>
                 <?php
                 }
                 ?>

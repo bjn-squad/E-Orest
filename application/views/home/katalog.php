@@ -22,11 +22,18 @@
       <div class="row">
         <?php
         foreach ($menu as $m) {
+          $id_menu = $m['id_menu'];
         ?>
           <div class="col-md-3 d-flex align-items-stretch">
             <div class="card">
               <div class="card-img">
-                <img src="<?php echo base_url('assets/dataresto/menu/' . $gambar) ?>" />
+                <?php
+                $getGambar = $this->db->query("SELECT * FROM gambar_menu WHERE id_menu = $id_menu LIMIT 1");
+                foreach ($getGambar->result_array() as $gambarm) {
+                  $gambar = $gambarm['gambar'];
+                }
+                ?>
+                <img style="object-fit: cover;height:400px;width:100%" src="<?php echo base_url('assets/dataresto/menu/' . $gambar) ?>" />
               </div>
               <div class="card-body">
                 <h5 class="card-title"><?= $m['nama_menu'] ?></h5>

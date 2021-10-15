@@ -26,26 +26,15 @@ class Katalog extends CI_Controller
         return $arr;
     }
 
-    public function getGambar()
-    {
-        $getGambar = $this->db->query("SELECT * FROM gambar_menu");
-        foreach ($getGambar->result_array() as $gambarm) {
-            $arr['gambar'] = $gambarm['gambar'];
-        }
-        return $arr;
-    }
-
     public function index()
     {
         $profil = $this->getProfilUsaha();
-        $gambarm = $this->getGambar();
         $data['menu'] = $this->katalog_model->getAllMakanan();
         $data['nama_usaha'] = $profil['nama_usaha'];
         $data['alamat'] = $profil['alamat'];
         $data['nomor_telepon'] = $profil['nomor_telepon'];
         $data['instagram'] = $profil['instagram'];
         $data['facebook'] = $profil['facebook'];
-        $data['gambar'] = $gambarm['gambar'];
 
         $this->load->view('home/layout/header', $data);
         $this->load->view('home/katalog');
