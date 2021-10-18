@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 12, 2021 at 03:49 PM
--- Server version: 10.1.38-MariaDB
--- PHP Version: 7.3.2
+-- Generation Time: Oct 15, 2021 at 08:45 AM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.4.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -30,12 +30,13 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `booking` (
   `id_booking` int(12) NOT NULL,
-  `id_detail_menu` int(12) NOT NULL,
+  `id_detail_menu` text NOT NULL,
   `id_meja` int(12) NOT NULL,
   `nama_pemesan` varchar(250) NOT NULL,
   `nomor_hp` varchar(250) NOT NULL,
   `tanggal_pesan` datetime NOT NULL,
   `tanggal_reservasi` date NOT NULL,
+  `total_pembayaran` int(12) NOT NULL,
   `batas_pembayaran_dp` datetime NOT NULL,
   `status_pembayaran` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -44,9 +45,9 @@ CREATE TABLE `booking` (
 -- Dumping data for table `booking`
 --
 
-INSERT INTO `booking` (`id_booking`, `id_detail_menu`, `id_meja`, `nama_pemesan`, `nomor_hp`, `tanggal_pesan`, `tanggal_reservasi`, `batas_pembayaran_dp`, `status_pembayaran`) VALUES
-(1, 1, 5, 'John Doe', '085124305512', '2021-10-07 18:57:34', '2021-10-09', '2021-10-08 18:57:34', 'DP Sudah Dibayar'),
-(2, 2, 3, 'Siti R', '0812524212', '2021-10-07 19:19:06', '2021-10-09', '2021-10-08 19:19:06', 'DP Sudah Dibayar');
+INSERT INTO `booking` (`id_booking`, `id_detail_menu`, `id_meja`, `nama_pemesan`, `nomor_hp`, `tanggal_pesan`, `tanggal_reservasi`, `total_pembayaran`, `batas_pembayaran_dp`, `status_pembayaran`) VALUES
+(9, 'INV20211015132542', 5, 'Riza Zulfahnur', '0', '2021-10-15 13:25:42', '2021-11-04', 45000, '2021-10-16 13:25:42', 'Belum Bayar DP'),
+(10, 'INV20211015133852', 5, 'Yuni Kurnia Taramita', '08512495120', '2021-10-15 13:38:52', '2021-10-23', 56000, '2021-10-16 13:38:52', 'Belum Bayar DP');
 
 -- --------------------------------------------------------
 
@@ -104,7 +105,8 @@ CREATE TABLE `lupa_password` (
 --
 
 INSERT INTO `lupa_password` (`id_lupa_password`, `id_pegawai`, `pertanyaankeamanan1`, `pertanyaankeamanan2`, `jawabankeamanan1`, `jawabankeamanan2`) VALUES
-(1, 1, 'Berapa angka favorit anda?(Contoh: 99)', 'Siapakah nama hewan peliharaan anda?', '7', 'alfan');
+(1, 1, 'Berapa angka favorit anda?(Contoh: 99)', 'Siapakah nama hewan peliharaan anda?', '7', 'alfan'),
+(2, 3, 'Apa hewan kesayangan anda?', 'Apa cita-cita anda semasa kecil?', 'Harimau Sumatra', 'Progamer');
 
 -- --------------------------------------------------------
 
@@ -169,7 +171,7 @@ INSERT INTO `menu` (`id_menu`, `nama_menu`, `detail_menu`, `kategori`, `stok`, `
 
 CREATE TABLE `menu_dibooking` (
   `id_menu_dibooking` int(12) NOT NULL,
-  `id_detail_menu` int(12) NOT NULL,
+  `id_detail_menu` text NOT NULL,
   `nama_makanan` varchar(250) NOT NULL,
   `jumlah` int(5) NOT NULL,
   `sub_total` int(12) NOT NULL
@@ -180,8 +182,10 @@ CREATE TABLE `menu_dibooking` (
 --
 
 INSERT INTO `menu_dibooking` (`id_menu_dibooking`, `id_detail_menu`, `nama_makanan`, `jumlah`, `sub_total`) VALUES
-(1, 1, 'Bakso', 2, 40000),
-(2, 1, 'Es Teh', 2, 16000);
+(15, 'INV20211015132542', 'Bakso', 1, 20000),
+(16, 'INV20211015132542', 'Nasi Goreng', 1, 25000),
+(17, 'INV20211015133852', 'Bakso', 2, 40000),
+(18, 'INV20211015133852', 'Es Teh', 2, 16000);
 
 -- --------------------------------------------------------
 
@@ -230,7 +234,9 @@ CREATE TABLE `pegawai` (
 INSERT INTO `pegawai` (`id_pegawai`, `nama`, `email`, `alamat`, `password`, `telepon`, `jenis_kelamin`, `jabatan`) VALUES
 (1, 'Ardan Anjung Kusuma', 'ardan@gmail.com', 'Jl. Senggani, Kota Malang', 'd2219d75098abd01493908d2f7f4d13d', '081279109122', 'Pria', 'pegawai'),
 (2, 'Dina Lisuardi', 'dina@gmail.com', 'Jl. Semanggi Barat, Kota Malang', '81dc9bdb52d04dc20036dbd8313ed055', '085645121991', 'Wanita', 'pegawai'),
-(3, 'Bos Admin', 'admin@gmail.com', 'Jl. Anggrek 51 Malang', '21232f297a57a5a743894a0e4a801fc3', '0851248238', 'Pria', 'admin');
+(3, 'Bos Admin', 'admin@gmail.com', 'Jl. Anggrek 51 Malang', '21232f297a57a5a743894a0e4a801fc3', '0851248238', 'Pria', 'admin'),
+(4, 'Riza Zulfahnur', 'riza@gmail.com', 'Jl. Blimbing 23 Kalitidu', '41a44352a6f3cd3b45282acbce50927c', '085209321234', 'Laki-laki', 'pegawai'),
+(5, 'Yuni Kurnia Taramita', 'yunii@gmail.com', 'Jl. Pipit 15, Bojonegoro', 'b7dfe9096cebb53152aa5ce78a1a61c9', '08124325212', 'Laki-laki', 'pegawai');
 
 -- --------------------------------------------------------
 
@@ -355,7 +361,7 @@ ALTER TABLE `saran_kritik`
 -- AUTO_INCREMENT for table `booking`
 --
 ALTER TABLE `booking`
-  MODIFY `id_booking` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_booking` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `gambar_menu`
@@ -367,7 +373,7 @@ ALTER TABLE `gambar_menu`
 -- AUTO_INCREMENT for table `lupa_password`
 --
 ALTER TABLE `lupa_password`
-  MODIFY `id_lupa_password` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_lupa_password` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `meja`
@@ -385,7 +391,7 @@ ALTER TABLE `menu`
 -- AUTO_INCREMENT for table `menu_dibooking`
 --
 ALTER TABLE `menu_dibooking`
-  MODIFY `id_menu_dibooking` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_menu_dibooking` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `metode_pembayaran`
@@ -397,7 +403,7 @@ ALTER TABLE `metode_pembayaran`
 -- AUTO_INCREMENT for table `pegawai`
 --
 ALTER TABLE `pegawai`
-  MODIFY `id_pegawai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_pegawai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `profil_usaha`

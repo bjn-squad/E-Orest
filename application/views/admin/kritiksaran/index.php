@@ -26,42 +26,44 @@
         </div>
         <div class="col-lg-12">
           <?= $this->session->flashdata('message'); ?>
-          <table class="table table-flush dataTable" id="datatable-id" role="grid" aria-describedby="datatable-basic_info">
-            <thead class="thead-dark">
-              <tr role="row">
-                <th>No</th>
-                <th>Nama Pelanggan</th>
-                <th>E-mail</th>
-                <th>Tanggal</th>
-                <!-- <th>Kritik & Saran</th> -->
-                <th>Aksi</th>
-              </tr>
-            </thead>
-            <tbody>
-              <?php
-              $no = 1;
-              foreach ($saran_kritik as $s) {
-              ?>
-                <tr>
-                  <td><?= $no; ?></td>
-                  <td><?= $s['nama_pelanggan'] ?></td>
-                  <td><?= $s['email'] ?></td>
-                  <td><?= $s['tanggal'] ?></td>
-                  <!-- <td><?= $s['saran'] ?></td> -->
-                  <td>
-                    <a href="<?php base_url() ?>saran/detail/<?= $s['id_saran'] ?>" class="btn btn-sm btn-warning">Detail</a>
-                    <?php
-                    if ($this->session->userdata('jabatan') == "admin") {
-                    ?>
-                      <a href="<?php base_url() ?>saran/delete/<?= $s['id_saran'] ?>" class="btn btn-sm btn-danger">Hapus</a>
-                    <?php } ?>
-                  </td>
+          <div class="table-responsive">
+            <table class="table table-flush dataTable" id="datatable-id" role="grid" aria-describedby="datatable-basic_info">
+              <thead class="thead-dark">
+                <tr role="row">
+                  <th>No</th>
+                  <th>Nama Pelanggan</th>
+                  <th>E-mail</th>
+                  <th>Tanggal</th>
+                  <!-- <th>Kritik & Saran</th> -->
+                  <th>Aksi</th>
                 </tr>
-              <?php $no++;
-              }
-              ?>
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                <?php
+                $no = 1;
+                foreach ($saran_kritik as $s) {
+                ?>
+                  <tr>
+                    <td><?= $no; ?></td>
+                    <td><?= $s['nama_pelanggan'] ?></td>
+                    <td><?= $s['email'] ?></td>
+                    <td><?= $s['tanggal'] ?></td>
+                    <!-- <td><?= $s['saran'] ?></td> -->
+                    <td>
+                      <a href="<?php base_url() ?>saran/detail/<?= $s['id_saran'] ?>" class="btn btn-sm btn-warning">Detail</a>
+                      <?php
+                      if ($this->session->userdata('jabatan') == "admin") {
+                      ?>
+                        <a href="<?php base_url() ?>saran/delete/<?= $s['id_saran'] ?>" class="btn btn-sm btn-danger">Hapus</a>
+                      <?php } ?>
+                    </td>
+                  </tr>
+                <?php $no++;
+                }
+                ?>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
