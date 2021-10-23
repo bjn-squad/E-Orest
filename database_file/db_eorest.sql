@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 15, 2021 at 08:45 AM
+-- Generation Time: Oct 23, 2021 at 10:27 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -47,7 +46,8 @@ CREATE TABLE `booking` (
 
 INSERT INTO `booking` (`id_booking`, `id_detail_menu`, `id_meja`, `nama_pemesan`, `nomor_hp`, `tanggal_pesan`, `tanggal_reservasi`, `total_pembayaran`, `batas_pembayaran_dp`, `status_pembayaran`) VALUES
 (9, 'INV20211015132542', 5, 'Riza Zulfahnur', '0', '2021-10-15 13:25:42', '2021-11-04', 45000, '2021-10-16 13:25:42', 'Belum Bayar DP'),
-(10, 'INV20211015133852', 5, 'Yuni Kurnia Taramita', '08512495120', '2021-10-15 13:38:52', '2021-10-23', 56000, '2021-10-16 13:38:52', 'Belum Bayar DP');
+(10, 'INV20211015133852', 5, 'Yuni Kurnia Taramita', '08512495120', '2021-10-15 13:38:52', '2021-10-23', 56000, '2021-10-16 13:38:52', 'Belum Bayar DP'),
+(11, 'INV20211016130044', 5, 'Ardan', '0852981234', '2021-10-16 13:00:44', '2021-10-21', 60000, '2021-10-17 13:00:44', 'Belum Bayar DP');
 
 -- --------------------------------------------------------
 
@@ -131,7 +131,8 @@ INSERT INTO `meja` (`id_meja`, `nomor_meja`, `kapasitas_meja`) VALUES
 (5, '2', 2),
 (6, '4', 10),
 (8, '6', 20),
-(11, '7', 8);
+(11, '7', 8),
+(12, '9', 2);
 
 -- --------------------------------------------------------
 
@@ -185,7 +186,9 @@ INSERT INTO `menu_dibooking` (`id_menu_dibooking`, `id_detail_menu`, `nama_makan
 (15, 'INV20211015132542', 'Bakso', 1, 20000),
 (16, 'INV20211015132542', 'Nasi Goreng', 1, 25000),
 (17, 'INV20211015133852', 'Bakso', 2, 40000),
-(18, 'INV20211015133852', 'Es Teh', 2, 16000);
+(18, 'INV20211015133852', 'Es Teh', 2, 16000),
+(19, 'INV20211016130044', 'Bakso', 2, 40000),
+(20, 'INV20211016130044', 'Es Jeruk', 2, 20000);
 
 -- --------------------------------------------------------
 
@@ -289,6 +292,72 @@ INSERT INTO `saran_kritik` (`id_saran`, `nama_pelanggan`, `email`, `tanggal`, `s
 (16, 'Yuni Kurnia Taramita', 'yuni186@gmail.com', '2021-10-01', 'Restoran ini tempatnya nyaman dan bersih. Pelayanannya pun sangat baik dan ramah. Dan tentunya menu yang ditawarkan juga enak. '),
 (17, 'Ardan', 'ardananjungkusuma@gmail.com', '2021-10-04', 'Tolong kebersihan ditingkatkan');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `saw_hasil`
+--
+
+CREATE TABLE `saw_hasil` (
+  `id` int(11) NOT NULL,
+  `tanggal_penghitungan` date NOT NULL,
+  `pegawai_terpilih` varchar(256) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `saw_hasil`
+--
+
+INSERT INTO `saw_hasil` (`id`, `tanggal_penghitungan`, `pegawai_terpilih`) VALUES
+(3, '2021-10-23', 'Ardan Anjung'),
+(4, '2021-10-23', 'Riza Zulfahnur'),
+(6, '2021-10-23', 'Dina Lisuardi');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `saw_kriteria`
+--
+
+CREATE TABLE `saw_kriteria` (
+  `id` int(11) NOT NULL,
+  `nama_kriteria` varchar(256) NOT NULL,
+  `penjelasan_kriteria` text NOT NULL,
+  `bobot_kriteria` varchar(10) NOT NULL,
+  `kategori_bobot` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `saw_kriteria`
+--
+
+INSERT INTO `saw_kriteria` (`id`, `nama_kriteria`, `penjelasan_kriteria`, `bobot_kriteria`, `kategori_bobot`) VALUES
+(1, 'Disiplin', 'Menilai ketaatan hadir saat kerja. Range Nilai 10-90. Semakin banyak nilai maka semakin disiplin pegawai tsb.', '0.25', 'Benefit'),
+(2, 'Kerja Sama', 'Menilai tingkat kemampuan bekerjasama dengan atasan atau rekan kerja dalam melaksanakan tugas. Range Nilai 10-90.', '0.15', 'Benefit'),
+(4, 'Komplain Pengunjung', 'Menilai tingkat komplain dari pengunjung untuk pegawai Range 10-50', '0.2', 'Cost'),
+(5, 'Etika Kerja', 'Menilai hubungan baik antar pegawai, customer atau pun atasan. Range 10-50.', '0.25', 'Benefit');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `saw_pegawai`
+--
+
+CREATE TABLE `saw_pegawai` (
+  `id` int(11) NOT NULL,
+  `nama_pegawai` varchar(256) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `saw_pegawai`
+--
+
+INSERT INTO `saw_pegawai` (`id`, `nama_pegawai`) VALUES
+(1, 'Ardan Anjung'),
+(2, 'Riza Zulfahnur'),
+(3, 'Dina Lisuardi'),
+(4, 'Yuni Kurnia ');
+
 --
 -- Indexes for dumped tables
 --
@@ -354,6 +423,24 @@ ALTER TABLE `saran_kritik`
   ADD PRIMARY KEY (`id_saran`);
 
 --
+-- Indexes for table `saw_hasil`
+--
+ALTER TABLE `saw_hasil`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `saw_kriteria`
+--
+ALTER TABLE `saw_kriteria`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `saw_pegawai`
+--
+ALTER TABLE `saw_pegawai`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -361,7 +448,7 @@ ALTER TABLE `saran_kritik`
 -- AUTO_INCREMENT for table `booking`
 --
 ALTER TABLE `booking`
-  MODIFY `id_booking` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_booking` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `gambar_menu`
@@ -379,7 +466,7 @@ ALTER TABLE `lupa_password`
 -- AUTO_INCREMENT for table `meja`
 --
 ALTER TABLE `meja`
-  MODIFY `id_meja` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_meja` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `menu`
@@ -391,7 +478,7 @@ ALTER TABLE `menu`
 -- AUTO_INCREMENT for table `menu_dibooking`
 --
 ALTER TABLE `menu_dibooking`
-  MODIFY `id_menu_dibooking` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id_menu_dibooking` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `metode_pembayaran`
@@ -416,6 +503,24 @@ ALTER TABLE `profil_usaha`
 --
 ALTER TABLE `saran_kritik`
   MODIFY `id_saran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+
+--
+-- AUTO_INCREMENT for table `saw_hasil`
+--
+ALTER TABLE `saw_hasil`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `saw_kriteria`
+--
+ALTER TABLE `saw_kriteria`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `saw_pegawai`
+--
+ALTER TABLE `saw_pegawai`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
