@@ -88,6 +88,14 @@
                             </a>
                         </li>
                     </ul>
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?= base_url() ?>saw">
+                                <i class="fa fa-trophy text-primary"></i>
+                                <span class="nav-link-text">Pemilihan Pegawai Teladan</span>
+                            </a>
+                        </li>
+                    </ul>
                 <?php
                 }
                 ?>
