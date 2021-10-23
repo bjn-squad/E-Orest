@@ -96,20 +96,22 @@ class Home extends CI_Controller
 
     public function tambahPesanan()
     {
+        $profil = $this->getProfilUsaha();
+        $data['nama_usaha'] = $profil['nama_usaha'];
+        $data['deskripsi'] = $profil['deskripsi'];
+        $data['alamat'] = $profil['alamat'];
+        $data['nomor_telepon'] = $profil['nomor_telepon'];
+        $data['instagram'] = $profil['instagram'];
+        $data['facebook'] = $profil['facebook'];
+        $data['maps_link'] = $profil['maps_link'];
         $data_invoice = $this->Home_model->tambahBooking();
 
-        echo $data_invoice;
-        // $profil = $this->getProfilUsaha();
-        // $data['nama_usaha'] = $profil['nama_usaha'];
-        // $data['deskripsi'] = $profil['deskripsi'];
-        // $data['alamat'] = $profil['alamat'];
-        // $data['nomor_telepon'] = $profil['nomor_telepon'];
-        // $data['instagram'] = $profil['instagram'];
-        // $data['facebook'] = $profil['facebook'];
-        // $data['maps_link'] = $profil['maps_link'];
+        $data['title'] = 'Dashboard Pegawai';
+        $data['home'] = $this->Home_model->afterBuy($data_invoice);
+        $data['bayar'] = $this->Home_model->pembayaran();
 
-        // $this->load->view('home/layout/header', $data);
-        // $this->load->view('home/booking');
-        // $this->load->view('home/layout/footer');
+        $this->load->view('home/layout/header', $data);
+        $this->load->view('home/after_buy', $data);
+        $this->load->view('home/layout/footer');
     }
 }
