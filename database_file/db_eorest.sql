@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 23, 2021 at 10:27 AM
+-- Generation Time: Oct 24, 2021 at 10:08 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.6
 
@@ -267,7 +267,7 @@ CREATE TABLE `profil_usaha` (
 --
 
 INSERT INTO `profil_usaha` (`id`, `nama_usaha`, `deskripsi`, `alamat`, `nomor_telepon`, `email`, `instagram`, `facebook`, `maps_link`, `foto_usaha_1`, `foto_usaha_2`, `foto_usaha_3`) VALUES
-(1, 'Flamingo Cafe & Resto', 'Flamingo Resto and Café sudah dikenal luas oleh pecinta kuliner di Indonesia sebagai restoran halal yang menghadirkan resep internasional yang terinspirasi oleh budaya-budaya yang beragam dari seluruh dunia, dari resep oriental, barat, hingga resep klasik Indonesia yang tak lekang oleh waktu. Tak hanya hidangan khas internasional, minuman dan menu kopi mancanegara pun juga dapat ditemukan di Flamingo Resto and Café bagi pengunjung yang ingin duduk dan bersantai, mengadakan rapat kecil, atau berbaur dengan teman dan keluarga.', 'Jl. Diponegoro No.15 Bojonegoro, Jawa Timur', '081252430912', 'flamingocafe@gmail.com', 'flamingocafepreston', 'Flamingo-café-restaurant-101136125017024', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3958.7349883071597!2d111.87995031459427!3d-7.156607694832594!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e77818cc20c2111%3A0x9133efd296da42a6!2sJl.%20Diponegoro%2049-59%2C%20Sukorejo%20Lor%2C%20Sukorejo%2C%20Kec.%20Bojonegoro%2C%20Kabupaten%20Bojonegoro%2C%20Jawa%20Timur%2062115!5e0!3m2!1sid!2sid!4v1633341565083!5m2!1sid!2sid\" width=\"100%\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\"></iframe>', 'michael-browning-MtqG1lWcUw0-unsplash.jpg', 'nick-karvounis-Ciqxn7FE4vE-unsplash.jpg', 'shawnanggg-nmpW_WwwVSc-unsplash.jpg');
+(1, 'Downtown Cafe &amp; Resto', 'Flamingo Resto and Café sudah dikenal luas oleh pecinta kuliner di Indonesia sebagai restoran halal yang menghadirkan resep internasional yang terinspirasi oleh budaya-budaya yang beragam dari seluruh dunia, dari resep oriental, barat, hingga resep klasik Indonesia yang tak lekang oleh waktu. Tak hanya hidangan khas internasional, minuman dan menu kopi mancanegara pun juga dapat ditemukan di Flamingo Resto and Café bagi pengunjung yang ingin duduk dan bersantai, mengadakan rapat kecil, atau berbaur dengan teman dan keluarga.', 'Jl. Downtown  No.15 Surabaya, Jawa Timur', '081252430912', 'downtown@gmail.com', 'd_owntown29', 'downtown29', 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3113.7462721510715!2d112.60693700804835!3d-7.946899258990613!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e788326bb80f059%3A0x897642451643d3af!2sSwalayan%20Sardo!5e0!3m2!1sid!2sid!4v1635060644126!5m2!1sid!2sid', '24102021100251tumpeng-@milokitche.jpg', '24102021100308kangen-kuliner-nusantara-ini-9-restoran-indonesia-di-luar-negeri-u5vEpyl4zO.jpg', '24102021100251photo2.jpg');
 
 -- --------------------------------------------------------
 
