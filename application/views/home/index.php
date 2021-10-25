@@ -64,7 +64,17 @@
 
       <div class="row content">
         <div class="col-lg-6">
-          <?= $maps_link ?>
+          <?php
+          if ($maps_link !== "") {
+          ?>
+            <iframe src="<?= $maps_link ?>" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+          <?php
+          } else {
+          ?>
+            <h3><?= $nama_usaha ?> belum menambahkan google maps</h3>
+          <?php
+          }
+          ?>
         </div>
         <div class="col-lg-6 pt-4 pt-lg-0">
           <p>
