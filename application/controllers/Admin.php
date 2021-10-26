@@ -18,6 +18,7 @@ class Admin extends CI_Controller
             redirect('lupapassword/tambahPertanyaanKeamanan');
         }
         $this->load->model('Pegawai_model');
+        $this->load->model('Pos_model');
     }
 
     public function index()
@@ -110,6 +111,22 @@ class Admin extends CI_Controller
     public function get_pegawai_by_id($id)
     {
         echo json_encode($this->Pegawai_model->getPegawaiById($id));
+    }
+
+    public function get_transaksi_by_invoice($invoice)
+    {
+        echo json_encode($this->Pos_model->getTransaksiByInvoice($invoice));
+    }
+
+    public function pos($invoice)
+    {
+        $data['title'] = 'Point Of Sale';
+        $data['invoice']  = $invoice;
+        $this->load->view('admin/layout/header', $data);
+        $this->load->view('admin/layout/side');
+        $this->load->view('admin/layout/side-header');
+        $this->load->view('pos/index');
+        $this->load->view('admin/layout/footer');
     }
 }
 
