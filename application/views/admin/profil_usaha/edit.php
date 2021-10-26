@@ -7,7 +7,7 @@
                     <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                         <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                             <li class="breadcrumb-item"><a href="<?= base_url() ?>admin"><i class="fas fa-home"></i></a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Profil Usaha</li>
+                            <li class="breadcrumb-item active" aria-current="page">Edit Profil Usaha</li>
                         </ol>
                     </nav>
                 </div>
@@ -22,7 +22,7 @@
             <div class="card">
                 <!-- Card header -->
                 <div class="card-header border-0">
-                    <h3 class="mb-0">Profil Usaha Anda</h3>
+                    <h3 class="mb-0">Edit Profil Usaha Anda</h3>
                 </div>
                 <div class="col-lg-12">
                     <?= $this->session->flashdata('message'); ?>
@@ -32,7 +32,7 @@
                             <?= $this->session->flashdata('message'); ?>
                             <div class="form-group">
                                 <form action="<?= base_url() ?>profilusaha/edit" method="POST" enctype="multipart/form-data">
-                                    <input type="text" name="current_id" required value="<?= $ps['id'] ?>">
+                                    <input type="hidden" name="current_id" required value="<?= $ps['id'] ?>">
                                     <label>Nama Usaha</label>
                                     <input type="text" class="form-control" name="nama_usaha" value="<?= $ps['nama_usaha'] ?>" required>
                                     <label>Alamat</label>
