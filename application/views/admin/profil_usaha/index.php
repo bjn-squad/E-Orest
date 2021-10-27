@@ -29,7 +29,6 @@
                     <?php foreach ($profil_usaha as $ps) {
                     ?>
                         <div class="card-body">
-                            <?= $this->session->flashdata('message'); ?>
                             <h4><?= $ps['nama_usaha'] ?></h4><br>
                             <label class="font-weight-bold">Nama Usaha:</label> <?= $ps['nama_usaha'] ?><br>
                             <label class="font-weight-bold">Alamat:</label> <?= $ps['alamat'] ?><br>
@@ -45,7 +44,17 @@
                                 <?php } ?>
                             </ol>
                             <label class="font-weight-bold">Maps :</label><br>
-                            <?= $ps['maps_link'] ?>
+                            <?php
+                            if ($ps['maps_link'] !== "") {
+                            ?>
+                                <iframe src="<?= $ps['maps_link'] ?> ?>" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                            <?php
+                            } else {
+                            ?>
+                                <h3>Anda belum menambahkan maps</h3>
+                            <?php
+                            }
+                            ?>
                             <br>
                             <label class="font-weight-bold">Gambar Slide Show Restoran pada Homepage:</label><br>
                             <div class="text-center">

@@ -11,6 +11,7 @@ class Admin extends CI_Controller
         if (empty($this->session->userdata('id_pegawai'))) {
             redirect('auth/loginPegawai', 'refresh');
         }
+        $this->load->model('transaksi_model');
         $this->load->model('Lupapassword_model');
         $cekSetPertanyaan = $this->Lupapassword_model->getStatus($this->session->userdata('id_pegawai'));
 
@@ -18,12 +19,30 @@ class Admin extends CI_Controller
             redirect('lupapassword/tambahPertanyaanKeamanan');
         }
         $this->load->model('Pegawai_model');
+        $this->load->model('Pos_model');
     }
 
     public function index()
     {
         $data['title'] = 'Dashboard Pegawai';
-        $data['pegawai'] = $this->Pegawai_model->get_pegawai_by_id($this->session->userdata('id_pegawai'));
+        $data['total_pendapatan'] = $this->transaksi_model->getTotalPendapatanHariIni();
+        $data['total_pendapatan_bulan_ini'] = $this->transaksi_model->getTotalPendapatanBulanIni();
+        $data['total_transaksi'] = $this->transaksi_model->getTotalTransaksiHariIni();
+        $data['total_transaksi_bulan_ini'] = $this->transaksi_model->getTotalTransaksiBulanIni();
+        $data['month'] = [
+            "januari" => $this->transaksi_model->getJanuari(),
+            "februari" => $this->transaksi_model->getFebruari(),
+            "maret" => $this->transaksi_model->getMaret(),
+            "april" => $this->transaksi_model->getApril(),
+            "mei" => $this->transaksi_model->getMei(),
+            "juni" => $this->transaksi_model->getJuni(),
+            "juli" => $this->transaksi_model->getJuli(),
+            "agustus" => $this->transaksi_model->getAgustus(),
+            "september" => $this->transaksi_model->getSeptember(),
+            "oktober" => $this->transaksi_model->getOktober(),
+            "november" => $this->transaksi_model->getNovember(),
+            "desember" => $this->transaksi_model->getDesember()
+        ];
         $this->load->view('admin/layout/header', $data);
         $this->load->view('admin/layout/side');
         $this->load->view('admin/layout/side-header');
@@ -110,6 +129,25 @@ class Admin extends CI_Controller
     public function get_pegawai_by_id($id)
     {
         echo json_encode($this->Pegawai_model->getPegawaiById($id));
+    }
+
+    public function get_transaksi_by_invoice($invoice)
+    {
+        echo json_encode($this->Pos_model->getTransaksiByInvoice($invoice));
+    }
+
+    public function pos($invoice)
+    {
+        $data['title'] = 'Point Of Sale';
+        $data['menu'] = $this->Pos_model->getAllMenuTersedia();
+        $data['book'] = $this->Pos_model->getTransaksiByInvoice($invoice);
+        $data['pemesan'] = $this->Pos_model->getPemesanByInvoice($invoice);
+        // $data['invoice']  = $invoice;
+        $this->load->view('admin/layout/header', $data);
+        $this->load->view('admin/layout/side');
+        $this->load->view('admin/layout/side-header');
+        $this->load->view('pos/index');
+        $this->load->view('admin/layout/footer');
     }
 }
 

@@ -52,4 +52,16 @@ class Home_model extends CI_Model
 
         return $invoice;
     }
+    public function afterBuy($id)
+    {
+        $query = $this->db->query("SELECT * FROM booking as b 
+                                    JOIN menu_dibooking as mb ON b.id_detail_menu = mb.id_detail_menu
+                                    WHERE b.id_detail_menu = '$id' LIMIT 1");
+        return $query->result_array();
+    }
+    public function pembayaran()
+    {
+        $query = $this->db->query("SELECT * FROM metode_pembayaran");
+        return $query->result_array();
+    }
 }
