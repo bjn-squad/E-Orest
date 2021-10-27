@@ -6,7 +6,12 @@ class Pos_model extends CI_Model
 {
     public function getTransaksiByInvoice($invoice)
     {
-        $query = $this->db->query("SELECT * FROM booking b JOIN menu_dibooking md ON b.id_detail_menu = md.id_detail_menu where b.id_detail_menu = '$invoice'");
+        $query = $this->db->query("SELECT * FROM menu_dibooking md JOIN  menu as m ON md.nama_makanan = m.nama_menu where md.id_detail_menu = '$invoice'");
+        return $query->result_array();
+    }
+    public function getPemesanByInvoice($invoice)
+    {
+        $query = $this->db->query("SELECT * FROM booking where id_detail_menu = '$invoice'");
         return $query->result_array();
     }
 
