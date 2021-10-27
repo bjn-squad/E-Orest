@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 15, 2021 at 08:45 AM
+-- Generation Time: Oct 24, 2021 at 10:08 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.6
 
@@ -47,7 +47,8 @@ CREATE TABLE `booking` (
 
 INSERT INTO `booking` (`id_booking`, `id_detail_menu`, `id_meja`, `nama_pemesan`, `nomor_hp`, `tanggal_pesan`, `tanggal_reservasi`, `total_pembayaran`, `batas_pembayaran_dp`, `status_pembayaran`) VALUES
 (9, 'INV20211015132542', 5, 'Riza Zulfahnur', '0', '2021-10-15 13:25:42', '2021-11-04', 45000, '2021-10-16 13:25:42', 'Belum Bayar DP'),
-(10, 'INV20211015133852', 5, 'Yuni Kurnia Taramita', '08512495120', '2021-10-15 13:38:52', '2021-10-23', 56000, '2021-10-16 13:38:52', 'Belum Bayar DP');
+(10, 'INV20211015133852', 5, 'Yuni Kurnia Taramita', '08512495120', '2021-10-15 13:38:52', '2021-10-23', 56000, '2021-10-16 13:38:52', 'Belum Bayar DP'),
+(11, 'INV20211016130044', 5, 'Ardan', '0852981234', '2021-10-16 13:00:44', '2021-10-21', 60000, '2021-10-17 13:00:44', 'Belum Bayar DP');
 
 -- --------------------------------------------------------
 
@@ -131,7 +132,8 @@ INSERT INTO `meja` (`id_meja`, `nomor_meja`, `kapasitas_meja`) VALUES
 (5, '2', 2),
 (6, '4', 10),
 (8, '6', 20),
-(11, '7', 8);
+(11, '7', 8),
+(12, '9', 2);
 
 -- --------------------------------------------------------
 
@@ -185,7 +187,9 @@ INSERT INTO `menu_dibooking` (`id_menu_dibooking`, `id_detail_menu`, `nama_makan
 (15, 'INV20211015132542', 'Bakso', 1, 20000),
 (16, 'INV20211015132542', 'Nasi Goreng', 1, 25000),
 (17, 'INV20211015133852', 'Bakso', 2, 40000),
-(18, 'INV20211015133852', 'Es Teh', 2, 16000);
+(18, 'INV20211015133852', 'Es Teh', 2, 16000),
+(19, 'INV20211016130044', 'Bakso', 2, 40000),
+(20, 'INV20211016130044', 'Es Jeruk', 2, 20000);
 
 -- --------------------------------------------------------
 
@@ -264,7 +268,7 @@ CREATE TABLE `profil_usaha` (
 --
 
 INSERT INTO `profil_usaha` (`id`, `nama_usaha`, `deskripsi`, `alamat`, `nomor_telepon`, `email`, `instagram`, `facebook`, `maps_link`, `foto_usaha_1`, `foto_usaha_2`, `foto_usaha_3`) VALUES
-(1, 'Flamingo Cafe & Resto', 'Flamingo Resto and Café sudah dikenal luas oleh pecinta kuliner di Indonesia sebagai restoran halal yang menghadirkan resep internasional yang terinspirasi oleh budaya-budaya yang beragam dari seluruh dunia, dari resep oriental, barat, hingga resep klasik Indonesia yang tak lekang oleh waktu. Tak hanya hidangan khas internasional, minuman dan menu kopi mancanegara pun juga dapat ditemukan di Flamingo Resto and Café bagi pengunjung yang ingin duduk dan bersantai, mengadakan rapat kecil, atau berbaur dengan teman dan keluarga.', 'Jl. Diponegoro No.15 Bojonegoro, Jawa Timur', '081252430912', 'flamingocafe@gmail.com', 'flamingocafepreston', 'Flamingo-café-restaurant-101136125017024', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3958.7349883071597!2d111.87995031459427!3d-7.156607694832594!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e77818cc20c2111%3A0x9133efd296da42a6!2sJl.%20Diponegoro%2049-59%2C%20Sukorejo%20Lor%2C%20Sukorejo%2C%20Kec.%20Bojonegoro%2C%20Kabupaten%20Bojonegoro%2C%20Jawa%20Timur%2062115!5e0!3m2!1sid!2sid!4v1633341565083!5m2!1sid!2sid\" width=\"100%\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\"></iframe>', 'michael-browning-MtqG1lWcUw0-unsplash.jpg', 'nick-karvounis-Ciqxn7FE4vE-unsplash.jpg', 'shawnanggg-nmpW_WwwVSc-unsplash.jpg');
+(1, 'Downtown Cafe &amp; Resto', 'Flamingo Resto and Café sudah dikenal luas oleh pecinta kuliner di Indonesia sebagai restoran halal yang menghadirkan resep internasional yang terinspirasi oleh budaya-budaya yang beragam dari seluruh dunia, dari resep oriental, barat, hingga resep klasik Indonesia yang tak lekang oleh waktu. Tak hanya hidangan khas internasional, minuman dan menu kopi mancanegara pun juga dapat ditemukan di Flamingo Resto and Café bagi pengunjung yang ingin duduk dan bersantai, mengadakan rapat kecil, atau berbaur dengan teman dan keluarga.', 'Jl. Downtown  No.15 Surabaya, Jawa Timur', '081252430912', 'downtown@gmail.com', 'd_owntown29', 'downtown29', 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3113.7462721510715!2d112.60693700804835!3d-7.946899258990613!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e788326bb80f059%3A0x897642451643d3af!2sSwalayan%20Sardo!5e0!3m2!1sid!2sid!4v1635060644126!5m2!1sid!2sid', '24102021100251tumpeng-@milokitche.jpg', '24102021100308kangen-kuliner-nusantara-ini-9-restoran-indonesia-di-luar-negeri-u5vEpyl4zO.jpg', '24102021100251photo2.jpg');
 
 -- --------------------------------------------------------
 
@@ -288,6 +292,72 @@ INSERT INTO `saran_kritik` (`id_saran`, `nama_pelanggan`, `email`, `tanggal`, `s
 (15, 'Nay', 'znyh@gmail.com', '2021-09-20', 'Rumah makan atau restoran adalah istilah umum untuk menyebut usaha gastronomi yang menyajikan hidangan kepada masyarakat dan menyediakan tempat untuk menikmati hidangan tersebut serta menetapkan tarif tertentu untuk makanan dan pelayanannya. Meski pada umumnya rumah makan menyajikan makanan di tempat, tetapi ada juga beberapa yang menyediakan layanan take-out dining dan delivery service sebagai salah satu bentuk pelayanan kepada konsumennya. Rumah makan biasanya memiliki spesialisasi dalam jenis makanan yang dihidangkannya. Sebagai contoh yaitu rumah makan chinese food, rumah makan Padang, rumah makan cepat saji (fast food restaurant) dan sebagainya.'),
 (16, 'Yuni Kurnia Taramita', 'yuni186@gmail.com', '2021-10-01', 'Restoran ini tempatnya nyaman dan bersih. Pelayanannya pun sangat baik dan ramah. Dan tentunya menu yang ditawarkan juga enak. '),
 (17, 'Ardan', 'ardananjungkusuma@gmail.com', '2021-10-04', 'Tolong kebersihan ditingkatkan');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `saw_hasil`
+--
+
+CREATE TABLE `saw_hasil` (
+  `id` int(11) NOT NULL,
+  `tanggal_penghitungan` date NOT NULL,
+  `pegawai_terpilih` varchar(256) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `saw_hasil`
+--
+
+INSERT INTO `saw_hasil` (`id`, `tanggal_penghitungan`, `pegawai_terpilih`) VALUES
+(3, '2021-10-23', 'Ardan Anjung'),
+(4, '2021-10-23', 'Riza Zulfahnur'),
+(6, '2021-10-23', 'Dina Lisuardi');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `saw_kriteria`
+--
+
+CREATE TABLE `saw_kriteria` (
+  `id` int(11) NOT NULL,
+  `nama_kriteria` varchar(256) NOT NULL,
+  `penjelasan_kriteria` text NOT NULL,
+  `bobot_kriteria` varchar(10) NOT NULL,
+  `kategori_bobot` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `saw_kriteria`
+--
+
+INSERT INTO `saw_kriteria` (`id`, `nama_kriteria`, `penjelasan_kriteria`, `bobot_kriteria`, `kategori_bobot`) VALUES
+(1, 'Disiplin', 'Menilai ketaatan hadir saat kerja. Range Nilai 10-90. Semakin banyak nilai maka semakin disiplin pegawai tsb.', '0.25', 'Benefit'),
+(2, 'Kerja Sama', 'Menilai tingkat kemampuan bekerjasama dengan atasan atau rekan kerja dalam melaksanakan tugas. Range Nilai 10-90.', '0.15', 'Benefit'),
+(4, 'Komplain Pengunjung', 'Menilai tingkat komplain dari pengunjung untuk pegawai Range 10-50', '0.2', 'Cost'),
+(5, 'Etika Kerja', 'Menilai hubungan baik antar pegawai, customer atau pun atasan. Range 10-50.', '0.25', 'Benefit');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `saw_pegawai`
+--
+
+CREATE TABLE `saw_pegawai` (
+  `id` int(11) NOT NULL,
+  `nama_pegawai` varchar(256) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `saw_pegawai`
+--
+
+INSERT INTO `saw_pegawai` (`id`, `nama_pegawai`) VALUES
+(1, 'Ardan Anjung'),
+(2, 'Riza Zulfahnur'),
+(3, 'Dina Lisuardi'),
+(4, 'Yuni Kurnia ');
 
 --
 -- Indexes for dumped tables
@@ -354,6 +424,24 @@ ALTER TABLE `saran_kritik`
   ADD PRIMARY KEY (`id_saran`);
 
 --
+-- Indexes for table `saw_hasil`
+--
+ALTER TABLE `saw_hasil`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `saw_kriteria`
+--
+ALTER TABLE `saw_kriteria`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `saw_pegawai`
+--
+ALTER TABLE `saw_pegawai`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -361,7 +449,7 @@ ALTER TABLE `saran_kritik`
 -- AUTO_INCREMENT for table `booking`
 --
 ALTER TABLE `booking`
-  MODIFY `id_booking` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_booking` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `gambar_menu`
@@ -379,7 +467,7 @@ ALTER TABLE `lupa_password`
 -- AUTO_INCREMENT for table `meja`
 --
 ALTER TABLE `meja`
-  MODIFY `id_meja` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_meja` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `menu`
@@ -391,7 +479,7 @@ ALTER TABLE `menu`
 -- AUTO_INCREMENT for table `menu_dibooking`
 --
 ALTER TABLE `menu_dibooking`
-  MODIFY `id_menu_dibooking` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id_menu_dibooking` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `metode_pembayaran`
@@ -416,6 +504,24 @@ ALTER TABLE `profil_usaha`
 --
 ALTER TABLE `saran_kritik`
   MODIFY `id_saran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+
+--
+-- AUTO_INCREMENT for table `saw_hasil`
+--
+ALTER TABLE `saw_hasil`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `saw_kriteria`
+--
+ALTER TABLE `saw_kriteria`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `saw_pegawai`
+--
+ALTER TABLE `saw_pegawai`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

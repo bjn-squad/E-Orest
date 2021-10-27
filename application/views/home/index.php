@@ -62,11 +62,18 @@
       </div>
 
       <div class="row content">
-        <!-- <div data-aos="fade-up">
-          <iframe style="border:0; width: 100%; height: 350px;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d68595.51836123793!2d111.85319300443516!3d-7.155685345833566!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e77819d35ae1d1b%3A0x4027a76e3532610!2sBojonegoro%2C%20Kec.%20Bojongsoang%2C%20Kabupaten%20Bojonegoro%2C%20Jawa%20Timur!5e0!3m2!1sid!2sid!4v1631445580547!5m2!1sid!2sid" frameborder="0" allowfullscreen></iframe>
-        </div> -->
         <div class="col-lg-6">
-          <?= $maps_link ?>
+          <?php
+          if ($maps_link !== "") {
+          ?>
+            <iframe src="<?= $maps_link ?>" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+          <?php
+          } else {
+          ?>
+            <h3><?= $nama_usaha ?> belum menambahkan google maps</h3>
+          <?php
+          }
+          ?>
         </div>
         <div class="col-lg-6 pt-4 pt-lg-0">
           <p>
