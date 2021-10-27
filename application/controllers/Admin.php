@@ -146,7 +146,7 @@ class Admin extends CI_Controller
         $this->load->view('admin/layout/header', $data);
         $this->load->view('admin/layout/side');
         $this->load->view('admin/layout/side-header');
-        $this->load->view('pos/index');
+        $this->load->view('admin/pos/index');
         $this->load->view('admin/layout/footer');
     }
 }
