@@ -42,6 +42,14 @@
                 </ul>
                 <ul class="navbar-nav">
                     <li class="nav-item">
+                        <a class="nav-link" href="<?= base_url() ?>pemesanan">
+                            <i class="fa fa-table text-primary"></i>
+                            <span class="nav-link-text">Manajemen Pemesanan</span>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
                         <a class="nav-link" href="<?= base_url() ?>saran">
                             <i class="fa fa-envelope text-primary"></i>
                             <span class="nav-link-text">Kritik & Saran</span>
