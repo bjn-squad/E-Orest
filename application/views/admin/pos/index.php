@@ -34,21 +34,30 @@
                             </div>
                         <?php
                         } ?>
-                        <?php foreach ($pemesan as $b) { ?>
-                            <label style="font-weight: bold;">Nama Pemesan : </label>
-                            <label id="date"><?= $b['nama_pemesan'] ?></label><br>
-                            <label style="font-weight: bold;">Tanggal Pesan : </label>
-                            <label id="date"><?= $b['tanggal_pesan'] ?></label><br>
-                            <label style="font-weight: bold;">Tanggal Reservasi : </label>
-                            <label id="date"><?= $b['tanggal_reservasi'] ?></label><br>
-                            <label style="font-weight: bold;">Total Pembayaran : </label>
-                            <label id="date">Rp. <?= number_format($b['total_pembayaran'], 0, ',', '.') ?></label><br>
-                            <label style="font-weight: bold;">Total Sudah Dibayar : </label>
-                            <label id="date">Rp. <?= number_format($b['total_sudah_dibayar'], 0, ',', '.') ?></label><br>
-
-                        <?php
-                            $total_belum_bayar = $b['total_pembayaran'] - $b['total_sudah_dibayar'];
-                        } ?>
+                        <div class="row">
+                            <?php foreach ($pemesan as $b) { ?>
+                                <div class="col-lg-6">
+                                    <label style="font-weight: bold;">Nama Pemesan : </label>
+                                    <label id="date"><?= $b['nama_pemesan'] ?></label><br>
+                                    <label style="font-weight: bold;">Tanggal Pesan : </label>
+                                    <label id="date"><?= $b['tanggal_pesan'] ?></label><br>
+                                    <label style="font-weight: bold;">Tanggal Reservasi : </label>
+                                    <label id="date"><?= $b['tanggal_reservasi'] ?></label><br>
+                                </div>
+                                <div class="col-lg-6">
+                                    <label style="font-weight: bold;">Total Pembayaran : </label>
+                                    <label id="date">Rp. <?= number_format($b['total_pembayaran'], 0, ',', '.') ?></label><br>
+                                    <label style="font-weight: bold;">Total Sudah Dibayar : </label>
+                                    <label id="date">Rp. <?= number_format($b['total_sudah_dibayar'], 0, ',', '.') ?></label><br>
+                                    <label style="font-weight: bold;">Total Belum Dibayar : </label>
+                                    <label id="date">Rp. <?= number_format($b['total_pembayaran'] - $b['total_sudah_dibayar'], 0, ',', '.') ?></label><br>
+                                </div>
+                            <?php
+                                $invoicenya = $b['id_detail_menu'];
+                                $total_bayar_old = $b['total_pembayaran'];
+                                $total_belum_bayar = $b['total_pembayaran'] - $b['total_sudah_dibayar'];
+                            } ?>
+                        </div>
                     </div>
                     <div class="col-md-4">
                         <label style="font-weight: bold;">Nama Makanan & Minuman</label>
@@ -72,58 +81,85 @@
                 <!-- Tabel Total Transaksi -->
                 <div class="col lg-12">
                     <div class="table-responsive">
-                        <table class="table table-striped table-bordered" id="tabel_pos">
-                            <thead class="table-dark">
-                                <tr>
-                                    <th>Nama Menu</th>
-                                    <th>Jumlah</th>
-                                    <th>Harga</th>
-                                    <th>Sub Total</th>
-                                    <th>Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody id="tabel_transaksi" style="font-weight: bold;">
-                                <?php
-                                foreach ($book as $mk) {
-                                ?>
+                        <form method="POST" id="transaksi_form">
+                            <table class="table table-striped table-bordered" id="tabel_pos">
+                                <thead class="table-dark">
                                     <tr>
-                                        <td><?= $mk['nama_makanan'] ?></td>
-                                        <td><?= $mk['jumlah'] ?></td>
-                                        <td>Rp. <?= number_format($mk['harga'], 0, ',', '.')  ?></td>
-                                        <td>Rp. <?= number_format($mk['sub_total'], 0, ',', '.')  ?></td>
-                                        <td>
-                                            Pesanan dari booking tidak dapat diubah
-                                        </td>
+                                        <th>Nama Menu</th>
+                                        <th>Jumlah</th>
+                                        <th>Harga</th>
+                                        <th>Sub Total</th>
+                                        <th>Aksi</th>
                                     </tr>
-                                <?php
-                                }
-                                ?>
-                            </tbody>
-                            <!-- btn submit disini dan total tagihan disini -->
-                        </table>
-                        <input type="hidden" name="total_harga_form" id="total_harga_form" value="">
-                        <button class="btn btn-sm btn-success shadow-sm mb-3 float-right" type="submit"><i class="fas fa-download fa-sm text-white-50"></i>Bayar & Cetak Transaksi</button>
-                        <h1 style="font-weight: bold">
-                            Total Harga : Rp.
-                            <?php ?>
-                            <span id="total_harga_teks">
-                                <?= number_format($total_belum_bayar, 0, ',', '.') ?>
-                            </span>
-                            <script>
-                                var total_harga_default = '<?= $total_belum_bayar ?>';
-                            </script>
-                            <input type="text" id="total_harga_input" value="<?= $total_belum_bayar ?>">
-                        </h1>
+                                </thead>
+                                <tbody id="tabel_transaksi" style="font-weight: bold;">
+                                    <?php
+                                    foreach ($book as $mk) {
+                                    ?>
+                                        <tr>
+                                            <td><?= $mk['nama_makanan'] ?></td>
+                                            <td><?= $mk['jumlah'] ?></td>
+                                            <td>Rp. <?= number_format($mk['harga'], 0, ',', '.')  ?></td>
+                                            <td>Rp. <?= number_format($mk['sub_total'], 0, ',', '.')  ?></td>
+                                            <td>
+                                                Pesanan dari booking tidak dapat diubah
+                                            </td>
+                                        </tr>
+                                    <?php
+                                    }
+                                    ?>
+                                </tbody>
+                                <!-- btn submit disini dan total tagihan disini -->
+                            </table>
+                            <input type="hidden" name="total_harga_form" id="total_harga_form" value="">
+                            <h1 style="font-weight: bold">
+                                Total Harga : Rp.
+                                <?php ?>
+                                <span id="total_harga_teks">
+                                    <?= number_format($total_belum_bayar, 0, ',', '.') ?>
+                                </span>
+                                <script>
+                                    var total_harga_default = '<?= $total_belum_bayar ?>';
+                                </script>
+                                <input type="hidden" id="invoice" name="invoice" value="<?= $invoicenya ?>">
+                                <input type="text" id="total_harga_input" name="total_harga_input" value="<?= $total_belum_bayar ?>">
+                                <input type="text" id="total_harga_baru" name="total_harga_baru" value="<?= $total_bayar_old ?>">
+                            </h1>
+                            <button class="btn btn-sm btn-success shadow-sm mb-3 float-right" type="submit"><i class="fas fa-download fa-sm text-white-50"></i>Bayar & Cetak Transaksi</button>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
+<script>
+    $(document).ready(function() {
+        $('#transaksi_form').on('submit', function(event) {
+            event.preventDefault();
+            let form_data = $(this).serialize();
+            console.log(form_data);
+            $.ajax({
+                url: "<?= base_url() ?>admin/tambahTransaksiPadaPOS",
+                method: "POST",
+                data: form_data,
+                success: function(data) {
+                    const printConfirmation = confirm("Transaksi Sukses.\nApakah anda ingin mencetak data?");
+                    printConfirmation
+                    if (printConfirmation) {
+                        window.open(`<?= base_url() ?>admin/cetakInvoice/${data}`);
+                    } else {
+                        window.open(`<?= base_url() ?>admin`)
+                    }
+                }
+            })
+        });
+    });
+</script>
 <script>
     let total_harga = parseInt(total_harga_default);
-    let num = 0;
+    var num = 0;
+    var total_harga_update = parseInt(document.getElementById(`total_harga_baru`).value);
 
     function setTotalHarga(total_harga_new) {
         total_harga = total_harga_new;
@@ -131,6 +167,14 @@
 
     function getTotalHarga() {
         return total_harga;
+    }
+
+    function setTotalHargaUpdate(total_harga_update_new) {
+        total_harga_update = total_harga_update_new;
+    }
+
+    function getTotalHargaUpdate() {
+        return total_harga_update;
     }
 
     function toRupiah(uangnya) {
@@ -159,6 +203,9 @@
             total_harga += jumlah_beli * splitMenu[1];
             setTotalHarga(total_harga);
             let subtotal = jumlah_beli * splitMenu[1];
+            let updateTotalHarga = subtotal + getTotalHargaUpdate();
+            setTotalHargaUpdate(updateTotalHarga);
+            console.log(getTotalHargaUpdate());
             $('#tabel_pos').find('tbody').append(`
             <tr class="idpesanan${num}">
                     <td>${splitMenu[0]}</td>
@@ -168,12 +215,13 @@
                     <td>
                         <button onclick="hapusMenu('idpesanan${num}',${subtotal})" class="btn btn-sm btn-danger">Hapus</button>
                     </td>
-                <input type="hidden" name="hidden_nama_makanan[]" value="${splitMenu[0]}">
+                <input type="hidden" class="nama_makanan" name="hidden_nama_makanan[]" value="${splitMenu[0]}">
                 <input type="hidden" name="hidden_jumlah_makanan[]" value="${jumlah_beli}">
                 <input type="hidden" name="hidden_subtotal_makanan[]" value="${subtotal}">
             </tr>
             `);
 
+            $('#total_harga_baru').val(getTotalHargaUpdate());
             $('#total_harga_input').val(getTotalHarga());
             $('#total_harga_teks').html(toRupiah(getTotalHarga()));
             $('#jumlah_beli').val("");
@@ -185,6 +233,9 @@
         $(`.${id}`).remove();
         totalnya = getTotalHarga() - subtotal;
         setTotalHarga(totalnya);
+        let updateTotalHarga = getTotalHargaUpdate() - subtotal;
+        setTotalHargaUpdate(updateTotalHarga);
+        $('#total_harga_baru').val(getTotalHargaUpdate());
         $('#total_harga_input').val(getTotalHarga());
         $('#total_harga_teks').html(toRupiah(getTotalHarga()));
     }
