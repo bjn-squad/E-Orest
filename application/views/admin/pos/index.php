@@ -75,7 +75,7 @@
                     </div>
                 </div>
                 <div class="col-lg-5">
-                    <a href="<?= base_url() ?>transaksi" class="btn btn btn-info shadow-sm mb-3"><i class="fas fa-arrow-left fa-sm text-white-50"></i> Kembali</a>
+                    <a href="<?= base_url() ?>penjualan" class="btn btn btn-info shadow-sm mb-3"><i class="fas fa-arrow-left fa-sm text-white-50"></i> Kembali</a>
                     <button class="btn btn btn-primary shadow-sm mb-3" onclick="tambahMenu()"><i class="fas fa-plus fa-sm text-white-50"></i> Tambah Menu</button>
                 </div>
                 <!-- Tabel Total Transaksi -->
@@ -122,8 +122,8 @@
                                     var total_harga_default = '<?= $total_belum_bayar ?>';
                                 </script>
                                 <input type="hidden" id="invoice" name="invoice" value="<?= $invoicenya ?>">
-                                <input type="text" id="total_harga_input" name="total_harga_input" value="<?= $total_belum_bayar ?>">
-                                <input type="text" id="total_harga_baru" name="total_harga_baru" value="<?= $total_bayar_old ?>">
+                                <input type="hidden" id="total_harga_input" name="total_harga_input" value="<?= $total_belum_bayar ?>">
+                                <input type="hidden" id="total_harga_baru" name="total_harga_baru" value="<?= $total_bayar_old ?>">
                             </h1>
                             <button class="btn btn-sm btn-success shadow-sm mb-3 float-right" type="submit"><i class="fas fa-download fa-sm text-white-50"></i>Bayar & Cetak Transaksi</button>
                         </form>

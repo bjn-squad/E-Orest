@@ -8,6 +8,7 @@
 
       <!-- Slide 1 -->
       <div class="carousel-item active" style="background-image: url(<?= base_url() ?>assets/dataresto/foto_usaha/<?= $foto_usaha_1 ?>)">
+
       </div>
 
       <!-- Slide 2 -->
@@ -130,16 +131,15 @@
 
       <div class="recent-photos-slider swiper-container">
         <div class="swiper-wrapper align-items-center">
+          <?php
+          foreach ($gambar_menu as $m) {
+            // $id_menu = $m['id_menu'];
+          ?>
+            <div class="swiper-slide" style="height: 100px;"><a href="<?php echo base_url('assets/dataresto/menu/' . $m['gambar']) ?>" class="glightbox"><img src="<?php echo base_url('assets/dataresto/menu/' . $m['gambar']) ?>" style="object-fit: cover;" class="img-fluid" alt=""></a></div>
 
-          <div class="swiper-slide"><a href="<?= base_url() ?>assets/home/img/recent-photos/recent-photos-1.jpg" class="glightbox"><img src="<?= base_url() ?>assets/home/img/recent-photos/recent-photos-1.jpg" class="img-fluid" alt=""></a></div>
-          <div class="swiper-slide"><a href="<?= base_url() ?>assets/home/img/recent-photos/recent-photos-2.jpg" class="glightbox"><img src="<?= base_url() ?>assets/home/img/recent-photos/recent-photos-2.jpg" class="img-fluid" alt=""></a></div>
-          <div class="swiper-slide"><a href="<?= base_url() ?>assets/home/img/recent-photos/recent-photos-3.jpg" class="glightbox"><img src="<?= base_url() ?>assets/home/img/recent-photos/recent-photos-3.jpg" class="img-fluid" alt=""></a></div>
-          <div class="swiper-slide"><a href="<?= base_url() ?>assets/home/img/recent-photos/recent-photos-4.jpg" class="glightbox"><img src="<?= base_url() ?>assets/home/img/recent-photos/recent-photos-4.jpg" class="img-fluid" alt=""></a></div>
-          <div class="swiper-slide"><a href="<?= base_url() ?>assets/home/img/recent-photos/recent-photos-5.jpg" class="glightbox"><img src="<?= base_url() ?>assets/home/img/recent-photos/recent-photos-5.jpg" class="img-fluid" alt=""></a></div>
-          <div class="swiper-slide"><a href="<?= base_url() ?>assets/home/img/recent-photos/recent-photos-6.jpg" class="glightbox"><img src="<?= base_url() ?>assets/home/img/recent-photos/recent-photos-6.jpg" class="img-fluid" alt=""></a></div>
-          <div class="swiper-slide"><a href="<?= base_url() ?>assets/home/img/recent-photos/recent-photos-7.jpg" class="glightbox"><img src="<?= base_url() ?>assets/home/img/recent-photos/recent-photos-7.jpg" class="img-fluid" alt=""></a></div>
-          <div class="swiper-slide"><a href="<?= base_url() ?>assets/home/img/recent-photos/recent-photos-8.jpg" class="glightbox"><img src="<?= base_url() ?>assets/home/img/recent-photos/recent-photos-8.jpg" class="img-fluid" alt=""></a></div>
-
+          <?php
+          }
+          ?>
         </div>
         <div class="swiper-pagination"></div>
       </div>
