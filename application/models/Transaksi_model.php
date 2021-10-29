@@ -190,6 +190,34 @@ class Transaksi_model extends CI_Model
             );
         }
     }
+
+    public function tambahTransaksiPOS()
+    {
+        $invoice = $this->input->post('invoice');
+        $data_booking = [
+            "total_pembayaran" => $this->input->post('total_harga_baru'),
+            "total_sudah_dibayar" =>  $this->input->post('total_harga_baru'),
+            "status_pembayaran" =>  'Pesanan Selesai',
+        ];
+        $this->db->where("id_detail_menu", $invoice);
+        $this->db->update('booking', $data_booking);
+
+        $count_menu = count($_POST['hidden_nama_makanan']);
+
+        if ($count_menu > 0) {
+            for ($count = 0; $count < $count_menu; $count++) {
+                $data_menu_dibooking = array(
+                    'id_detail_menu' => $invoice,
+                    'nama_makanan' => $_POST['hidden_nama_makanan'][$count],
+                    'jumlah' => $_POST['hidden_jumlah_makanan'][$count],
+                    'sub_total' => $_POST['hidden_subtotal_makanan'][$count]
+                );
+                $this->db->insert('menu_dibooking', $data_menu_dibooking);
+            }
+        }
+
+        return $invoice;
+    }
 }
 
 /* End of file Transaksi_model.php */

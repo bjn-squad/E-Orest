@@ -12,7 +12,6 @@
 </div>
 <!-- Argon Scripts -->
 <!-- Core -->
-<script src="<?= base_url() ?>assets/admin/vendor/jquery/dist/jquery.min.js"></script>
 <script src="https://cdn.datatables.net/1.11.2/js/jquery.dataTables.min.js"></script>
 <script src="<?= base_url() ?>assets/admin/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="<?= base_url() ?>assets/admin/vendor/js-cookie/js.cookie.js"></script>
