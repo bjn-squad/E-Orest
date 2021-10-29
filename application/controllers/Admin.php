@@ -11,6 +11,7 @@ class Admin extends CI_Controller
         if (empty($this->session->userdata('id_pegawai'))) {
             redirect('auth/loginPegawai', 'refresh');
         }
+        $this->load->model('transaksi_model');
         $this->load->model('Lupapassword_model');
         $cekSetPertanyaan = $this->Lupapassword_model->getStatus($this->session->userdata('id_pegawai'));
 
@@ -18,12 +19,30 @@ class Admin extends CI_Controller
             redirect('lupapassword/tambahPertanyaanKeamanan');
         }
         $this->load->model('Pegawai_model');
+        $this->load->model('Pos_model');
     }
 
     public function index()
     {
         $data['title'] = 'Dashboard Pegawai';
-        $data['pegawai'] = $this->Pegawai_model->get_pegawai_by_id($this->session->userdata('id_pegawai'));
+        $data['total_pendapatan'] = $this->transaksi_model->getTotalPendapatanHariIni();
+        $data['total_pendapatan_bulan_ini'] = $this->transaksi_model->getTotalPendapatanBulanIni();
+        $data['total_transaksi'] = $this->transaksi_model->getTotalTransaksiHariIni();
+        $data['total_transaksi_bulan_ini'] = $this->transaksi_model->getTotalTransaksiBulanIni();
+        $data['month'] = [
+            "januari" => $this->transaksi_model->getJanuari(),
+            "februari" => $this->transaksi_model->getFebruari(),
+            "maret" => $this->transaksi_model->getMaret(),
+            "april" => $this->transaksi_model->getApril(),
+            "mei" => $this->transaksi_model->getMei(),
+            "juni" => $this->transaksi_model->getJuni(),
+            "juli" => $this->transaksi_model->getJuli(),
+            "agustus" => $this->transaksi_model->getAgustus(),
+            "september" => $this->transaksi_model->getSeptember(),
+            "oktober" => $this->transaksi_model->getOktober(),
+            "november" => $this->transaksi_model->getNovember(),
+            "desember" => $this->transaksi_model->getDesember()
+        ];
         $this->load->view('admin/layout/header', $data);
         $this->load->view('admin/layout/side');
         $this->load->view('admin/layout/side-header');
@@ -110,6 +129,59 @@ class Admin extends CI_Controller
     public function get_pegawai_by_id($id)
     {
         echo json_encode($this->Pegawai_model->getPegawaiById($id));
+    }
+
+    public function get_transaksi_by_invoice($invoice)
+    {
+        echo json_encode($this->Pos_model->getTransaksiByInvoice($invoice));
+    }
+
+    public function pos($invoice)
+    {
+        $data['title'] = 'Point Of Sale';
+        $data['menu'] = $this->Pos_model->getAllMenuTersedia();
+        $data['book'] = $this->Pos_model->getTransaksiByInvoice($invoice);
+        $data['pemesan'] = $this->Pos_model->getPemesanByInvoice($invoice);
+        // $data['invoice']  = $invoice;
+        $this->load->view('admin/layout/header', $data);
+        $this->load->view('admin/layout/side');
+        $this->load->view('admin/layout/side-header');
+        $this->load->view('admin/pos/index');
+        $this->load->view('admin/layout/footer');
+    }
+
+    public function getProfilUsaha()
+    {
+        $getProfil = $this->db->query("SELECT * FROM profil_usaha");
+        foreach ($getProfil->result_array() as $profil) {
+            $arr['nama_usaha'] = $profil['nama_usaha'];
+            $arr['deskripsi'] = $profil['deskripsi'];
+            $arr['alamat'] = $profil['alamat'];
+            $arr['nomor_telepon'] = $profil['nomor_telepon'];
+            $arr['maps_link'] = $profil['maps_link'];
+            $arr['instagram'] = $profil['instagram'];
+            $arr['facebook'] = $profil['facebook'];
+            $arr['foto_usaha_1'] = $profil['foto_usaha_1'];
+            $arr['foto_usaha_2'] = $profil['foto_usaha_2'];
+            $arr['foto_usaha_3'] = $profil['foto_usaha_3'];
+        }
+        return $arr;
+    }
+
+    public function tambahTransaksiPadaPOS()
+    {
+        $data = $this->transaksi_model->tambahTransaksiPOS();
+        echo $data;
+    }
+
+    public function cetakInvoice($invoice)
+    {
+        $profil = $this->getProfilUsaha();
+        $data['nama_usaha'] = $profil['nama_usaha'];
+        $data['alamat'] = $profil['alamat'];
+        $data['book'] = $this->Pos_model->getBookingByInvoice($invoice);
+        $data['menu'] = $this->Pos_model->getTransaksiByInvoice($invoice);
+        $this->load->view('admin/pos/invoice', $data);
     }
 }
 

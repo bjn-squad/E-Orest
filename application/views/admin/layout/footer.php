@@ -12,7 +12,6 @@
 </div>
 <!-- Argon Scripts -->
 <!-- Core -->
-<script src="<?= base_url() ?>assets/admin/vendor/jquery/dist/jquery.min.js"></script>
 <script src="https://cdn.datatables.net/1.11.2/js/jquery.dataTables.min.js"></script>
 <script src="<?= base_url() ?>assets/admin/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="<?= base_url() ?>assets/admin/vendor/js-cookie/js.cookie.js"></script>
@@ -27,6 +26,16 @@
 <script>
     $(document).ready(function() {
         $('#datatable-id').DataTable();
+    });
+</script>
+<script src="<?= base_url() ?>assets/home/select2/js/select2.full.min.js"></script>
+<script>
+    $(function() {
+        //Initialize Select2 Elements
+        $('.select2').select2();
+        $('.select2bs4').select2({
+            theme: 'bootstrap4'
+        });
     });
 </script>
 </body>
