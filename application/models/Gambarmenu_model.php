@@ -10,6 +10,12 @@ class Gambarmenu_model extends CI_Model
         return $query->result_array();
     }
 
+    public function getAllGambar()
+    {
+        $query = $this->db->query("SELECT * FROM gambar_menu");
+        return $query->result_array();
+    }
+
     public function tambah_gambar()
     {
         $file_name = $_FILES['gambar_menu']['name'];
