@@ -46,7 +46,7 @@
           <li><a class="active" href="<?= base_url() ?>">Home</a></li>
           <li><a href="<?= base_url() ?>katalog">Katalog Menu</a></li>
           <li><a href="<?= base_url() ?>home/booking">Booking Sekarang</a></li>
-          <li><a href="<?= base_url() ?>home/pembayaran">Cek Pembayaran</a></li>
+          <li><a href="<?= base_url() ?>pembayaran/cari">Cek Pembayaran</a></li>
           <li><a href="<?= base_url() ?>saran/add">Kritik & Saran</a></li>
           <!-- <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
