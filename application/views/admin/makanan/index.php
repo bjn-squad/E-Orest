@@ -49,7 +49,7 @@
                                     <td><?= $mk['detail_menu'] ?></td>
                                     <td><?= $mk['kategori'] ?></td>
                                     <td><?= $mk['stok'] ?></td>
-                                    <td><?= $mk['harga'] ?></td>
+                                    <td>Rp. <?= number_format($mk['harga'], 0, ',', '.')  ?></td>
                                     <td>
                                         <a href="<?php base_url() ?>makanan/gambar/<?= $mk['id_menu'] ?>" class="btn btn-sm btn-info"> Gambar</a>
                                         <a href="<?php base_url() ?>makanan/edit/<?= $mk['id_menu'] ?>" class="btn btn-sm btn-warning"> Edit</a>
