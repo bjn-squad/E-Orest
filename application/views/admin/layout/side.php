@@ -42,9 +42,17 @@
                 </ul>
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= base_url() ?>pemesanan">
-                            <i class="fa fa-table text-primary"></i>
-                            <span class="nav-link-text">Manajemen Pemesanan</span>
+                        <a class="nav-link" href="<?= base_url() ?>pembayaran">
+                            <i class="fa fa-edit text-primary"></i>
+                            <span class="nav-link-text">Riwayat Pembayaran</span>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?= base_url() ?>penjualan">
+                            <i class="fa fa-money-bill-wave text-primary"></i>
+                            <span class="nav-link-text">Data Penjualan</span>
                         </a>
                     </li>
                 </ul>

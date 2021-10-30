@@ -7,6 +7,7 @@ class Home extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Home_model');
+        $this->load->model('Gambarmenu_model');
     }
 
     public function getProfilUsaha()
@@ -30,6 +31,7 @@ class Home extends CI_Controller
     public function index()
     {
         $profil = $this->getProfilUsaha();
+        $data['gambar_menu'] = $this->Gambarmenu_model->getAllGambar();
         $data['nama_usaha'] = $profil['nama_usaha'];
         $data['deskripsi'] = $profil['deskripsi'];
         $data['alamat'] = $profil['alamat'];
