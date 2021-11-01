@@ -19,7 +19,7 @@ class penjualan_model extends CI_Model
 
     public function getBookingByInvoice($invoice)
     {
-        $query = $this->db->query("SELECT * FROM booking WHERE id_detail_menu = '$invoice'");
+        $query = $this->db->query("SELECT * FROM booking b JOIN meja m on b.id_meja = m.id_meja WHERE b.id_detail_menu = '$invoice'");
         return $query->row();
     }
     public function getTransaksiByInvoice($invoice)
