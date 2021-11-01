@@ -76,7 +76,7 @@ class Home extends CI_Controller
         $this->load->model('Meja_model');
         $arrayMeja = [];
 
-        $getMejaReserved =  $this->db->query("SELECT * FROM booking WHERE tanggal_reservasi LIKE '$tanggal%' AND status_pembayaran != 'DP Tidak Dibayar'");
+        $getMejaReserved =  $this->db->query("SELECT * FROM booking WHERE tanggal_reservasi LIKE '$tanggal%' AND status_pembayaran != 'Sudah Bayar DP'");
         foreach ($getMejaReserved->result_array() as $meja) {
             array_push($arrayMeja, $meja['id_meja']);
         }

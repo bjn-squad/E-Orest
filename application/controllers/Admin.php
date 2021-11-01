@@ -138,16 +138,24 @@ class Admin extends CI_Controller
 
     public function pos($invoice)
     {
-        $data['title'] = 'Point Of Sale';
-        $data['menu'] = $this->Pos_model->getAllMenuTersedia();
-        $data['book'] = $this->Pos_model->getTransaksiByInvoice($invoice);
-        $data['pemesan'] = $this->Pos_model->getPemesanByInvoice($invoice);
-        // $data['invoice']  = $invoice;
-        $this->load->view('admin/layout/header', $data);
-        $this->load->view('admin/layout/side');
-        $this->load->view('admin/layout/side-header');
-        $this->load->view('admin/pos/index');
-        $this->load->view('admin/layout/footer');
+        $dataa = $this->db->query("SELECT * FROM booking WHERE id_detail_menu = '$invoice'");
+        foreach ($dataa->result_array() as $result) {
+            $status = $result['status_pembayaran'];
+        }
+        if ($status !== "Pesanan Selesai" && $status !== "Belum Bayar DP") {
+            $data['title'] = 'Point Of Sale';
+            $data['menu'] = $this->Pos_model->getAllMenuTersedia();
+            $data['book'] = $this->Pos_model->getTransaksiByInvoice($invoice);
+            $data['pemesan'] = $this->Pos_model->getPemesanByInvoice($invoice);
+            // $data['invoice']  = $invoice;
+            $this->load->view('admin/layout/header', $data);
+            $this->load->view('admin/layout/side');
+            $this->load->view('admin/layout/side-header');
+            $this->load->view('admin/pos/index');
+            $this->load->view('admin/layout/footer');
+        } else {
+            redirect('penjualan');
+        }
     }
 
     public function getProfilUsaha()
@@ -170,8 +178,9 @@ class Admin extends CI_Controller
 
     public function tambahTransaksiPadaPOS()
     {
-        $data = $this->transaksi_model->tambahTransaksiPOS();
-        echo $data;
+        $invoice = $this->input->post('invoice');
+        $this->transaksi_model->tambahTransaksiPOS();
+        echo $invoice;
     }
 
     public function cetakInvoice($invoice)
