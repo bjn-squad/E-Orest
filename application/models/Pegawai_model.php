@@ -48,6 +48,16 @@ class Pegawai_model extends CI_Model
         $this->db->where('id_pegawai', $id);
         $this->db->delete('pegawai');
     }
+
+    public function ubahPassword()
+    {
+        // Fitur ubah password pegawai
+        $data = [
+            "password" => htmlspecialchars(MD5($this->input->post('password')))
+        ];
+        $this->db->where('id_pegawai', $this->session->userdata('id_pegawai'));
+        $this->db->update('pegawai', $data);
+    }
 }
 
 /* End of file Pegawai_model.php */
