@@ -30,7 +30,7 @@
                     <form action="<?= base_url() ?>pembayaran/prosesEdit" method="post" enctype="multipart/form-data">
                         <?php
                         foreach ($booking as $b) { ?>
-                            <input type="text" value="<?= $b['id_booking'] ?>" name="id_booking">
+                            <input type="hidden" value="<?= $b['id_booking'] ?>" name="id_booking">
                             <div class="row form-group">
                                 <div class="col col-md-3"><label for="textarea-input" class=" form-control-label">Kode Pembayaran : </label></div>
                                 <div class="col-12 col-md-9"> <label><?= $b['id_detail_menu'] ?></label></div>

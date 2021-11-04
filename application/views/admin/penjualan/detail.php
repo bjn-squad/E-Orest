@@ -34,7 +34,7 @@
                         <div class="col col-md-3"><label for="textarea-input" class=" form-control-label">Nomor HP : </label></div>
                         <div class="col-12 col-md-9"> <label><?= $book->nomor_hp ?></label></div>
                         <div class="col col-md-3"><label for="textarea-input" class=" form-control-label">Nomor Meja : </label></div>
-                        <div class="col-12 col-md-9"> <label><?= $book->id_meja ?></label></div>
+                        <div class="col-12 col-md-9"> <label><?= $book->nomor_meja ?></label></div>
                         <div class="col col-md-3"><label for="textarea-input" class=" form-control-label">Tanggal Transaksi : </label></div>
                         <div class="col-12 col-md-9"> <label><?= date("d-m-Y", strtotime($book->tanggal_reservasi))  ?></label></div>
                         <div class="col col-md-3"><label for="textarea-input" class=" form-control-label">Jam Transaksi : </label></div>

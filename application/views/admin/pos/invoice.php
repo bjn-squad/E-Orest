@@ -90,11 +90,14 @@
 <script>
     $(document).ready(() => {
         window.print();
+        window.onunload = refreshParent;
 
-        window.onafterprint = (event) => {
-            console.log('After print');
-            window.open(`<?= base_url() ?>admin`);
-        };
+        function refreshParent() {
+            window.opener.location.reload();
+        }
+        window.addEventListener('afterprint', (event) => {
+            window.close();
+        });
     });
 </script>
 
