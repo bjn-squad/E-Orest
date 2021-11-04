@@ -138,16 +138,59 @@ class Admin extends CI_Controller
 
     public function pos($invoice)
     {
-        $data['title'] = 'Point Of Sale';
-        $data['menu'] = $this->Pos_model->getAllMenuTersedia();
-        $data['book'] = $this->Pos_model->getTransaksiByInvoice($invoice);
-        $data['pemesan'] = $this->Pos_model->getPemesanByInvoice($invoice);
-        // $data['invoice']  = $invoice;
-        $this->load->view('admin/layout/header', $data);
-        $this->load->view('admin/layout/side');
-        $this->load->view('admin/layout/side-header');
-        $this->load->view('pos/index');
-        $this->load->view('admin/layout/footer');
+        $dataa = $this->db->query("SELECT * FROM booking WHERE id_detail_menu = '$invoice'");
+        foreach ($dataa->result_array() as $result) {
+            $status = $result['status_pembayaran'];
+        }
+        if ($status !== "Pesanan Selesai" && $status !== "Belum Bayar DP") {
+            $data['title'] = 'Point Of Sale';
+            $data['menu'] = $this->Pos_model->getAllMenuTersedia();
+            $data['book'] = $this->Pos_model->getTransaksiByInvoice($invoice);
+            $data['pemesan'] = $this->Pos_model->getPemesanByInvoice($invoice);
+            // $data['invoice']  = $invoice;
+            $this->load->view('admin/layout/header', $data);
+            $this->load->view('admin/layout/side');
+            $this->load->view('admin/layout/side-header');
+            $this->load->view('admin/pos/index');
+            $this->load->view('admin/layout/footer');
+        } else {
+            redirect('penjualan');
+        }
+    }
+
+    public function getProfilUsaha()
+    {
+        $getProfil = $this->db->query("SELECT * FROM profil_usaha");
+        foreach ($getProfil->result_array() as $profil) {
+            $arr['nama_usaha'] = $profil['nama_usaha'];
+            $arr['deskripsi'] = $profil['deskripsi'];
+            $arr['alamat'] = $profil['alamat'];
+            $arr['nomor_telepon'] = $profil['nomor_telepon'];
+            $arr['maps_link'] = $profil['maps_link'];
+            $arr['instagram'] = $profil['instagram'];
+            $arr['facebook'] = $profil['facebook'];
+            $arr['foto_usaha_1'] = $profil['foto_usaha_1'];
+            $arr['foto_usaha_2'] = $profil['foto_usaha_2'];
+            $arr['foto_usaha_3'] = $profil['foto_usaha_3'];
+        }
+        return $arr;
+    }
+
+    public function tambahTransaksiPadaPOS()
+    {
+        $invoice = $this->input->post('invoice');
+        $this->transaksi_model->tambahTransaksiPOS();
+        echo $invoice;
+    }
+
+    public function cetakInvoice($invoice)
+    {
+        $profil = $this->getProfilUsaha();
+        $data['nama_usaha'] = $profil['nama_usaha'];
+        $data['alamat'] = $profil['alamat'];
+        $data['book'] = $this->Pos_model->getBookingByInvoice($invoice);
+        $data['menu'] = $this->Pos_model->getTransaksiByInvoice($invoice);
+        $this->load->view('admin/pos/invoice', $data);
     }
 }
 

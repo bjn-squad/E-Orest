@@ -34,7 +34,8 @@ class Home_model extends CI_Model
             "tanggal_reservasi" => $this->input->post('hidden_tanggal_reservasi'),
             "total_pembayaran" => $this->input->post("hidden_total_harga"),
             "batas_pembayaran_dp" => $tanggal_batas_bayar,
-            "status_pembayaran" => "Belum Bayar DP"
+            "status_pembayaran" => "Belum Bayar DP",
+            "bukti_pembayaran" => "Kosong"
         ];
         $this->db->insert('booking', $data_booking);
 

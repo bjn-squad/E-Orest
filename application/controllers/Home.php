@@ -7,6 +7,7 @@ class Home extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Home_model');
+        $this->load->model('Gambarmenu_model');
     }
 
     public function getProfilUsaha()
@@ -30,6 +31,7 @@ class Home extends CI_Controller
     public function index()
     {
         $profil = $this->getProfilUsaha();
+        $data['gambar_menu'] = $this->Gambarmenu_model->getAllGambar();
         $data['nama_usaha'] = $profil['nama_usaha'];
         $data['deskripsi'] = $profil['deskripsi'];
         $data['alamat'] = $profil['alamat'];
@@ -74,7 +76,7 @@ class Home extends CI_Controller
         $this->load->model('Meja_model');
         $arrayMeja = [];
 
-        $getMejaReserved =  $this->db->query("SELECT * FROM booking WHERE tanggal_reservasi LIKE '$tanggal%' AND status_pembayaran != 'DP Tidak Dibayar'");
+        $getMejaReserved =  $this->db->query("SELECT * FROM booking WHERE tanggal_reservasi LIKE '$tanggal%' AND status_pembayaran != 'Sudah Bayar DP'");
         foreach ($getMejaReserved->result_array() as $meja) {
             array_push($arrayMeja, $meja['id_meja']);
         }
