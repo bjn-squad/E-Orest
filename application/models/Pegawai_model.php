@@ -48,6 +48,16 @@ class Pegawai_model extends CI_Model
         $this->db->where('id_pegawai', $id);
         $this->db->delete('pegawai');
     }
+    public function editMyProfile()
+    {
+        $data = [
+            'nama' => $this->input->post('nama'),
+            'alamat' => $this->input->post('alamat'),
+            'telepon' => $this->input->post('telepon')
+        ];
+        $this->db->where('id_pegawai', $this->input->post('id_pegawai'));
+        $this->db->update('pegawai', $data);
+    }
 
     public function ubahPassword()
     {
