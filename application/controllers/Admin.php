@@ -235,6 +235,27 @@ class Admin extends CI_Controller
             redirect('admin');
         }
     }
+
+    public function ubahPassword()
+    {
+        $this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[5]', [
+            'min_length' => 'Password minimum 5 character'
+        ]);
+        if ($this->form_validation->run() == FALSE) {
+            $data['title'] = 'Ubah Password';
+            $this->load->view('admin/layout/header', $data);
+            $this->load->view('admin/layout/side');
+            $this->load->view('admin/layout/side-header');
+            $this->load->view('admin/pegawai/ubahPassword');
+            $this->load->view('admin/layout/footer');
+        } else {
+            $data = $this->Pegawai_model->ubahPassword();
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+            Password Berhasil Diganti!
+           </div>');
+            redirect('admin/ubahPassword');
+        }
+    }
 }
 
 /* End of file Controllername.php */

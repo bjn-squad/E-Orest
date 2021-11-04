@@ -87,8 +87,12 @@
                                 <span>My profile</span>
                             </a>
                             <a href="<?= base_url() ?>admin/editMyProfile" class="dropdown-item">
+                                <i class="ni ni-circle-08"></i>
+                                <span>Profil Settings</span>
+                            </a>
+                            <a href="<?= base_url() ?>admin/ubahPassword" class="dropdown-item">
                                 <i class="ni ni-settings-gear-65"></i>
-                                <span>Settings</span>
+                                <span>Ubah Password</span>
                             </a>
                             <div class="dropdown-divider"></div>
                             <a href="<?= base_url() ?>auth/logout" class="dropdown-item">
