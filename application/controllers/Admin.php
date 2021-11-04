@@ -192,6 +192,49 @@ class Admin extends CI_Controller
         $data['menu'] = $this->Pos_model->getTransaksiByInvoice($invoice);
         $this->load->view('admin/pos/invoice', $data);
     }
+    public function myProfile()
+    {
+        $data['title'] = 'My Profile';
+        $data['det'] = $this->Pegawai_model->get_pegawai_by_id($this->session->userdata('id_pegawai'));
+        $this->load->view('admin/layout/header', $data);
+        $this->load->view('admin/layout/side');
+        $this->load->view('admin/layout/side-header');
+        $this->load->view('admin/pegawai/myProfile');
+        $this->load->view('admin/layout/footer');
+    }
+    public function editMyProfile()
+    {
+        $data['title'] = 'Edit My Profile';
+        $data['det'] = $this->Pegawai_model->get_pegawai_by_id($this->session->userdata('id_pegawai'));
+        $this->load->view('admin/layout/header', $data);
+        $this->load->view('admin/layout/side');
+        $this->load->view('admin/layout/side-header');
+        $this->load->view('admin/pegawai/editMyProfile');
+        $this->load->view('admin/layout/footer');
+    }
+    public function prosesEditMyProfile()
+    {
+        $this->form_validation->set_rules('id_pegawai', 'id_pegawai', 'trim|required');
+        $this->form_validation->set_rules('nama', 'nama', 'required');
+        $this->form_validation->set_rules('alamat', 'alamat', 'required');
+        $this->form_validation->set_rules('telepon', 'telepon', 'required');
+
+        if ($this->form_validation->run() == FALSE) {
+            $data['title'] = 'Edit My Profile';
+            $data['det'] = $this->Pegawai_model->get_pegawai_by_id($this->session->userdata('id_pegawai'));
+            $this->load->view('admin/layout/header', $data);
+            $this->load->view('admin/layout/side');
+            $this->load->view('admin/layout/side-header');
+            $this->load->view('admin/pegawai/editMyProfile');
+            $this->load->view('admin/layout/footer');
+        } else {
+            $data   = $this->Pegawai_model->editMyProfile();
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+           Data Berhasil diubah !
+          </div>');
+            redirect('admin');
+        }
+    }
 }
 
 /* End of file Controllername.php */
