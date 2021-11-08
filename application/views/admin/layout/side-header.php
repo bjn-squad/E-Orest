@@ -82,13 +82,17 @@
                             <div class="dropdown-header noti-title">
                                 <h6 class="text-overflow m-0">Welcome <?= $this->session->userdata('nama') ?></h6>
                             </div>
-                            <a href="#!" class="dropdown-item">
+                            <a href="<?= base_url() ?>admin/myProfile" class="dropdown-item">
                                 <i class="ni ni-single-02"></i>
                                 <span>My profile</span>
                             </a>
-                            <a href="#!" class="dropdown-item">
+                            <a href="<?= base_url() ?>admin/editMyProfile" class="dropdown-item">
+                                <i class="ni ni-circle-08"></i>
+                                <span>Profil Settings</span>
+                            </a>
+                            <a href="<?= base_url() ?>admin/ubahPassword" class="dropdown-item">
                                 <i class="ni ni-settings-gear-65"></i>
-                                <span>Settings</span>
+                                <span>Ubah Password</span>
                             </a>
                             <div class="dropdown-divider"></div>
                             <a href="<?= base_url() ?>auth/logout" class="dropdown-item">
