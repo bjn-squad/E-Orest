@@ -31,6 +31,7 @@
                         <div class="card-body">
                             <h4><?= $ps['nama_usaha'] ?></h4><br>
                             <label class="font-weight-bold">Nama Usaha:</label> <?= $ps['nama_usaha'] ?><br>
+                            <label class="font-weight-bold">Deskripsi Singkat Usaha :</label><br><?= $ps['deskripsi'] ?><br><br>
                             <label class="font-weight-bold">Alamat:</label> <?= $ps['alamat'] ?><br>
                             <label class="font-weight-bold">Nomor Telepon:</label> <?= $ps['nomor_telepon'] ?><br>
                             <label class="font-weight-bold">Email:</label> <?= $ps['email'] ?><br>

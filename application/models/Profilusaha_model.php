@@ -133,6 +133,7 @@ class Profilusaha_model extends CI_Model
 
         $data = [
             'nama_usaha' => htmlspecialchars($this->input->post('nama_usaha', true)),
+            'deskripsi' => htmlspecialchars($this->input->post('deskripsi', true)),
             'alamat' => htmlspecialchars($this->input->post('alamat', true)),
             'nomor_telepon' => htmlspecialchars($this->input->post('nomor_telepon', true)),
             'email' => htmlspecialchars($this->input->post('email', true)),
