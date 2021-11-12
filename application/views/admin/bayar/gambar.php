@@ -36,7 +36,9 @@
               ?>
                 <div class="row">
                   <div class="col-lg-12">
-                    <img style="display:block; margin:auto;" width="350px" src="<?= base_url() ?>assets/dataresto/bukti_bayar/<?= $b['bukti_pembayaran'] ?>" alt="Gambar <?= $b['bukti_pembayaran'] ?>">
+                    <a href="<?= base_url() ?>assets/dataresto/bukti_bayar/<?= $b['bukti_pembayaran'] ?>" target="_blank">
+                      <img style="display:block; margin:auto;" width="350px" src="<?= base_url() ?>assets/dataresto/bukti_bayar/<?= $b['bukti_pembayaran'] ?>" alt="Gambar <?= $b['bukti_pembayaran'] ?>">
+                    </a>
                   </div>
                 </div>
               <?php } ?>

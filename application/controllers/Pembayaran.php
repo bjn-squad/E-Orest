@@ -36,17 +36,13 @@ class Pembayaran extends CI_Controller
         if (empty($this->session->userdata('id_pegawai'))) {
             redirect('auth/loginPegawai', 'refresh');
         }
-        if ($this->session->userdata('jabatan') != "admin") {
-            redirect('pembayaran');
-        } else {
-            $data['title'] = 'Daftar Riwayat Pemesanan';
-            $data['booking'] = $this->pembayaran_model->getAllBooking();
-            $this->load->view('admin/layout/header', $data);
-            $this->load->view('admin/layout/side');
-            $this->load->view('admin/layout/side-header');
-            $this->load->view('admin/bayar/index');
-            $this->load->view('admin/layout/footer');
-        }
+        $data['title'] = 'Daftar Riwayat Pemesanan';
+        $data['booking'] = $this->pembayaran_model->getAllBooking();
+        $this->load->view('admin/layout/header', $data);
+        $this->load->view('admin/layout/side');
+        $this->load->view('admin/layout/side-header');
+        $this->load->view('admin/bayar/index');
+        $this->load->view('admin/layout/footer');
     }
 
     public function cari()
