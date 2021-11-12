@@ -69,9 +69,13 @@
                                             } ?>
                                         </td>
                                         <td>
-                                            <a href="<?php base_url() ?>pembayaran/edit/<?= $mk['id_booking'] ?>" class="btn btn-sm btn-warning">Verifikasi</a>
-                                            <!-- <button data-toggle="modal" data-target="#konfirmasimodal" onclick="konfirmasi(<?= $mk['id_booking'] ?>)" class="btn btn-sm btn-warning">Konfirmasi</button> -->
-                                            <a href="<?php base_url() ?>pembayaran/delete/<?= $mk['id_booking'] ?>" onclick="return confirm('Apakah anda yakin ingin menghapus? Jika anda menghapus menu ini maka gambar menu ini ikut terhapus.')" class="btn btn-sm btn-danger"> Hapus</a>
+                                            <?php if ($mk['status_pembayaran'] === "Belum Bayar DP") {
+                                            ?>
+                                                <a href="<?php base_url() ?>pembayaran/edit/<?= $mk['id_booking'] ?>" class="btn btn-sm btn-warning">Verifikasi</a>
+                                                <!-- <button data-toggle="modal" data-target="#konfirmasimodal" onclick="konfirmasi(<?= $mk['id_booking'] ?>)" class="btn btn-sm btn-warning">Konfirmasi</button> -->
+                                                <a href="<?php base_url() ?>pembayaran/delete/<?= $mk['id_booking'] ?>" onclick="return confirm('Apakah anda yakin ingin menghapus? Jika anda menghapus menu ini maka gambar menu ini ikut terhapus.')" class="btn btn-sm btn-danger"> Hapus</a>
+                                            <?php
+                                            } ?>
                                         </td>
                                     </tr>
                                 <?php
