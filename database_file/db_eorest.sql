@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.0.1
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 29, 2021 at 05:27 PM
--- Server version: 10.1.32-MariaDB
--- PHP Version: 7.2.5
+-- Generation Time: Nov 14, 2021 at 07:30 AM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.4.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -40,7 +39,7 @@ CREATE TABLE `booking` (
   `total_sudah_dibayar` int(12) NOT NULL,
   `batas_pembayaran_dp` datetime NOT NULL,
   `status_pembayaran` varchar(250) NOT NULL,
-  `bukti_pembayaran` text
+  `bukti_pembayaran` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -53,9 +52,10 @@ INSERT INTO `booking` (`id_booking`, `id_detail_menu`, `id_meja`, `nama_pemesan`
 (11, 'INV20211016130044', 5, 'Ardan', '0852981234', '2021-10-16 13:00:44', '2021-10-27', 68000, 68000, '2021-10-17 13:00:44', 'Pesanan Selesai', '29102041444725Capture.PNG'),
 (12, 'INV20211027131246', 11, 'Farias', '0812597321', '2021-10-27 13:12:46', '2021-10-29', 120000, 120000, '2021-10-28 13:12:46', 'Pesanan Selesai', '29101041144725Capture.PNG'),
 (13, 'INV20211027134031', 4, 'Julpa', '08523712653', '2021-10-27 13:40:31', '2021-10-31', 60000, 60000, '2021-10-28 13:40:31', 'Pesanan Selesai', '29102041144925Capture.PNG'),
-(14, 'INV20211029135257', 6, 'yuni', '098767', '2021-10-29 13:52:57', '2021-11-01', 50000, 25000, '2021-10-30 13:52:57', 'Sudah Bayar DP', '29102021164419Capture.PNG'),
+(14, 'INV20211029135257', 6, 'yuni', '098767', '2021-10-29 13:52:57', '2021-11-01', 60000, 60000, '2021-10-30 13:52:57', 'Pesanan Selesai', '29102021164419Capture.PNG'),
 (15, 'INV20211029200131', 11, 'jejje', '098', '2021-10-28 20:01:31', '2021-11-05', 50000, 0, '2021-10-20 20:01:31', 'Belum Bayar DP', 'Kosong'),
-(16, 'INV20211029201010', 12, 'ji', '0987', '2021-10-29 20:10:10', '2021-11-03', 25000, 0, '2021-10-30 20:10:10', 'Belum Bayar DP', 'Kosong');
+(16, 'INV20211029201010', 12, 'ji', '0987', '2021-10-29 20:10:10', '2021-11-03', 25000, 0, '2021-10-30 20:10:10', 'Belum Bayar DP', 'Kosong'),
+(17, 'INV20211101132112', 5, 'James', '08512984921', '2021-11-01 13:21:12', '2021-11-10', 63000, 63000, '2021-11-02 13:21:12', 'Pesanan Selesai', '01112021072201struk.jpg');
 
 -- --------------------------------------------------------
 
@@ -210,7 +210,12 @@ INSERT INTO `menu_dibooking` (`id_menu_dibooking`, `id_detail_menu`, `nama_makan
 (30, 'INV20211029200131', 'Soto Lamongan ', 1, 15000, 'success'),
 (31, 'INV20211029200131', 'Es Jeruk', 1, 10000, 'success'),
 (32, 'INV20211029201010', 'Nasi Goreng', 1, 25000, 'success'),
-(33, 'INV20211016130044', 'Es Teh', 1, 8000, 'success');
+(33, 'INV20211016130044', 'Es Teh', 1, 8000, 'success'),
+(34, 'INV20211029135257', 'Es Jeruk', 1, 10000, 'success'),
+(35, 'INV20211101132112', 'Bakso', 1, 20000, 'success'),
+(36, 'INV20211101132112', 'Es Teh', 1, 8000, 'success'),
+(37, 'INV20211101132112', 'Es Jeruk', 1, 10000, 'success'),
+(38, 'INV20211101132112', 'Sate Daging', 1, 25000, 'success');
 
 -- --------------------------------------------------------
 
@@ -289,7 +294,7 @@ CREATE TABLE `profil_usaha` (
 --
 
 INSERT INTO `profil_usaha` (`id`, `nama_usaha`, `deskripsi`, `alamat`, `nomor_telepon`, `email`, `instagram`, `facebook`, `maps_link`, `foto_usaha_1`, `foto_usaha_2`, `foto_usaha_3`) VALUES
-(1, 'Verona Cafe &amp; Resto', 'Flamingo Resto and Café sudah dikenal luas oleh pecinta kuliner di Indonesia sebagai restoran halal yang menghadirkan resep internasional yang terinspirasi oleh budaya-budaya yang beragam dari seluruh dunia, dari resep oriental, barat, hingga resep klasik Indonesia yang tak lekang oleh waktu. Tak hanya hidangan khas internasional, minuman dan menu kopi mancanegara pun juga dapat ditemukan di Flamingo Resto and Café bagi pengunjung yang ingin duduk dan bersantai, mengadakan rapat kecil, atau berbaur dengan teman dan keluarga.', 'Verona Beach 15 Malang, Jawa Timur', '081502430912', 'veronacafe@gmail.com', 'verona_cafe', 'verona_cafe', 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15806.131623416844!2d112.59970472424006!3d-7.9437513584495045!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e788272988e28b5%3A0x88657a8f7db91208!2sDinoyo%2C%20Kec.%20Lowokwaru%2C%20Kota%20Malang%2C%20Jawa%20Timur!5e0!3m2!1sid!2sid!4v1635077131816!5m2!1sid!2sid', '24102021100251tumpeng-@milokitche.jpg', '24102021100308kangen-kuliner-nusantara-ini-9-restoran-indonesia-di-luar-negeri-u5vEpyl4zO.jpg', '24102021140611IMG_8264-600x400.jpg');
+(1, 'Verona Cafe &amp; Resto', 'Verona Cafe &amp; Resto sudah dikenal luas oleh pecinta kuliner di Indonesia sebagai restoran halal yang menghadirkan resep internasional yang terinspirasi oleh budaya-budaya yang beragam dari seluruh dunia, dari resep oriental, barat, hingga resep klasik Indonesia yang tak lekang oleh waktu. Tak hanya hidangan khas internasional, minuman dan menu kopi mancanegara pun juga dapat ditemukan di Verona Cafe &amp; Resto bagi pengunjung yang ingin duduk dan bersantai, mengadakan rapat kecil, atau berbaur dengan teman dan keluarga.', 'Verona Beach 15 Malang, Jawa Timur', '081502430912', 'veronacafe@gmail.com', 'verona_cafe', 'verona_cafe', 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15806.131623416844!2d112.59970472424006!3d-7.9437513584495045!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e788272988e28b5%3A0x88657a8f7db91208!2sDinoyo%2C%20Kec.%20Lowokwaru%2C%20Kota%20Malang%2C%20Jawa%20Timur!5e0!3m2!1sid!2sid!4v1635077131816!5m2!1sid!2sid', '24102021100251tumpeng-@milokitche.jpg', '24102021100308kangen-kuliner-nusantara-ini-9-restoran-indonesia-di-luar-negeri-u5vEpyl4zO.jpg', '24102021140611IMG_8264-600x400.jpg');
 
 -- --------------------------------------------------------
 
@@ -312,7 +317,8 @@ CREATE TABLE `saran_kritik` (
 INSERT INTO `saran_kritik` (`id_saran`, `nama_pelanggan`, `email`, `tanggal`, `saran`) VALUES
 (15, 'Nay', 'znyh@gmail.com', '2021-09-20', 'Rumah makan atau restoran adalah istilah umum untuk menyebut usaha gastronomi yang menyajikan hidangan kepada masyarakat dan menyediakan tempat untuk menikmati hidangan tersebut serta menetapkan tarif tertentu untuk makanan dan pelayanannya. Meski pada umumnya rumah makan menyajikan makanan di tempat, tetapi ada juga beberapa yang menyediakan layanan take-out dining dan delivery service sebagai salah satu bentuk pelayanan kepada konsumennya. Rumah makan biasanya memiliki spesialisasi dalam jenis makanan yang dihidangkannya. Sebagai contoh yaitu rumah makan chinese food, rumah makan Padang, rumah makan cepat saji (fast food restaurant) dan sebagainya.'),
 (16, 'Yuni Kurnia Taramita', 'yuni186@gmail.com', '2021-10-01', 'Restoran ini tempatnya nyaman dan bersih. Pelayanannya pun sangat baik dan ramah. Dan tentunya menu yang ditawarkan juga enak. '),
-(17, 'Ardan', 'ardananjungkusuma@gmail.com', '2021-10-04', 'Tolong kebersihan ditingkatkan');
+(17, 'Ardan', 'ardananjungkusuma@gmail.com', '2021-10-04', 'Tolong kebersihan ditingkatkan'),
+(23, 'Ardan', 'ardanak@gmail.com', '2021-11-09', 'Tolong kebersihan sampahnya dijaga');
 
 -- --------------------------------------------------------
 
@@ -472,7 +478,7 @@ ALTER TABLE `saw_pegawai`
 -- AUTO_INCREMENT for table `booking`
 --
 ALTER TABLE `booking`
-  MODIFY `id_booking` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_booking` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `gambar_menu`
@@ -502,7 +508,7 @@ ALTER TABLE `menu`
 -- AUTO_INCREMENT for table `menu_dibooking`
 --
 ALTER TABLE `menu_dibooking`
-  MODIFY `id_menu_dibooking` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id_menu_dibooking` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `metode_pembayaran`
@@ -526,7 +532,7 @@ ALTER TABLE `profil_usaha`
 -- AUTO_INCREMENT for table `saran_kritik`
 --
 ALTER TABLE `saran_kritik`
-  MODIFY `id_saran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id_saran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `saw_hasil`
