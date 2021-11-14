@@ -215,8 +215,6 @@ class Transaksi_model extends CI_Model
                 $this->db->insert('menu_dibooking', $data_menu_dibooking);
             }
         }
-
-        return $invoice;
     }
 }
 

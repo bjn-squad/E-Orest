@@ -138,16 +138,24 @@ class Admin extends CI_Controller
 
     public function pos($invoice)
     {
-        $data['title'] = 'Point Of Sale';
-        $data['menu'] = $this->Pos_model->getAllMenuTersedia();
-        $data['book'] = $this->Pos_model->getTransaksiByInvoice($invoice);
-        $data['pemesan'] = $this->Pos_model->getPemesanByInvoice($invoice);
-        // $data['invoice']  = $invoice;
-        $this->load->view('admin/layout/header', $data);
-        $this->load->view('admin/layout/side');
-        $this->load->view('admin/layout/side-header');
-        $this->load->view('admin/pos/index');
-        $this->load->view('admin/layout/footer');
+        $dataa = $this->db->query("SELECT * FROM booking WHERE id_detail_menu = '$invoice'");
+        foreach ($dataa->result_array() as $result) {
+            $status = $result['status_pembayaran'];
+        }
+        if ($status !== "Pesanan Selesai" && $status !== "Belum Bayar DP") {
+            $data['title'] = 'Point Of Sale';
+            $data['menu'] = $this->Pos_model->getAllMenuTersedia();
+            $data['book'] = $this->Pos_model->getTransaksiByInvoice($invoice);
+            $data['pemesan'] = $this->Pos_model->getPemesanByInvoice($invoice);
+            // $data['invoice']  = $invoice;
+            $this->load->view('admin/layout/header', $data);
+            $this->load->view('admin/layout/side');
+            $this->load->view('admin/layout/side-header');
+            $this->load->view('admin/pos/index');
+            $this->load->view('admin/layout/footer');
+        } else {
+            redirect('penjualan');
+        }
     }
 
     public function getProfilUsaha()
@@ -170,8 +178,9 @@ class Admin extends CI_Controller
 
     public function tambahTransaksiPadaPOS()
     {
-        $data = $this->transaksi_model->tambahTransaksiPOS();
-        echo $data;
+        $invoice = $this->input->post('invoice');
+        $this->transaksi_model->tambahTransaksiPOS();
+        echo $invoice;
     }
 
     public function cetakInvoice($invoice)
@@ -182,6 +191,49 @@ class Admin extends CI_Controller
         $data['book'] = $this->Pos_model->getBookingByInvoice($invoice);
         $data['menu'] = $this->Pos_model->getTransaksiByInvoice($invoice);
         $this->load->view('admin/pos/invoice', $data);
+    }
+    public function myProfile()
+    {
+        $data['title'] = 'My Profile';
+        $data['det'] = $this->Pegawai_model->get_pegawai_by_id($this->session->userdata('id_pegawai'));
+        $this->load->view('admin/layout/header', $data);
+        $this->load->view('admin/layout/side');
+        $this->load->view('admin/layout/side-header');
+        $this->load->view('admin/pegawai/myProfile');
+        $this->load->view('admin/layout/footer');
+    }
+    public function editMyProfile()
+    {
+        $data['title'] = 'Edit My Profile';
+        $data['det'] = $this->Pegawai_model->get_pegawai_by_id($this->session->userdata('id_pegawai'));
+        $this->load->view('admin/layout/header', $data);
+        $this->load->view('admin/layout/side');
+        $this->load->view('admin/layout/side-header');
+        $this->load->view('admin/pegawai/editMyProfile');
+        $this->load->view('admin/layout/footer');
+    }
+    public function prosesEditMyProfile()
+    {
+        $this->form_validation->set_rules('id_pegawai', 'id_pegawai', 'trim|required');
+        $this->form_validation->set_rules('nama', 'nama', 'required');
+        $this->form_validation->set_rules('alamat', 'alamat', 'required');
+        $this->form_validation->set_rules('telepon', 'telepon', 'required');
+
+        if ($this->form_validation->run() == FALSE) {
+            $data['title'] = 'Edit My Profile';
+            $data['det'] = $this->Pegawai_model->get_pegawai_by_id($this->session->userdata('id_pegawai'));
+            $this->load->view('admin/layout/header', $data);
+            $this->load->view('admin/layout/side');
+            $this->load->view('admin/layout/side-header');
+            $this->load->view('admin/pegawai/editMyProfile');
+            $this->load->view('admin/layout/footer');
+        } else {
+            $data   = $this->Pegawai_model->editMyProfile();
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+           Data Berhasil diubah !
+          </div>');
+            redirect('admin');
+        }
     }
 
     public function ubahPassword()

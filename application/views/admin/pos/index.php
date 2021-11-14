@@ -136,6 +136,7 @@
 <script>
     $(document).ready(function() {
         $('#transaksi_form').on('submit', function(event) {
+            let invoicenya = $('#invoice').val();
             event.preventDefault();
             let form_data = $(this).serialize();
             console.log(form_data);
@@ -144,12 +145,13 @@
                 method: "POST",
                 data: form_data,
                 success: function(data) {
+                    console.log(data);
                     const printConfirmation = confirm("Transaksi Sukses.\nApakah anda ingin mencetak data?");
                     printConfirmation
                     if (printConfirmation) {
-                        window.open(`<?= base_url() ?>admin/cetakInvoice/${data}`);
+                        window.open(`<?= base_url() ?>admin/cetakInvoice/${invoicenya}`);
                     } else {
-                        window.open(`<?= base_url() ?>admin`)
+                        window.open(`<?= base_url() ?>penjualan`)
                     }
                 }
             })

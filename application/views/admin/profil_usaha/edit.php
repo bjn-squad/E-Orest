@@ -35,6 +35,8 @@
                                     <input type="hidden" name="current_id" required value="<?= $ps['id'] ?>">
                                     <label>Nama Usaha</label>
                                     <input type="text" class="form-control" name="nama_usaha" value="<?= $ps['nama_usaha'] ?>" required>
+                                    <label>Deskripsi Singkat Usaha</label>
+                                    <textarea type="text" rows="5" class="form-control" name="deskripsi" required="required"><?= $ps['deskripsi'] ?></textarea>
                                     <label>Alamat</label>
                                     <input type="text" class="form-control" name="alamat" value="<?= $ps['alamat'] ?>" required>
                                     <label>Nomor Telepon</label>
