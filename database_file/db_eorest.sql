@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 14, 2021 at 07:30 AM
+-- Generation Time: Nov 19, 2021 at 07:42 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.6
 
@@ -55,7 +55,9 @@ INSERT INTO `booking` (`id_booking`, `id_detail_menu`, `id_meja`, `nama_pemesan`
 (14, 'INV20211029135257', 6, 'yuni', '098767', '2021-10-29 13:52:57', '2021-11-01', 60000, 60000, '2021-10-30 13:52:57', 'Pesanan Selesai', '29102021164419Capture.PNG'),
 (15, 'INV20211029200131', 11, 'jejje', '098', '2021-10-28 20:01:31', '2021-11-05', 50000, 0, '2021-10-20 20:01:31', 'Belum Bayar DP', 'Kosong'),
 (16, 'INV20211029201010', 12, 'ji', '0987', '2021-10-29 20:10:10', '2021-11-03', 25000, 0, '2021-10-30 20:10:10', 'Belum Bayar DP', 'Kosong'),
-(17, 'INV20211101132112', 5, 'James', '08512984921', '2021-11-01 13:21:12', '2021-11-10', 63000, 63000, '2021-11-02 13:21:12', 'Pesanan Selesai', '01112021072201struk.jpg');
+(17, 'INV20211101132112', 5, 'James', '08512984921', '2021-11-01 13:21:12', '2021-11-10', 63000, 63000, '2021-11-02 13:21:12', 'Pesanan Selesai', '01112021072201struk.jpg'),
+(18, 'INV20211114143545', 5, 'Jean Pierre', '0895606129528', '2021-11-14 14:35:45', '2021-11-22', 65000, 65000, '2021-11-15 14:35:45', 'Pesanan Selesai', '14112021083627example01.png'),
+(19, 'INV20211114190627', 5, 'Diego A', '08901235423523', '2021-11-14 19:06:27', '2021-11-18', 56000, 0, '2021-11-15 19:06:27', 'Belum Bayar DP', 'Kosong');
 
 -- --------------------------------------------------------
 
@@ -215,7 +217,13 @@ INSERT INTO `menu_dibooking` (`id_menu_dibooking`, `id_detail_menu`, `nama_makan
 (35, 'INV20211101132112', 'Bakso', 1, 20000, 'success'),
 (36, 'INV20211101132112', 'Es Teh', 1, 8000, 'success'),
 (37, 'INV20211101132112', 'Es Jeruk', 1, 10000, 'success'),
-(38, 'INV20211101132112', 'Sate Daging', 1, 25000, 'success');
+(38, 'INV20211101132112', 'Sate Daging', 1, 25000, 'success'),
+(39, 'INV20211114143545', 'Es Jeruk', 2, 20000, 'success'),
+(40, 'INV20211114143545', 'Soto Lamongan ', 2, 30000, 'success'),
+(41, 'INV20211114190627', 'Es Teh', 2, 16000, 'success'),
+(42, 'INV20211114190627', 'Bakso', 2, 40000, 'success'),
+(43, 'INV20211114143545', 'Milkshake', 1, 15000, 'success'),
+(44, 'INV20211114143545', 'Milkshake', 1, 15000, 'success');
 
 -- --------------------------------------------------------
 
@@ -294,7 +302,7 @@ CREATE TABLE `profil_usaha` (
 --
 
 INSERT INTO `profil_usaha` (`id`, `nama_usaha`, `deskripsi`, `alamat`, `nomor_telepon`, `email`, `instagram`, `facebook`, `maps_link`, `foto_usaha_1`, `foto_usaha_2`, `foto_usaha_3`) VALUES
-(1, 'Verona Cafe &amp; Resto', 'Verona Cafe &amp; Resto sudah dikenal luas oleh pecinta kuliner di Indonesia sebagai restoran halal yang menghadirkan resep internasional yang terinspirasi oleh budaya-budaya yang beragam dari seluruh dunia, dari resep oriental, barat, hingga resep klasik Indonesia yang tak lekang oleh waktu. Tak hanya hidangan khas internasional, minuman dan menu kopi mancanegara pun juga dapat ditemukan di Verona Cafe &amp; Resto bagi pengunjung yang ingin duduk dan bersantai, mengadakan rapat kecil, atau berbaur dengan teman dan keluarga.', 'Verona Beach 15 Malang, Jawa Timur', '081502430912', 'veronacafe@gmail.com', 'verona_cafe', 'verona_cafe', 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15806.131623416844!2d112.59970472424006!3d-7.9437513584495045!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e788272988e28b5%3A0x88657a8f7db91208!2sDinoyo%2C%20Kec.%20Lowokwaru%2C%20Kota%20Malang%2C%20Jawa%20Timur!5e0!3m2!1sid!2sid!4v1635077131816!5m2!1sid!2sid', '24102021100251tumpeng-@milokitche.jpg', '24102021100308kangen-kuliner-nusantara-ini-9-restoran-indonesia-di-luar-negeri-u5vEpyl4zO.jpg', '24102021140611IMG_8264-600x400.jpg');
+(1, 'Warung Sehat Ceria', 'Warung Sehat Ceria sudah dikenal luas oleh pecinta kuliner di Indonesia sebagai restoran halal yang menghadirkan resep internasional yang terinspirasi oleh budaya-budaya yang beragam dari seluruh dunia, dari resep oriental, barat, hingga resep klasik Indonesia yang tak lekang oleh waktu. Tak hanya hidangan khas internasional, minuman dan menu kopi mancanegara pun juga dapat ditemukan di Warung Sehat Ceria bagi pengunjung yang ingin duduk dan bersantai, mengadakan rapat kecil, atau berbaur dengan teman dan keluarga.', 'Jl. Mawar 15 Malang, Jawa Timur', '085202430918', 'warungsehatceria@gmail.com', 'warungsehatceria', 'warungsehatceria', 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d987.8355996155653!2d112.62659632918319!3d-7.96352259964151!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd6282c92f71d91%3A0xf91198a2dadfe70b!2sJl.%20Brigjend%20Slamet%20Riadi%20No.152a%2C%20Oro-oro%20Dowo%2C%20Kec.%20Klojen%2C%20Kota%20Malang%2C%20Jawa%20Timur%2065119!5e0!3m2!1sid!2sid!4v1636892306365!5m2!1sid!2sid', '14112021132155restoran-locavore_20170304_130002.jpg', '14112021132155makanan-khas-indonesia-header.png', '14112021132155photo2.jpg');
 
 -- --------------------------------------------------------
 
@@ -337,10 +345,9 @@ CREATE TABLE `saw_hasil` (
 --
 
 INSERT INTO `saw_hasil` (`id`, `tanggal_penghitungan`, `pegawai_terpilih`) VALUES
-(3, '2021-10-23', 'Ardan Anjung'),
 (4, '2021-10-23', 'Riza Zulfahnur'),
-(6, '2021-10-23', 'Dina Lisuardi'),
-(7, '2021-10-24', 'Diego');
+(7, '2021-10-24', 'Diego'),
+(8, '2021-11-14', 'Ardan Anjung');
 
 -- --------------------------------------------------------
 
@@ -385,8 +392,7 @@ INSERT INTO `saw_pegawai` (`id`, `nama_pegawai`) VALUES
 (1, 'Ardan Anjung'),
 (2, 'Riza Zulfahnur'),
 (3, 'Dina Lisuardi'),
-(4, 'Yuni Kurnia '),
-(7, 'Diego');
+(4, 'Yuni Kurnia ');
 
 --
 -- Indexes for dumped tables
@@ -478,7 +484,7 @@ ALTER TABLE `saw_pegawai`
 -- AUTO_INCREMENT for table `booking`
 --
 ALTER TABLE `booking`
-  MODIFY `id_booking` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_booking` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `gambar_menu`
@@ -496,7 +502,7 @@ ALTER TABLE `lupa_password`
 -- AUTO_INCREMENT for table `meja`
 --
 ALTER TABLE `meja`
-  MODIFY `id_meja` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_meja` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `menu`
@@ -508,13 +514,13 @@ ALTER TABLE `menu`
 -- AUTO_INCREMENT for table `menu_dibooking`
 --
 ALTER TABLE `menu_dibooking`
-  MODIFY `id_menu_dibooking` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id_menu_dibooking` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT for table `metode_pembayaran`
 --
 ALTER TABLE `metode_pembayaran`
-  MODIFY `id_metode` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_metode` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `pegawai`
@@ -538,7 +544,7 @@ ALTER TABLE `saran_kritik`
 -- AUTO_INCREMENT for table `saw_hasil`
 --
 ALTER TABLE `saw_hasil`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `saw_kriteria`
