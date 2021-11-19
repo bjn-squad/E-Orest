@@ -426,8 +426,8 @@ progress {
 }
 
 // Correct the cursor style of increment and decrement buttons in Chrome.
-[type="number"]::-webkit-inner-spin-button,
-[type="number"]::-webkit-outer-spin-button {
+[type="number" min="0"]::-webkit-inner-spin-button,
+[type="number" min="0"]::-webkit-outer-spin-button {
   height: auto;
 }
 

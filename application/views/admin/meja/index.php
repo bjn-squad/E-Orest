@@ -34,33 +34,34 @@
                     <?php
                     } ?>
                     <button class="btn btn-primary mb-3" data-toggle="modal" data-target="#tambahmejamodal"><i class="fa fa-plus"></i> Tambah Meja</button>
-
-                    <table class="table table-flush dataTable" id="datatable-id" role="grid" aria-describedby="datatable-basic_info">
-                        <thead class="thead-dark">
-                            <tr role="row">
-                                <th>Nomor Meja</th>
-                                <th>Kapasitas (Orang)</th>
-                                <th>Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            foreach ($meja as $m) {
-                            ?>
-                                <tr>
-                                    <td><?= $m['nomor_meja'] ?></td>
-                                    <td><?= $m['kapasitas_meja'] ?> Orang</td>
-                                    <td>
-                                        <button data-toggle="modal" data-target="#editmejamodal" onclick="edit_meja(<?= $m['id_meja'] ?>)" class="btn btn-sm btn-warning">Edit</button>
-                                        <a href="<?= base_url() ?>meja/hapus/<?= $m['id_meja'] ?>" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus Meja <?= $m['nomor_meja'] ?>?');" class="btn btn-sm btn-danger">Hapus</a>
-                                    </td>
-                                    </td>
+                    <div class="table-responsive">
+                        <table class="table table-flush dataTable" id="datatable-id" role="grid" aria-describedby="datatable-basic_info">
+                            <thead class="thead-dark">
+                                <tr role="row">
+                                    <th>Nomor Meja</th>
+                                    <th>Kapasitas (Orang)</th>
+                                    <th>Aksi</th>
                                 </tr>
-                            <?php
-                            }
-                            ?>
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                <?php
+                                foreach ($meja as $m) {
+                                ?>
+                                    <tr>
+                                        <td><?= $m['nomor_meja'] ?></td>
+                                        <td><?= $m['kapasitas_meja'] ?> Orang</td>
+                                        <td>
+                                            <button data-toggle="modal" data-target="#editmejamodal" onclick="edit_meja(<?= $m['id_meja'] ?>)" class="btn btn-sm btn-warning">Edit</button>
+                                            <a href="<?= base_url() ?>meja/hapus/<?= $m['id_meja'] ?>" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus Meja <?= $m['nomor_meja'] ?>?');" class="btn btn-sm btn-danger">Hapus</a>
+                                        </td>
+                                        </td>
+                                    </tr>
+                                <?php
+                                }
+                                ?>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
@@ -83,7 +84,7 @@
                         <label>Nomor Meja</label>
                         <input type="text" class="form-control" placeholder="1A" name="nomor_meja" required>
                         <label>Kapasitas (Orang)</label>
-                        <input type="number" class="form-control" placeholder="0" name="kapasitas" required>
+                        <input type="number" min="0" class="form-control" placeholder="0" name="kapasitas" required>
                     </div>
             </div>
             <div class="modal-footer">
@@ -110,7 +111,7 @@
                     <div class="form-group">
                         <input type="hidden" id="idmeja_edit" name="id_meja" required>
                         <label>Kapasitas (Orang)</label>
-                        <input type="number" id="kapasitas_edit" class="form-control" placeholder="0" name="kapasitas_meja" required>
+                        <input type="number" min="0" id="kapasitas_edit" class="form-control" placeholder="0" name="kapasitas_meja" required>
                     </div>
             </div>
             <div class="modal-footer">

@@ -27,47 +27,47 @@
                 <div class="col-lg-12">
                     <?= $this->session->flashdata('message'); ?>
                     <button class="btn btn-primary mb-3" data-toggle="modal" data-target="#tambahmakananmodal"><i class="fa fa-plus"></i> Tambah Menu</button>
-
-                    <table class="table table-flush dataTable" id="datatable-id" role="grid" aria-describedby="datatable-basic_info">
-                        <thead class="thead-dark">
-                            <tr role="row">
-                                <th>Nama Menu</th>
-                                <th>Detail Menu</th>
-                                <th>Kategori</th>
-                                <th>Stok</th>
-                                <th>Harga</th>
-                                <th>Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            $no = 1;
-                            foreach ($makanan as $mk) {
-                            ?>
-                                <tr>
-                                    <td><?= $mk['nama_menu'] ?></td>
-                                    <td><?= $mk['detail_menu'] ?></td>
-                                    <td><?= $mk['kategori'] ?></td>
-                                    <td><?= $mk['stok'] ?></td>
-                                    <td><?= $mk['harga'] ?></td>
-                                    <td>
-                                        <a href="<?php base_url() ?>makanan/gambar/<?= $mk['id_menu'] ?>" class="btn btn-sm btn-info"> Gambar</a>
-                                        <a href="<?php base_url() ?>makanan/edit/<?= $mk['id_menu'] ?>" class="btn btn-sm btn-warning"> Edit</a>
-                                        <a href="<?php base_url() ?>makanan/delete/<?= $mk['id_menu'] ?>" onclick="return confirm('Apakah anda yakin ingin menghapus menu <?= $mk['nama_menu'] ?>? Jika anda menghapus menu ini maka gambar menu ini ikut terhapus.')" class="btn btn-sm btn-danger"> Hapus</a>
-                                    </td>
+                    <div class="table-responsive">
+                        <table class="table table-flush dataTable" id="datatable-id" role="grid" aria-describedby="datatable-basic_info">
+                            <thead class="thead-dark">
+                                <tr role="row">
+                                    <th>Nama Menu</th>
+                                    <th>Detail Menu</th>
+                                    <th>Kategori</th>
+                                    <th>Stok</th>
+                                    <th>Harga</th>
+                                    <th>Aksi</th>
                                 </tr>
-                            <?php
-                                $no++;
-                            }
-                            ?>
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                <?php
+                                $no = 1;
+                                foreach ($makanan as $mk) {
+                                ?>
+                                    <tr>
+                                        <td><?= $mk['nama_menu'] ?></td>
+                                        <td><?= $mk['detail_menu'] ?></td>
+                                        <td><?= $mk['kategori'] ?></td>
+                                        <td><?= $mk['stok'] ?></td>
+                                        <td><?= $mk['harga'] ?></td>
+                                        <td>
+                                            <a href="<?php base_url() ?>makanan/gambar/<?= $mk['id_menu'] ?>" class="btn btn-sm btn-info"> Gambar</a>
+                                            <a href="<?php base_url() ?>makanan/edit/<?= $mk['id_menu'] ?>" class="btn btn-sm btn-warning"> Edit</a>
+                                            <a href="<?php base_url() ?>makanan/delete/<?= $mk['id_menu'] ?>" onclick="return confirm('Apakah anda yakin ingin menghapus menu <?= $mk['nama_menu'] ?>? Jika anda menghapus menu ini maka gambar menu ini ikut terhapus.')" class="btn btn-sm btn-danger"> Hapus</a>
+                                        </td>
+                                    </tr>
+                                <?php
+                                    $no++;
+                                }
+                                ?>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 <!-- Modal -->
 <div class="modal fade" id="tambahmakananmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -96,7 +96,7 @@
                             <option>Tidak Tersedia</option>
                         </select>
                         <label>Harga</label>
-                        <input type="number" class="form-control" placeholder="" name="harga" required|numeric>
+                        <input type="number" min="0" class="form-control" placeholder="" name="harga" required|numeric>
                     </div>
 
             </div>
