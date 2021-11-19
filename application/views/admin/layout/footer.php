@@ -26,6 +26,9 @@
 <script>
     $(document).ready(function() {
         $('#datatable-id').DataTable();
+        $('#datatable-id2').DataTable();
+        $('#datatable-id3').DataTable();
+        $('#datatable-id4').DataTable();
     });
 </script>
 <script src="<?= base_url() ?>assets/home/select2/js/select2.full.min.js"></script>
