@@ -38,17 +38,17 @@
     <div class="container">
 
       <div class="section-title">
-        <h2>Tentang <?= $nama_usaha ?></h2>
+        <h2>TENTANG <?= $nama_usaha ?></h2>
       </div>
 
       <div class="row content">
         <div class="col-lg-6 pt-4 pt-lg-0">
           <p>
             <?= $deskripsi ?>
-          </p>
+          </p><br>
         </div>
         <div class="col-lg-6">
-          <img style="width: 40vw;height:25vw;" src="<?php echo base_url('assets/dataresto/foto_usaha/' . $foto_usaha_1) ?>" />
+          <img style="width: 100%;" src="<?php echo base_url('assets/dataresto/foto_usaha/' . $foto_usaha_1) ?>" />
         </div>
       </div>
 

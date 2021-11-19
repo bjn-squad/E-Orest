@@ -49,7 +49,7 @@
                                         <td><?= $mk['detail_menu'] ?></td>
                                         <td><?= $mk['kategori'] ?></td>
                                         <td><?= $mk['stok'] ?></td>
-                                        <td><?= $mk['harga'] ?></td>
+                                        <td>Rp. <?= number_format($mk['harga'], 0, ',', '.')  ?></td>
                                         <td>
                                             <a href="<?php base_url() ?>makanan/gambar/<?= $mk['id_menu'] ?>" class="btn btn-sm btn-info"> Gambar</a>
                                             <a href="<?php base_url() ?>makanan/edit/<?= $mk['id_menu'] ?>" class="btn btn-sm btn-warning"> Edit</a>
@@ -67,44 +67,44 @@
             </div>
         </div>
     </div>
-</div>
-<!-- Modal -->
-<div class="modal fade" id="tambahmakananmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Tambah Menu</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form action="<?= base_url() ?>makanan/tambah" method="POST">
-                    <div class="form-group">
-                        <label>Nama Menu</label>
-                        <input type="text" class="form-control" placeholder="" name="nama_menu" required>
-                        <label>Detail Menu</label>
-                        <input type="text" class="form-control" placeholder="" name="detail_menu" required>
-                        <label for="exampleFormControlSelect1">Kategori</label>
-                        <select class="form-control" id="exampleFormControlSelect1" name="kategori">
-                            <option>Makanan</option>
-                            <option>Minuman</option>
-                        </select>
-                        <label for="exampleFormControlSelect1">Stok</label>
-                        <select class="form-control" id="exampleFormControlSelect1" name="stok">
-                            <option>Tersedia</option>
-                            <option>Tidak Tersedia</option>
-                        </select>
-                        <label>Harga</label>
-                        <input type="number" min="0" class="form-control" placeholder="" name="harga" required|numeric>
-                    </div>
 
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Save changes</button>
-                </form>
+    <!-- Modal -->
+    <div class="modal fade" id="tambahmakananmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Tambah Menu</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="<?= base_url() ?>makanan/tambah" method="POST">
+                        <div class="form-group">
+                            <label>Nama Menu</label>
+                            <input type="text" class="form-control" placeholder="" name="nama_menu" required>
+                            <label>Detail Menu</label>
+                            <input type="text" class="form-control" placeholder="" name="detail_menu" required>
+                            <label for="exampleFormControlSelect1">Kategori</label>
+                            <select class="form-control" id="exampleFormControlSelect1" name="kategori">
+                                <option>Makanan</option>
+                                <option>Minuman</option>
+                            </select>
+                            <label for="exampleFormControlSelect1">Stok</label>
+                            <select class="form-control" id="exampleFormControlSelect1" name="stok">
+                                <option>Tersedia</option>
+                                <option>Tidak Tersedia</option>
+                            </select>
+                            <label>Harga</label>
+                            <input type="number" class="form-control" placeholder="" name="harga" required|numeric>
+                        </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>

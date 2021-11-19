@@ -97,7 +97,7 @@
                                         <td><?= $mk['id_detail_menu'] ?></td>
                                         <td><?= $mk['nama_pemesan'] ?></td>
                                         <td><?= date("d-m-Y", strtotime($mk['tanggal_reservasi'])) ?></td>
-                                        <td><?= $mk['total_pembayaran'] ?></td>
+                                        <td>Rp. <?= number_format($mk['total_pembayaran'], 0, ',', '.')  ?></td>
                                         <td><?= $mk['status_pembayaran'] ?></td>
 
                                         <td>

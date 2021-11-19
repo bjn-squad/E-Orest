@@ -87,7 +87,7 @@
                     ?>
                         <h3>Tabel Pegawai</h3>
                         <div class="table-responsive mb-5">
-                            <table class="table table-bordered dataTable" id="datatable-id" role="grid" aria-describedby="datatable-basic_info">
+                            <table class="table table-bordered dataTable" id="datatable-id2" role="grid" aria-describedby="datatable-basic_info">
                                 <thead class="thead-dark">
                                     <tr>
                                         <th scope="col">No</th>
@@ -104,8 +104,7 @@
                                             <td><?= $no ?></td>
                                             <td><?= $p['nama_pegawai'] ?></td>
                                             <td>
-                                                <button class="badge badge-success">Edit</button>
-                                                <button class="badge badge-danger">Delete</button>
+                                                <a href="<?= base_url() ?>saw/hapus_pegawai/<?= $p['id'] ?>" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus Data Pegawai <?= $p['nama_pegawai'] ?>?');" class="btn btn-sm btn-danger">Hapus</a>
                                             </td>
                                         </tr>
                                     <?php
@@ -122,6 +121,33 @@
                     <?php
                     }
                     ?>
+                    <h3>Tabel Riwayat Pegawai Terbaik</h3>
+                    <div class="table-responsive mb-5">
+                        <table class="table table-bordered dataTable" id="datatable-id3" role="grid" aria-describedby="datatable-basic_info">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">No</th>
+                                    <th scope="col">Tanggal Penentuan</th>
+                                    <th scope="col">Pegawai Terpilih</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                $no = 1;
+                                foreach ($riwayat as $r) {
+                                ?>
+                                    <tr>
+                                        <td><?= $no ?></td>
+                                        <td><?= date("d-m-Y", strtotime($r['tanggal_penghitungan'])) ?></td>
+                                        <td><?= $r['pegawai_terpilih'] ?></td>
+                                    </tr>
+                                <?php
+                                    $no++;
+                                }
+                                ?>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
