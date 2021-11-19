@@ -71,7 +71,7 @@
                             <?php              } ?>
                         </select>
                         <label style="font-weight: bold;">Jumlah Menu</label>
-                        <input type="number" id="jumlah_beli" name="jumlah_beli" class="form-control mb-2" placeholder="0" required>
+                        <input type="number" min="0" id="jumlah_beli" name="jumlah_beli" class="form-control mb-2" placeholder="0" required>
                     </div>
                 </div>
                 <div class="col-lg-5">

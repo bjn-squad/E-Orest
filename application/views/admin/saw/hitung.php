@@ -103,7 +103,7 @@
                                                 <?php for ($i = 1; $i <= count($kriteria); $i++) {
                                                 ?>
                                                     <th>
-                                                        <input type="number" required id="P<?= $no ?>C<?= $i ?>">
+                                                        <input type="number" min="0" required id="P<?= $no ?>C<?= $i ?>">
                                                     </th>
                                                 <?php
                                                 } ?>

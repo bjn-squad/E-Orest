@@ -408,7 +408,7 @@ legend + * {
 [type="tel"],
 [type="url"],
 [type="email"],
-[type="number"] {
+[type="number" min="0"] {
   direction: ltr;
 }
 */

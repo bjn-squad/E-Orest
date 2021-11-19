@@ -34,38 +34,40 @@
                     <?php
                     } ?>
                     <button class="btn btn-primary mb-3" data-toggle="modal" data-target="#tambahmetodemodal"><i class="fa fa-plus"></i> Tambah Metode Pembayaran</button>
-
-                    <table class="table table-flush dataTable" id="datatable-id" role="grid" aria-describedby="datatable-basic_info">
-                        <thead class="thead-dark">
-                            <tr role="row">
-                                <th>No</th>
-                                <th>Merchant/Bank</th>
-                                <th>No HP/No Rekening</th>
-                                <th>Atas Nama</th>
-                                <th>Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            $no = 1;
-                            foreach ($metode_pembayaran as $m) {
-                            ?>
-                                <tr>
-                                    <td><?= $no ?></td>
-                                    <td><?= $m['nama_merchant'] ?></td>
-                                    <td><?= $m['kode_pembayaran'] ?></td>
-                                    <td><?= $m['atas_nama'] ?></td>
-                                    <td>
-                                        <button data-toggle="modal" data-target="#editmetodemodal" onclick="edit_metode(<?= $m['id_metode'] ?>)" class="btn btn-sm btn-warning">Edit</button>
-                                        <a href="<?= base_url() ?>profilusaha/hapusmetodepembayaran/<?= $m['id_metode'] ?>" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus Metode Pembayaran <?= $m['nama_merchant'] ?>?');" class="btn btn-sm btn-danger">Hapus</a></td>
-                                    </td>
+                    <div class="table-responsive">
+                        <table class="table table-flush dataTable" id="datatable-id" role="grid" aria-describedby="datatable-basic_info">
+                            <thead class="thead-dark">
+                                <tr role="row">
+                                    <th>No</th>
+                                    <th>Merchant/Bank</th>
+                                    <th>No HP/No Rekening</th>
+                                    <th>Atas Nama</th>
+                                    <th>Aksi</th>
                                 </tr>
-                            <?php
-                                $no++;
-                            }
-                            ?>
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                <?php
+                                $no = 1;
+                                foreach ($metode_pembayaran as $m) {
+                                ?>
+                                    <tr>
+                                        <td><?= $no ?></td>
+                                        <td><?= $m['nama_merchant'] ?></td>
+                                        <td><?= $m['kode_pembayaran'] ?></td>
+                                        <td><?= $m['atas_nama'] ?></td>
+                                        <td>
+                                            <button data-toggle="modal" data-target="#editmetodemodal" onclick="edit_metode(<?= $m['id_metode'] ?>)" class="btn btn-sm btn-warning">Edit</button>
+                                            <a href="<?= base_url() ?>profilusaha/hapusmetodepembayaran/<?= $m['id_metode'] ?>" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus Metode Pembayaran <?= $m['nama_merchant'] ?>?');" class="btn btn-sm btn-danger">Hapus</a>
+                                        </td>
+                                        </td>
+                                    </tr>
+                                <?php
+                                    $no++;
+                                }
+                                ?>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
@@ -88,7 +90,7 @@
                         <label>Nama Merchant</label>
                         <input type="text" class="form-control" placeholder="Nama Bank/Merchant Payment(Dana, Ovo)" name="nama_merchant" required>
                         <label>No HP/No Rekening</label>
-                        <input type="number" class="form-control" placeholder="0" name="kode_pembayaran" required>
+                        <input type="number" min="0" class="form-control" placeholder="0" name="kode_pembayaran" required>
                         <label>Pemilik Rekening/Merchant (Atas Nama)</label>
                         <input type="text" class="form-control" placeholder="Atas Nama" name="atas_nama" required>
                     </div>
@@ -119,7 +121,7 @@
                         <label>Nama Merchant</label>
                         <input type="text" class="form-control" placeholder="Nama Bank/Merchant Payment(Dana, Ovo)" name="nama_merchant" id="nama_merchant" required>
                         <label>No HP/No Rekening</label>
-                        <input type="number" class="form-control" placeholder="0" name="kode_pembayaran" id="kode_pembayaran" required>
+                        <input type="number" min="0" class="form-control" placeholder="0" name="kode_pembayaran" id="kode_pembayaran" required>
                         <label>Pemilik Rekening/Merchant (Atas Nama)</label>
                         <input type="text" class="form-control" placeholder="Atas Nama" name="atas_nama" id="atas_nama" required>
                     </div>

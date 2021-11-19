@@ -40,7 +40,7 @@
                 <?php              } ?>
             </select>
             <label style="font-weight: bold;">Jumlah Menu</label>
-            <input type="number" id="jumlah_beli" name="jumlah_beli" class="form-control mb-2" placeholder="0" required>
+            <input type="number" min="0" id="jumlah_beli" name="jumlah_beli" class="form-control mb-2" placeholder="0" required>
         </div>
         <a href="<?= base_url() ?>transaksi" class="btn btn-sm btn-info shadow-sm mb-3"><i class="fas fa-arrow-left fa-sm text-white-50"></i> Kembali</a>
         <button class="btn btn-sm btn-primary shadow-sm mb-3" onclick="tambahBarang()"><i class="fas fa-plus fa-sm text-white-50"></i> Tambah Barang</button>

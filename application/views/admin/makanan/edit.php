@@ -59,7 +59,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="textarea-input" class=" form-control-label">Harga</label>
-                                <input value="<?= $mk['harga'] ?>" type="number" required class="form-control" name="harga" placeholder="Harga">
+                                <input value="<?= $mk['harga'] ?>" type="number" min="0" required class="form-control" name="harga" placeholder="Harga">
                             </div>
                             <div class="text-center mb-3">
                                 <a href="<?= base_url() ?>makanan" class="btn btn-secondary btn-sm"><i class="fa fa-arrow-left"></i> Back</a>

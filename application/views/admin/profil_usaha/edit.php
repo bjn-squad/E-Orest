@@ -40,7 +40,7 @@
                                     <label>Alamat</label>
                                     <input type="text" class="form-control" name="alamat" value="<?= $ps['alamat'] ?>" required>
                                     <label>Nomor Telepon</label>
-                                    <input type="number" class="form-control" name="nomor_telepon" value="<?= $ps['nomor_telepon'] ?>" required>
+                                    <input type="number" min="0" class="form-control" name="nomor_telepon" value="<?= $ps['nomor_telepon'] ?>" required>
                                     <label>Email</label>
                                     <input type="email" class="form-control" name="email" value="<?= $ps['email'] ?>">
                                     <label>Instagram</label><small>* Tidak usah diberi @</small>
