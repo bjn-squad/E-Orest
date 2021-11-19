@@ -16,6 +16,12 @@ class Saw_model extends CI_Model
         return $query->result_array();
     }
 
+    public function get_riwayat()
+    {
+        $query = $this->db->query("SELECT * FROM saw_hasil");
+        return $query->result_array();
+    }
+
     function tambah_kriteria()
     {
         $data = [
@@ -42,5 +48,11 @@ class Saw_model extends CI_Model
             'pegawai_terpilih' => htmlspecialchars($this->input->post('pegawai_terpilih', true)),
         ];
         $this->db->insert('saw_hasil', $data);
+    }
+
+    public function hapus_pegawai($id)
+    {
+        $this->db->where('id', $id);
+        $this->db->delete('saw_pegawai');
     }
 }

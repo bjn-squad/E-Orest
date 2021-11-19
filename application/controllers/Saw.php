@@ -21,6 +21,7 @@ class Saw extends CI_Controller
         $data['title'] = 'Dashboard Pegawai';
         $data['kriteria'] = $this->Saw_model->get_kriteria();
         $data['pegawai'] = $this->Saw_model->get_pegawai();
+        $data['riwayat'] = $this->Saw_model->get_riwayat();
 
         $this->load->view('admin/layout/header', $data);
         $this->load->view('admin/layout/side');
@@ -63,6 +64,15 @@ class Saw extends CI_Controller
           </div>');
             redirect('saw');
         }
+    }
+
+    public function hapus_pegawai($id)
+    {
+        $this->Saw_model->hapus_pegawai($id);
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+        Sukses Hapus Data Pegawai
+       </div>');
+        redirect('saw');
     }
 
     public function hitung()
