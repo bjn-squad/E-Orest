@@ -73,7 +73,7 @@
                             </div>
                             <div class="row form-group">
                                 <div class="col col-md-3"><label for="textarea-input" class=" form-control-label">Jumlah DP Terbayar : </label></div>
-                                <div class="col-12 col-md-9"><input type="number" class="form-control" placeholder="" name="total_sudah_dibayar" required>
+                                <div class="col-12 col-md-9"><input type="number" min="0" class="form-control" placeholder="" name="total_sudah_dibayar" required>
                                     <small>* Jika gambar salah/dp kurang isi jumlah DP terbayar dengan angka 0</small>
                                 </div>
                             </div>

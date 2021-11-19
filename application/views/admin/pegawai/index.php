@@ -34,44 +34,45 @@
                     <?php
                     } ?>
                     <button class="btn btn-primary mb-3" data-toggle="modal" data-target="#tambahpegawaimodal"><i class="fa fa-plus"></i> Tambah Pegawai</button>
-
-                    <table class="table table-flush dataTable" id="datatable-id" role="grid" aria-describedby="datatable-basic_info">
-                        <thead class="thead-dark">
-                            <tr role="row">
-                                <th>Nama</th>
-                                <th>Email</th>
-                                <th>Nomor Telepon</th>
-                                <th>Jabatan</th>
-                                <th>Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            foreach ($meja as $m) {
-                            ?>
-                                <tr>
-                                    <td><?= $m['nama'] ?></td>
-                                    <td><?= $m['email'] ?></td>
-                                    <td><?= $m['telepon'] ?></td>
-                                    <td><?= $m['jabatan'] ?></td>
-                                    <td>
-                                        <a href="<?php base_url() ?>detail_pegawai/<?= $m['id_pegawai'] ?>" class="btn btn-sm btn-info">Detail</a>
-                                        <button data-toggle="modal" data-target="#editpasswordmodal" onclick="ubah_password_pegawai(<?= $m['id_pegawai'] ?>)" class="btn btn-sm btn-warning">Change Password</button>
-                                        <?php
-                                        if ($m['jabatan'] != "admin") {
-                                        ?>
-                                            <a href="<?= base_url() ?>admin/hapus_pegawai/<?= $m['id_pegawai'] ?>" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus Pegawai <?= $m['nama'] ?>?');" class="btn btn-sm btn-danger">Hapus</a>
-                                        <?php
-                                        }
-                                        ?>
-                                    </td>
-                                    </td>
+                    <div class="table-responsive">
+                        <table class="table table-flush dataTable" id="datatable-id" role="grid" aria-describedby="datatable-basic_info">
+                            <thead class="thead-dark">
+                                <tr role="row">
+                                    <th>Nama</th>
+                                    <th>Email</th>
+                                    <th>Nomor Telepon</th>
+                                    <th>Jabatan</th>
+                                    <th>Aksi</th>
                                 </tr>
-                            <?php
-                            }
-                            ?>
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                <?php
+                                foreach ($meja as $m) {
+                                ?>
+                                    <tr>
+                                        <td><?= $m['nama'] ?></td>
+                                        <td><?= $m['email'] ?></td>
+                                        <td><?= $m['telepon'] ?></td>
+                                        <td><?= $m['jabatan'] ?></td>
+                                        <td>
+                                            <a href="<?php base_url() ?>detail_pegawai/<?= $m['id_pegawai'] ?>" class="btn btn-sm btn-info">Detail</a>
+                                            <button data-toggle="modal" data-target="#editpasswordmodal" onclick="ubah_password_pegawai(<?= $m['id_pegawai'] ?>)" class="btn btn-sm btn-warning">Change Password</button>
+                                            <?php
+                                            if ($m['jabatan'] != "admin") {
+                                            ?>
+                                                <a href="<?= base_url() ?>admin/hapus_pegawai/<?= $m['id_pegawai'] ?>" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus Pegawai <?= $m['nama'] ?>?');" class="btn btn-sm btn-danger">Hapus</a>
+                                            <?php
+                                            }
+                                            ?>
+                                        </td>
+                                        </td>
+                                    </tr>
+                                <?php
+                                }
+                                ?>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

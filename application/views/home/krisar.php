@@ -18,6 +18,14 @@
     <!-- ======= Contact Us Section ======= -->
     <section id="contact-us" class="contact-us">
         <div class="container">
+            <?= $this->session->flashdata('message'); ?>
+            <?php if (validation_errors()) {
+            ?>
+                <div class="alert alert-danger" role="alert">
+                    <?= validation_errors() ?>
+                </div>
+            <?php
+            } ?>
             <div class="col-lg-12">
                 <h3>Kritik & Saran</h3>
                 <p>Kritik dan Saran yang anda berikan akan sangat berguna untuk peningkatan kualitas dari usaha kami.</p>
